@@ -1,0 +1,459 @@
+{
+  "app": "papyrus",
+  "fixture": "minimal",
+  "locale": "en-US",
+  "timezone": "UTC",
+  "provenance_note": "The isolated gateway ran Kiro Crew at the App Kit level-1 seams commit with its built-in Papyrus (src/kiro_crew/apps/builtins/papyrus and the papyrus-* builtin skills) removed from that throwaway checkout, and served this repository installed from a clean clone of the commit named in app_commit, trusted and enabled through the dashboard API. The compiler is the app's own managed Tectonic, installed through the app's 'Install compiler' route.",
+  "data_notes": [
+    "Every paper, person, journal and citation is fictional; the bibliography entries do not refer to real publications.",
+    "Each paper's 'Last edited' time is the moment the capture created it, from the gateway's clock.",
+    "The grazing-abstract paper is seeded with an undefined macro (\\tempdiff) on purpose, to show the compiler's error list."
+  ],
+  "init_storage": {
+    "mc-nav": "0",
+    "kc:papyrus:project": "tide-pool-heat"
+  },
+  "ready": "[data-testid='papyrus-workspace']",
+  "forbid_text": [
+    "Compiling…",
+    "Installing…",
+    "Downloading…",
+    "Verifying…",
+    "No LaTeX compiler was found",
+    "owner authorization required"
+  ],
+  "setup": [
+    {
+      "name": "install this repository",
+      "method": "POST",
+      "path": "/api/apps/install",
+      "body": {
+        "source": "{{app_root}}"
+      }
+    },
+    {
+      "name": "trust it (it runs its own code in the gateway)",
+      "method": "POST",
+      "path": "/api/security/trusted-apps/papyrus"
+    },
+    {
+      "name": "turn the app on",
+      "method": "POST",
+      "path": "/api/apps/papyrus/enable"
+    },
+    {
+      "name": "retire the host's one-time startup intro",
+      "method": "POST",
+      "path": "/api/feature-videos/feedback",
+      "body": {
+        "id": "crewmates",
+        "status": "dismissed"
+      },
+      "optional": true
+    },
+    {
+      "name": "install the managed Tectonic compiler",
+      "method": "POST",
+      "path": "/api/apps/papyrus/compiler/provision",
+      "expect": [
+        200,
+        202
+      ]
+    },
+    {
+      "name": "wait for the compiler install",
+      "method": "GET",
+      "path": "/api/apps/papyrus/health",
+      "until": {
+        "path": "managed.installed",
+        "equals": true
+      },
+      "timeout_ms": 300000
+    },
+    {
+      "name": "paper: tide pools",
+      "method": "POST",
+      "path": "/api/apps/papyrus/projects",
+      "body": {
+        "name": "tide-pool-heat",
+        "template": "\\documentclass[11pt]{article}\n\\usepackage{amsmath}\n\\usepackage{booktabs}\n\\usepackage{natbib}\n\n\\title{Afternoon Heat in Rocky Tide Pools}\n\\author{Mara Quill \\and Dev Okafor-Lind}\n\\date{Draft, Coastal Ecology Reading Group}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\nSmall tide pools on the upper shore warm quickly once the tide leaves them.\nWe logged water temperature in twelve pools at Gull Point every ten minutes\nfor a summer and found that pool depth, not surface area, best predicts the\nafternoon peak. Shallow pools ran up to 6\\,\\textdegree C warmer than the open\nwater, which matters for the snails and anemones that shelter in them.\n\\end{abstract}\n\n\\input{sections/introduction}\n\\input{sections/methods}\n\n\\section{Results}\nTable~\\ref{tab:peaks} lists the mean afternoon peak by depth class. The\nwarming rate follows a simple exchange model,\n\\begin{equation}\n  \\frac{dT}{dt} = k \\, (T_{\\text{air}} - T) + \\frac{q}{\\rho c_p d},\n  \\label{eq:exchange}\n\\end{equation}\nwhere $d$ is pool depth and $q$ the absorbed solar flux.\n\n\\begin{table}[h]\n  \\centering\n  \\begin{tabular}{lrr}\n    \\toprule\n    Depth class & Pools & Mean peak (\\textdegree C) \\\\\n    \\midrule\n    Under 10 cm & 4 & 27.8 \\\\\n    10--25 cm   & 5 & 24.1 \\\\\n    Over 25 cm  & 3 & 21.6 \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption{Afternoon peak temperature by pool depth.}\n  \\label{tab:peaks}\n\\end{table}\n\n\\bibliographystyle{plainnat}\n\\bibliography{references}\n\n\\end{document}\n"
+      },
+      "expect": [
+        201
+      ]
+    },
+    {
+      "name": "tide pools: introduction",
+      "method": "POST",
+      "path": "/api/apps/papyrus/file",
+      "body": {
+        "name": "tide-pool-heat",
+        "path": "sections/introduction.tex",
+        "content": "\\section{Introduction}\nRock pools are a refuge at low tide, but a shallow pool in full sun can become\na trap. Earlier surveys measured pools once or twice a day\n\\citep{quill2021pools}; continuous loggers show how fast the water warms and\nhow long the peak lasts \\citep{okafor2023loggers}.\n"
+      },
+      "expect": [
+        201
+      ]
+    },
+    {
+      "name": "tide pools: methods",
+      "method": "POST",
+      "path": "/api/apps/papyrus/file",
+      "body": {
+        "name": "tide-pool-heat",
+        "path": "sections/methods.tex",
+        "content": "\\section{Methods}\nWe fixed one temperature logger to the floor of each of twelve pools between\nthe high-water mark and the mid shore. Each pool was measured for depth at its\ndeepest point and for surface area from a top-down photograph. Loggers recorded\nevery ten minutes from June to August, and we kept only the hours when the pool\nwas cut off from the sea.\n"
+      },
+      "expect": [
+        201
+      ]
+    },
+    {
+      "name": "tide pools: bibliography",
+      "method": "PUT",
+      "path": "/api/apps/papyrus/file",
+      "body": {
+        "name": "tide-pool-heat",
+        "path": "references.bib",
+        "content": "@article{quill2021pools,\n  author  = {Quill, Mara and Hart, Lena},\n  title   = {Twice-daily temperature surveys of upper-shore rock pools},\n  journal = {Journal of Example Coastal Studies},\n  year    = {2021},\n  volume  = {4},\n  pages   = {12--19}\n}\n\n@article{okafor2023loggers,\n  author  = {Okafor-Lind, Dev},\n  title   = {Cheap continuous loggers for intertidal fieldwork},\n  journal = {Example Field Methods},\n  year    = {2023},\n  volume  = {9},\n  pages   = {101--110}\n}\n"
+      }
+    },
+    {
+      "name": "tide pools: compile",
+      "method": "POST",
+      "path": "/api/apps/papyrus/compile",
+      "body": {
+        "name": "tide-pool-heat"
+      }
+    },
+    {
+      "wait_ms": 1100
+    },
+    {
+      "name": "paper: seed bank",
+      "method": "POST",
+      "path": "/api/apps/papyrus/projects",
+      "body": {
+        "name": "seed-bank-survey",
+        "template": "\\documentclass[11pt]{article}\n\\title{Seed Bank Survey of the North Meadow}\n\\author{Field Team B}\n\\begin{document}\n\\maketitle\n\\section{Aim}\nCount viable seeds in twenty soil cores and compare the meadow edge with the centre.\n\\section{Plan}\nCores are taken in March, sieved, and germinated in trays for eight weeks.\n\\end{document}\n"
+      },
+      "expect": [
+        201
+      ]
+    },
+    {
+      "name": "seed bank: compile",
+      "method": "POST",
+      "path": "/api/apps/papyrus/compile",
+      "body": {
+        "name": "seed-bank-survey"
+      }
+    },
+    {
+      "wait_ms": 1100
+    },
+    {
+      "name": "paper: abstract with a typo in a macro",
+      "method": "POST",
+      "path": "/api/apps/papyrus/projects",
+      "body": {
+        "name": "grazing-abstract",
+        "template": "\\documentclass[11pt]{article}\n\\title{Grazing Snails and Algal Cover: a Conference Abstract}\n\\author{Mara Quill}\n\\begin{document}\n\\maketitle\nOver one summer we excluded grazing snails from six of twelve pools with mesh\ncages. Algal cover in the caged pools rose from 18\\% to 64\\%, while open pools\nstayed near 20\\%. The effect was strongest in the warmest pools (see\n\\tempdiff).\n\\end{document}\n"
+      },
+      "expect": [
+        201
+      ]
+    },
+    {
+      "name": "list the papers",
+      "method": "GET",
+      "path": "/api/apps/papyrus/projects",
+      "save": {
+        "gen0": "projects.0.generation",
+        "gen1": "projects.1.generation",
+        "gen2": "projects.2.generation",
+        "name0": "projects.0.name",
+        "name1": "projects.1.name",
+        "name2": "projects.2.name"
+      }
+    },
+    {
+      "name": "give the tide-pool paper a display name",
+      "method": "PUT",
+      "path": "/api/apps/papyrus/title",
+      "body": {
+        "name": "{{name2}}",
+        "generation": "{{gen2}}",
+        "title": "Afternoon heat in rocky tide pools"
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "hero",
+      "path": "/apps/papyrus",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "ready_after": "[data-testid='papyrus-pdf'] iframe",
+      "settle_ms": 3000,
+      "alt": "PLACEHOLDER"
+    },
+    {
+      "name": "paper-list",
+      "path": "/apps/papyrus",
+      "themes": [
+        "light"
+      ],
+      "steps": [
+        {
+          "click": "role=button[name='Papers']"
+        },
+        {
+          "wait_for": "text=Your papers"
+        }
+      ],
+      "ready_after": "text=grazing-abstract",
+      "settle_ms": 800,
+      "alt": "PLACEHOLDER"
+    },
+    {
+      "name": "use-case-write",
+      "path": "/apps/papyrus",
+      "themes": [
+        "light"
+      ],
+      "steps": [
+        {
+          "click": "text=methods.tex"
+        },
+        {
+          "wait_for": "textarea[aria-label='sections/methods.tex']"
+        },
+        {
+          "click": "[data-testid='papyrus-editor'] textarea"
+        },
+        {
+          "press": "[data-testid='papyrus-editor'] textarea",
+          "key": "Control+End"
+        },
+        {
+          "type": "[data-testid='papyrus-editor'] textarea",
+          "value": "\nPools deeper than 25 cm never ran warmer than the open water.",
+          "delay_ms": 5
+        },
+        {
+          "press": "[data-testid='papyrus-editor'] textarea",
+          "key": "Control+s"
+        },
+        {
+          "wait_hidden": "text=Compiling…",
+          "timeout_ms": 120000
+        },
+        {
+          "press": "[data-testid='papyrus-editor'] textarea",
+          "key": "Home"
+        }
+      ],
+      "ready_after": "[data-testid='papyrus-pdf'] iframe",
+      "settle_ms": 3000,
+      "alt": "PLACEHOLDER"
+    },
+    {
+      "name": "use-case-errors",
+      "path": "/apps/papyrus",
+      "themes": [
+        "light"
+      ],
+      "steps": [
+        {
+          "click": "role=button[name='Papers']"
+        },
+        {
+          "click": "text=grazing-abstract"
+        },
+        {
+          "wait_for": "[data-testid='papyrus-workspace']"
+        },
+        {
+          "click": "role=button[name='Compile']"
+        },
+        {
+          "wait_for": "text=Undefined control sequence",
+          "timeout_ms": 120000
+        }
+      ],
+      "settle_ms": 800,
+      "alt": "PLACEHOLDER"
+    },
+    {
+      "name": "use-case-coauthor",
+      "path": "/apps/papyrus",
+      "themes": [
+        "light"
+      ],
+      "live": true,
+      "steps": [
+        {
+          "click": "role=button[name='Co-author']"
+        },
+        {
+          "wait_for": "textarea[aria-label='Message input']"
+        },
+        {
+          "click": "textarea[aria-label='Message input']"
+        },
+        {
+          "press": "textarea[aria-label='Message input']",
+          "key": "Control+End"
+        },
+        {
+          "type": "textarea[aria-label='Message input']",
+          "value": "Read sections/methods.tex and suggest two sentences I could make shorter. Do not edit any file.",
+          "delay_ms": 5
+        },
+        {
+          "press": "textarea[aria-label='Message input']",
+          "key": "Enter"
+        },
+        {
+          "wait_reply": true,
+          "timeout_ms": 600000
+        },
+        {
+          "scroll_reply": "start"
+        }
+      ],
+      "ready_after": "[data-role='assistant'] [data-testid='turn-stats']",
+      "alt": "PLACEHOLDER"
+    }
+  ],
+  "walkthrough": {
+    "name": "walkthrough",
+    "theme": "light",
+    "path": "/apps/papyrus",
+    "ready_after": "[data-testid='papyrus-pdf'] iframe",
+    "alt": "PLACEHOLDER",
+    "tail_ms": 3500,
+    "steps": [
+      {
+        "wait_ms": 1500
+      },
+      {
+        "caption": "A paper open in Papyrus: the LaTeX source on the left, the compiled PDF on the right",
+        "position": "bottom"
+      },
+      {
+        "wait_ms": 2500
+      },
+      {
+        "click": "text=methods.tex"
+      },
+      {
+        "wait_for": "textarea[aria-label='sections/methods.tex']"
+      },
+      {
+        "caption": "Pick a file in the tree and edit it",
+        "position": "bottom"
+      },
+      {
+        "click": "[data-testid='papyrus-editor'] textarea"
+      },
+      {
+        "press": "[data-testid='papyrus-editor'] textarea",
+        "key": "Control+End"
+      },
+      {
+        "type": "[data-testid='papyrus-editor'] textarea",
+        "value": "\nPools deeper than 25 cm never ran warmer than the open water.",
+        "delay_ms": 35
+      },
+      {
+        "caption": "Press Cmd+S (Ctrl+S on Windows and Linux) to save and compile",
+        "position": "bottom"
+      },
+      {
+        "wait_ms": 1200
+      },
+      {
+        "press": "[data-testid='papyrus-editor'] textarea",
+        "key": "Control+s"
+      },
+      {
+        "wait_hidden": "text=Compiling…",
+        "timeout_ms": 120000,
+        "cut": true
+      },
+      {
+        "press": "[data-testid='papyrus-editor'] textarea",
+        "key": "Home"
+      },
+      {
+        "caption": "",
+        "position": "bottom"
+      },
+      {
+        "wait_ms": 2500
+      },
+      {
+        "click": "role=button[name='Papers']"
+      },
+      {
+        "wait_for": "text=Your papers"
+      },
+      {
+        "caption": "Your papers, with the compiler Papyrus found",
+        "position": "bottom"
+      },
+      {
+        "wait_ms": 2500
+      },
+      {
+        "click": "text=grazing-abstract"
+      },
+      {
+        "wait_for": "[data-testid='papyrus-workspace']"
+      },
+      {
+        "click": "role=button[name='Compile']"
+      },
+      {
+        "wait_for": "text=Undefined control sequence",
+        "timeout_ms": 120000,
+        "cut": true
+      },
+      {
+        "caption": "A failed build lists each error; click one to jump to its line",
+        "position": "bottom"
+      },
+      {
+        "wait_ms": 2500
+      },
+      {
+        "click": "text=Undefined control sequence"
+      },
+      {
+        "wait_ms": 1800
+      },
+      {
+        "caption": "",
+        "position": "bottom"
+      },
+      {
+        "click": "role=button[name='Co-author']"
+      },
+      {
+        "wait_for": "textarea[aria-label='Message input']"
+      },
+      {
+        "caption": "Co-author opens a chat in Sessions that already names the paper",
+        "position": "top",
+        "offset": 80
+      },
+      {
+        "wait_ms": 3000
+      }
+    ]
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "apps": {
+    "papyrus": {
+      "coAuthor": {
+        "close_co_author_panel": "Chiudi il pannello di coautoria",
+        "close_panel": "Chiudi il pannello — la sessione resta aperta",
+        "co_author": "Coautore",
+        "co_author_chat": "Chat di coautoria",
+        "no_co_author_session_for_this_paper_yet": "Non c’è ancora una sessione di coautoria per questo articolo.",
+        "open_in_chat_page": "Apri nella pagina della chat",
+        "start_a_session": "Avvia una sessione",
+        "starting_session": "Avvio della sessione…"
+      },
+      "diagnostics": {
+        "jump_to_line": "Vai alla riga {{line}}",
+        "line_short": "R{{line}}",
+        "no_messages": "Il compilatore non ha segnalato nulla.",
+        "typesetting_hints_many": "{{count}} note di impaginazione",
+        "typesetting_hints_one": "{{count}} nota di impaginazione",
+        "typesetting_hints_other": "{{count}} note di impaginazione"
+      },
+      "fileTree": {
+        "delete_file": "Elimina {{file}}",
+        "files": "File",
+        "main": "Principale",
+        "new_file": "Nuovo file",
+        "no_source_files": "Nessun file sorgente."
+      },
+      "manifest": {
+        "configuration_1": "Installa Tectonic gestito dall'app o aggiungi tectonic o pdflatex a PATH, quindi crea un articolo o clona un repository con credenziali Git non interattive già configurate.",
+        "description": "Un editor per articoli in LaTeX con anteprima PDF dal vivo e un coautore AI. Scrivi in un editor a due riquadri, premi Cmd+S (Ctrl+S su Windows e Linux) per compilare con pdflatex o tectonic e leggi il PDF prodotto accanto al sorgente. Gli errori di compilazione vengono raccolti in un elenco cliccabile che salta alla riga incriminata. Clona un articolo esistente da qualsiasi remoto git, poi fai commit e push dalla barra degli strumenti. Il pannello del coautore è una vera sessione di chat di Kiro Crew limitata all’articolo, così l’agente può leggere e modificare il tuo LaTeX mentre guardi il PDF aggiornarsi.",
+        "display_name": "Papyrus",
+        "highlight_1": "Editor LaTeX a due riquadri con l’anteprima PDF dal vivo accanto",
+        "highlight_2": "Compilazione al salvataggio (Cmd+S, o Ctrl+S su Windows e Linux) con pdflatex o tectonic, e il ciclo bibtex eseguito per te",
+        "highlight_3": "Nessun TeX installato? Un clic installa un compilatore Tectonic verificato nella cartella di Papyrus",
+        "highlight_4": "Errori e avvisi del compilatore raccolti in un elenco cliccabile che salta alla riga",
+        "highlight_5": "Chat con il coautore AI limitata all’articolo — legge e modifica il LaTeX che hai davanti",
+        "highlight_6": "Clona un articolo da qualsiasi remoto git, poi fai commit, pull e push dalla barra degli strumenti",
+        "highlight_7": "Non esegue mai il compilatore con lo shell escape, così un file .tex ostile non può eseguire comandi",
+        "page_label": "Papyrus",
+        "use_case_1": "Scrivi un articolo LaTeX accanto al PDF compilato, passa dagli errori di build al sorgente e collabora con un agente limitato all'articolo."
+      },
+      "page": {
+        "actions": "Azioni",
+        "clone": "Clona",
+        "clone_url": "URL del repository",
+        "clone_url_placeholder": "Clona da un URL git…",
+        "cloning": "Clonazione…",
+        "compiled_count_label": "Compilati",
+        "compiler": "Compilatore",
+        "compiler_tip": "Il compilatore LaTeX trovato sulla macchina che esegue {{productName}}. Papyrus preferisce pdflatex e in alternativa usa tectonic.",
+        "create": "Crea",
+        "create_one_above_or_clone_an_existing_repository": "Creane uno qui sopra, oppure clona un repository esistente.",
+        "delete_paper": "Elimina {{name}}",
+        "delete_paper_confirm": "Eliminare «{{name}}» e tutti i suoi file? Questa azione non può essere annullata.",
+        "downloading_compiler_progress": "Download… {{done}} di {{total}}",
+        "install_compiler": "Installa compilatore",
+        "installing_compiler": "Installazione…",
+        "invalid_project_name": "I nomi degli articoli diventano nomi di cartella, quindi possono contenere solo lettere latine minuscole (a–z), cifre (0–9), punti, trattini e trattini bassi, devono iniziare con una lettera o una cifra e avere al massimo 64 caratteri.",
+        "invalid_project_name_char": "«{{char}}» non può essere usato nel nome di un articolo. Usa lettere minuscole a–z, 0–9, . -⁠ _",
+        "invalid_project_name_letter": "«{{char}}» ({{script}}, {{code}}) non può essere usato nel nome di un articolo. Usa lettere minuscole a–z, 0–9, . -⁠ _",
+        "last_edited": "Ultima modifica",
+        "latex_papers_with_a_live_pdf_preview": "Articoli in LaTeX con anteprima PDF in tempo reale",
+        "new_paper_name": "Nome del nuovo articolo",
+        "new_paper_name_placeholder": "Dai un nome al tuo articolo…",
+        "no_compiler_found_install_texlive_or_tectonic": "Su questa macchina non è stato trovato alcun compilatore LaTeX. Installa TeX Live (pdflatex) o tectonic per compilare.",
+        "no_compiler_install_bundled_prompt": "Su questa macchina non è stato trovato alcun compilatore LaTeX. Installa il compilatore Tectonic incluso: un unico download verificato, conservato nella cartella di Papyrus.",
+        "no_papers_yet": "Ancora nessun articolo",
+        "none_found": "Nessuno",
+        "paper": "Articolo",
+        "paper_name": "Nome dell'articolo",
+        "papers": "Articoli",
+        "papyrus": "Papyrus",
+        "pdf": "PDF",
+        "pdf_missing_status": "Non compilato",
+        "pdf_ready_status": "Pronto",
+        "rename_config_refused": "Il nome non è stato salvato: Papyrus non può modificare le impostazioni di questo articolo.",
+        "rename_paper": "Rinomina {{name}}",
+        "rename_paper_replaced": "Questo articolo è cambiato da quando è stato caricato l’elenco. L’elenco ora è aggiornato; premi Invio per salvare di nuovo il nome.",
+        "rename_title_rejected": "Scrivi un nome con caratteri visibili, oppure svuota il campo per mostrare di nuovo {{name}}.",
+        "start_a_paper": "Inizia un articolo",
+        "start_a_paper_tip": "Crea un articolo vuoto dal modello article standard, o clonane uno da un remoto git: va bene qualsiasi repository con un file .tex.",
+        "verifying_compiler": "Verifica in corso…",
+        "your_papers": "I tuoi articoli"
+      },
+      "preview": {
+        "compile_to_see_the_pdf": "Compila per vedere il PDF.",
+        "download_pdf": "Scarica il PDF",
+        "pdf_preview": "Anteprima del PDF"
+      },
+      "workspace": {
+        "co_author": "Coautore",
+        "co_author_conflict": "Il coautore ha modificato questo file",
+        "co_author_conflict_discard": "Scarta le mie modifiche e ricarica",
+        "co_author_conflict_discard_button": "Scarta le modifiche",
+        "co_author_conflict_discard_confirm": "Verranno scartate le modifiche non salvate a «{{file}}» e verrà caricata la versione del coautore. L’azione non può essere annullata.",
+        "co_author_conflict_discard_title": "Scartare le modifiche non salvate?",
+        "commit_and_push": "Esegui commit e invia",
+        "commit_message_prompt": "Descrivi questo commit. Includerà tutte le modifiche dell’articolo.",
+        "compile": "Compila",
+        "compiling": "Compilazione…",
+        "context_not_attached": "Menziona l'articolo nel prossimo messaggio così il coautore potrà vederlo. Puoi chiudere questo avviso dopo la menzione.",
+        "context_notice_title": "Non è stato possibile condividere questo articolo con il coautore",
+        "cursor_position": "Riga {{line}}, col. {{column}}",
+        "delete_file_confirm": "Eliminare «{{file}}»?",
+        "download_pdf": "Scarica PDF",
+        "editing": "Modifica di {{file}}",
+        "editing_unsaved": "Modifica di {{file}} — non salvato",
+        "error_count_many": "{{count}} errori",
+        "error_count_one": "{{count}} errore",
+        "error_count_other": "{{count}} errori",
+        "git_branch": "Ramo corrente",
+        "log": "Registro",
+        "main_document": "Documento principale",
+        "new_file_prompt": "Assegna un nome al nuovo file, per esempio methods.tex",
+        "papers": "Articoli",
+        "pull": "Recupera",
+        "save_and_compile_hint": "Premi Cmd+S (Ctrl+S su Windows e Linux) per salvare e compilare.",
+        "session_title": "Papyrus: {{name}}",
+        "warning_count_many": "{{count}} avvisi",
+        "warning_count_one": "{{count}} avviso",
+        "warning_count_other": "{{count}} avvisi",
+        "word_count_many": "{{count}} parole",
+        "word_count_one": "{{count}} parola",
+        "word_count_other": "{{count}} parole"
+      }
+    },
+    "specBuilder": {
+      "components": {
+        "specDetail": {
+          "resize_document_panel": "Ridimensiona il pannello del documento"
+        }
+      }
+    }
+  },
+  "components": {
+    "confirmDialog": {
+      "cancel": "Annulla"
+    },
+    "resizeHandle": {
+      "drag_to_resize": "Trascina per ridimensionare"
+    }
+  },
+  "lib": {
+    "scriptLabel": {
+      "cyrillic": "lettera cirillica",
+      "greek": "lettera greca",
+      "latin": "lettera latina",
+      "other": "carattere"
+    }
+  },
+  "pages": {
+    "chat": {
+      "fileBrowserRail": {
+        "resize": "Ridimensiona il browser dei file"
+      },
+      "sidePanel": {
+        "resize_panel": "Ridimensiona il pannello"
+      }
+    }
+  }
+}

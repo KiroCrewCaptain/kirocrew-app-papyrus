@@ -1,0 +1,158 @@
+{
+  "apps": {
+    "papyrus": {
+      "coAuthor": {
+        "close_co_author_panel": "Koautor-Bereich schließen",
+        "close_panel": "Bereich schließen — die Sitzung bleibt offen",
+        "co_author": "Koautor",
+        "co_author_chat": "Koautor-Chat",
+        "no_co_author_session_for_this_paper_yet": "Für dieses Paper gibt es noch keine Koautor-Sitzung.",
+        "open_in_chat_page": "Auf der Chat-Seite öffnen",
+        "start_a_session": "Sitzung starten",
+        "starting_session": "Sitzung wird gestartet…"
+      },
+      "diagnostics": {
+        "jump_to_line": "Zu Zeile {{line}} springen",
+        "line_short": "Z{{line}}",
+        "no_messages": "Der Compiler hat nichts gemeldet.",
+        "typesetting_hints_one": "{{count}} Satzhinweis",
+        "typesetting_hints_other": "{{count}} Satzhinweise"
+      },
+      "fileTree": {
+        "delete_file": "{{file}} löschen",
+        "files": "Dateien",
+        "main": "Haupt",
+        "new_file": "Neue Datei",
+        "no_source_files": "Keine Quelldateien."
+      },
+      "manifest": {
+        "configuration_1": "Installiere das verwaltete Tectonic aus der App oder stelle tectonic beziehungsweise pdflatex über PATH bereit; erstelle dann ein Paper oder klone ein Repository mit bereits konfigurierten nicht interaktiven Git-Zugangsdaten.",
+        "description": "Ein LaTeX-Editor für Paper mit Live-PDF-Vorschau und einem KI-Koautor. Schreibe in einem geteilten Editor, drücke Cmd+S (Ctrl+S unter Windows und Linux), um mit pdflatex oder tectonic zu kompilieren, und lies das gerenderte PDF neben deiner Quelle. Kompilierfehler werden zu einer klickbaren Liste geparst, die zur betroffenen Zeile springt. Klone ein bestehendes Paper von einem beliebigen git-Remote, committe und pushe dann aus der Werkzeugleiste. Der Koautor-Bereich ist eine echte Chat-Sitzung von Kiro Crew mit dem Paper als Kontext, sodass der Agent dein LaTeX lesen und bearbeiten kann, während du zusiehst, wie das PDF aktualisiert wird.",
+        "display_name": "Papyrus",
+        "highlight_1": "Geteilter LaTeX-Editor mit einer Live-PDF-Vorschau daneben",
+        "highlight_2": "Kompilieren beim Speichern (Cmd+S, unter Windows und Linux Ctrl+S) über pdflatex oder tectonic, der bibtex-Zyklus läuft für dich mit",
+        "highlight_3": "Kein TeX installiert? Ein Klick installiert einen geprüften Tectonic-Compiler in einen eigenen Ordner von Papyrus",
+        "highlight_4": "Compiler-Fehler und -Warnungen werden zu einer klickbaren Liste geparst, die zur Zeile springt",
+        "highlight_5": "KI-Koautor-Chat mit dem Paper als Kontext — er liest und bearbeitet das LaTeX, das du vor dir hast",
+        "highlight_6": "Klone ein Paper von einem beliebigen git-Remote und committe, pulle und pushe dann aus der Werkzeugleiste",
+        "highlight_7": "Führt den Compiler nie mit Shell-Escape aus, damit eine bösartige .tex-Datei keine Befehle ausführen kann",
+        "page_label": "Papyrus",
+        "use_case_1": "Schreibe ein LaTeX-Paper neben dem kompilierten PDF, springe von Build-Fehlern zur Quelle und arbeite mit einem auf das Paper begrenzten Agenten zusammen."
+      },
+      "page": {
+        "actions": "Aktionen",
+        "clone": "Klonen",
+        "clone_url": "Repository-URL",
+        "clone_url_placeholder": "Von einer git-URL klonen…",
+        "cloning": "Wird geklont…",
+        "compiled_count_label": "Kompiliert",
+        "compiler": "Compiler",
+        "compiler_tip": "Der LaTeX-Compiler auf dem Rechner, der {{productName}} ausführt. Papyrus bevorzugt pdflatex und greift sonst auf tectonic zurück.",
+        "create": "Erstellen",
+        "create_one_above_or_clone_an_existing_repository": "Erstellen Sie oben eines, oder klonen Sie ein bestehendes Repository.",
+        "delete_paper": "{{name}} löschen",
+        "delete_paper_confirm": "„{{name}}“ und alle zugehörigen Dateien löschen? Dies kann nicht rückgängig gemacht werden.",
+        "downloading_compiler_progress": "Wird heruntergeladen… {{done}} von {{total}}",
+        "install_compiler": "Compiler installieren",
+        "installing_compiler": "Installation läuft…",
+        "invalid_project_name": "Paper-Namen werden zu Ordnernamen und dürfen daher nur Kleinbuchstaben des lateinischen Alphabets (a–z), Ziffern (0–9), Punkte, Bindestriche und Unterstriche enthalten, müssen mit einem Buchstaben oder einer Ziffer beginnen und dürfen höchstens 64 Zeichen lang sein.",
+        "invalid_project_name_char": "„{{char}}“ kann in einem Paper-Namen nicht verwendet werden. Nutze Kleinbuchstaben a–z, 0–9, . -⁠ _",
+        "invalid_project_name_letter": "„{{char}}“ ({{script}}, {{code}}) kann in einem Paper-Namen nicht verwendet werden. Nutze Kleinbuchstaben a–z, 0–9, . -⁠ _",
+        "last_edited": "Zuletzt bearbeitet",
+        "latex_papers_with_a_live_pdf_preview": "LaTeX-Papers mit laufender PDF-Vorschau",
+        "new_paper_name": "Name des neuen Papers",
+        "new_paper_name_placeholder": "Benennen Sie Ihr Paper…",
+        "no_compiler_found_install_texlive_or_tectonic": "Auf diesem Rechner wurde kein LaTeX-Compiler gefunden. Installieren Sie TeX Live (pdflatex) oder tectonic, um zu kompilieren.",
+        "no_compiler_install_bundled_prompt": "Auf diesem Rechner wurde kein LaTeX-Compiler gefunden. Installieren Sie den mitgelieferten Tectonic-Compiler — ein einzelner geprüfter Download, der im eigenen Ordner von Papyrus bleibt.",
+        "no_papers_yet": "Noch keine Papers",
+        "none_found": "Keiner",
+        "paper": "Paper",
+        "paper_name": "Name des Papers",
+        "papers": "Papers",
+        "papyrus": "Papyrus",
+        "pdf": "PDF",
+        "pdf_missing_status": "Nicht kompiliert",
+        "pdf_ready_status": "Fertig",
+        "rename_config_refused": "Der Name wurde nicht gespeichert: Papyrus kann die Einstellungen dieses Papers nicht ändern.",
+        "rename_paper": "{{name}} umbenennen",
+        "rename_paper_replaced": "Dieses Paper hat sich seit dem Laden der Liste geändert. Die Liste ist jetzt aktuell; drücke die Eingabetaste, um den Namen erneut zu speichern.",
+        "rename_title_rejected": "Gib einen Namen mit sichtbaren Zeichen ein oder leere das Feld, um wieder {{name}} anzuzeigen.",
+        "start_a_paper": "Ein Paper beginnen",
+        "start_a_paper_tip": "Erstellen Sie ein leeres Paper aus der Standardvorlage „article“, oder klonen Sie eines von einem git-Remote — alles mit einer .tex-Datei funktioniert.",
+        "verifying_compiler": "Wird überprüft…",
+        "your_papers": "Ihre Papers"
+      },
+      "preview": {
+        "compile_to_see_the_pdf": "Kompilieren, um das PDF zu sehen.",
+        "download_pdf": "PDF herunterladen",
+        "pdf_preview": "PDF-Vorschau"
+      },
+      "workspace": {
+        "co_author": "Koautor",
+        "co_author_conflict": "Co-Autor hat diese Datei geändert",
+        "co_author_conflict_discard": "Meine Änderungen verwerfen und neu laden",
+        "co_author_conflict_discard_button": "Änderungen verwerfen",
+        "co_author_conflict_discard_confirm": "Verwirft nicht gespeicherte Änderungen an „{{file}}“ und lädt die Version des Co-Autors. Dies kann nicht rückgängig gemacht werden.",
+        "co_author_conflict_discard_title": "Nicht gespeicherte Änderungen verwerfen?",
+        "commit_and_push": "Committen & senden",
+        "commit_message_prompt": "Beschreibe diesen Commit. Er erfasst jede Änderung im Papier.",
+        "compile": "Kompilieren",
+        "compiling": "Wird kompiliert…",
+        "context_not_attached": "Erwähne das Paper in deiner nächsten Nachricht, damit der Koautor es sehen kann. Du kannst diesen Hinweis nach der Erwähnung schließen.",
+        "context_notice_title": "Paper konnte nicht an den Koautor übergeben werden",
+        "cursor_position": "Z. {{line}}, Sp. {{column}}",
+        "delete_file_confirm": "„{{file}}“ löschen?",
+        "download_pdf": "PDF herunterladen",
+        "editing": "{{file}} wird bearbeitet",
+        "editing_unsaved": "{{file}} wird bearbeitet — nicht gespeichert",
+        "error_count_one": "{{count}} Fehler",
+        "error_count_other": "{{count}} Fehler",
+        "git_branch": "Aktueller Branch",
+        "log": "Protokoll",
+        "main_document": "Hauptdokument",
+        "new_file_prompt": "Benennen Sie die neue Datei, zum Beispiel methods.tex",
+        "papers": "Papers",
+        "pull": "Holen",
+        "save_and_compile_hint": "Drücken Sie Cmd+S (Ctrl+S unter Windows und Linux), um zu speichern und zu kompilieren.",
+        "session_title": "Papyrus: {{name}}",
+        "warning_count_one": "{{count}} Warnung",
+        "warning_count_other": "{{count}} Warnungen",
+        "word_count_one": "{{count}} Wort",
+        "word_count_other": "{{count}} Wörter"
+      }
+    },
+    "specBuilder": {
+      "components": {
+        "specDetail": {
+          "resize_document_panel": "Größe des Dokumentbereichs ändern"
+        }
+      }
+    }
+  },
+  "components": {
+    "confirmDialog": {
+      "cancel": "Abbrechen"
+    },
+    "resizeHandle": {
+      "drag_to_resize": "Ziehen zum Ändern der Größe"
+    }
+  },
+  "lib": {
+    "scriptLabel": {
+      "cyrillic": "kyrillischer Buchstabe",
+      "greek": "griechischer Buchstabe",
+      "latin": "lateinischer Buchstabe",
+      "other": "Zeichen"
+    }
+  },
+  "pages": {
+    "chat": {
+      "fileBrowserRail": {
+        "resize": "Dateibrowser-Größe ändern"
+      },
+      "sidePanel": {
+        "resize_panel": "Größe des Panels ändern"
+      }
+    }
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "name": "papyrus",
+  "version": "0.2.0",
+  "displayName": "Papyrus",
+  "description": "A LaTeX paper editor with live PDF preview and an AI co-author. Write in a split-pane editor, press Cmd+S (Ctrl+S on Windows and Linux) to compile with pdflatex or tectonic, and read the rendered PDF beside your source. Compilation errors are parsed into a clickable list that jumps to the offending line. Clone an existing paper from any git remote, then commit and push from the toolbar. The co-author panel is a real Kiro Crew chat session scoped to the paper, so the agent can read and edit your LaTeX while you watch the PDF update.",
+  "author": "tricatte",
+  "license": "Apache-2.0",
+  "minKiroCrewVersion": "0.12.0",
+  "tags": [
+    "latex",
+    "writing",
+    "research",
+    "papers",
+    "editor"
+  ],
+  "highlights": [
+    "Split-pane LaTeX editor with a live PDF preview beside it",
+    "Compile on save (Cmd+S, or Ctrl+S on Windows and Linux) via pdflatex or tectonic, with the bibtex cycle run for you",
+    "No TeX installed? One click installs a verified Tectonic compiler into Papyrus’s own folder",
+    "Compiler errors and warnings parsed into a clickable list that jumps to the line",
+    "AI co-author chat scoped to the paper — it reads and edits the LaTeX you are looking at",
+    "Clone a paper from any git remote, then commit, pull, and push from the toolbar",
+    "Never runs the compiler with shell escape, so a hostile .tex file cannot execute commands"
+  ],
+  "defaultEnabled": false,
+  "permissions": {
+    "api": [
+      "/api/apps/papyrus",
+      "/api/apps/papyrus/*"
+    ],
+    "storage": true,
+    "network": true,
+    "cron": false
+  },
+  "dependencies": {
+    "optionalCommands": [
+      "pdflatex",
+      "tectonic",
+      "git"
+    ]
+  },
+  "platform": {
+    "os": [
+      "macos",
+      "linux",
+      "windows"
+    ]
+  },
+  "iconPath": "assets/icon.png",
+  "heroImage": "assets/hero-light.png",
+  "heroImageDark": "assets/hero-dark.png",
+  "heroImageDetail": "assets/hero-detail-light.png",
+  "heroImageDetailDark": "assets/hero-detail-dark.png",
+  "skills": [
+    "skills/papyrus-writing",
+    "skills/papyrus-make-fluent",
+    "skills/papyrus-latex-comments",
+    "skills/papyrus-latex-suggestions",
+    "skills/papyrus-diagnose-compilation"
+  ],
+  "backend": {
+    "hooks": {
+      "routes": "backend.routes:register_routes"
+    }
+  },
+  "ui": {
+    "entry": "dist/index.mjs",
+    "pages": [
+      {
+        "route": "/apps/papyrus",
+        "label": "Papyrus"
+      }
+    ]
+  },
+  "useCases": [
+    "Write a LaTeX paper beside its compiled PDF, jump from build errors to source, and collaborate with a paper-scoped agent."
+  ],
+  "configuration": [
+    "Install managed Tectonic from the app or put tectonic or pdflatex on PATH, then create a paper or clone a repository with non-interactive Git credentials already configured."
+  ],
+  "screenshots": [
+    "assets/screenshot-main.png"
+  ],
+  "l10n": {
+    "bn": {
+      "displayName": "Papyrus",
+      "description": "লাইভ PDF প্রিভিউ আর একজন AI সহ-লেখক নিয়ে একটি LaTeX পেপার এডিটর। ভাগ করা প্যানের এডিটরে লেখো, pdflatex বা tectonic দিয়ে কম্পাইল করতে Cmd+S (Windows ও Linux-এ Ctrl+S) চাপো, আর নিজের সোর্সের পাশেই তৈরি হওয়া PDF পড়ো। কম্পাইলের ত্রুটিগুলো ক্লিক করার মতো একটি তালিকায় সাজানো হয়, যা সোজা সমস্যার লাইনে নিয়ে যায়। যেকোনো git রিমোট থেকে আগে থেকে থাকা কোনো পেপার ক্লোন করো, তারপর টুলবার থেকেই কমিট ও পুশ করো। সহ-লেখক প্যানেলটি পেপারের জন্য নির্দিষ্ট একটি সত্যিকারের Kiro Crew চ্যাট সেশন, তাই তুমি PDF আপডেট হতে দেখতে দেখতেই এজেন্ট তোমার LaTeX পড়তে ও সম্পাদনা করতে পারে।",
+      "pageLabel": "Papyrus",
+      "highlights": [
+        "পাশে লাইভ PDF প্রিভিউ নিয়ে ভাগ করা প্যানের LaTeX এডিটর",
+        "সেভ করলেই কম্পাইল (Cmd+S, বা Windows ও Linux-এ Ctrl+S) — pdflatex বা tectonic দিয়ে, সঙ্গে bibtex চক্রটিও চালিয়ে দেওয়া হয়",
+        "TeX ইনস্টল করা নেই? এক ক্লিকেই যাচাই করা একটি Tectonic কম্পাইলার Papyrus-এর নিজের ফোল্ডারে বসে যায়",
+        "কম্পাইলারের ত্রুটি ও সতর্কতা ক্লিক করার মতো একটি তালিকায় সাজানো হয়, যা সোজা সেই লাইনে নিয়ে যায়",
+        "পেপারের জন্য নির্দিষ্ট AI সহ-লেখক চ্যাট — তুমি যে LaTeX দেখছ সেটিই পড়ে ও সম্পাদনা করে",
+        "যেকোনো git রিমোট থেকে একটি পেপার ক্লোন করো, তারপর টুলবার থেকেই কমিট, পুল ও পুশ করো",
+        "কম্পাইলার কখনও shell escape দিয়ে চলে না, তাই ক্ষতিকর কোনো .tex ফাইল কমান্ড চালাতে পারে না"
+      ]
+    },
+    "de": {
+      "displayName": "Papyrus",
+      "description": "Ein LaTeX-Editor für Paper mit Live-PDF-Vorschau und einem KI-Koautor. Schreibe in einem geteilten Editor, drücke Cmd+S (Ctrl+S unter Windows und Linux), um mit pdflatex oder tectonic zu kompilieren, und lies das gerenderte PDF neben deiner Quelle. Kompilierfehler werden zu einer klickbaren Liste geparst, die zur betroffenen Zeile springt. Klone ein bestehendes Paper von einem beliebigen git-Remote, committe und pushe dann aus der Werkzeugleiste. Der Koautor-Bereich ist eine echte Chat-Sitzung von Kiro Crew mit dem Paper als Kontext, sodass der Agent dein LaTeX lesen und bearbeiten kann, während du zusiehst, wie das PDF aktualisiert wird.",
+      "pageLabel": "Papyrus",
+      "highlights": [
+        "Geteilter LaTeX-Editor mit einer Live-PDF-Vorschau daneben",
+        "Kompilieren beim Speichern (Cmd+S, unter Windows und Linux Ctrl+S) über pdflatex oder tectonic, der bibtex-Zyklus läuft für dich mit",
+        "Kein TeX installiert? Ein Klick installiert einen geprüften Tectonic-Compiler in einen eigenen Ordner von Papyrus",
+        "Compiler-Fehler und -Warnungen werden zu einer klickbaren Liste geparst, die zur Zeile springt",
+        "KI-Koautor-Chat mit dem Paper als Kontext — er liest und bearbeitet das LaTeX, das du vor dir hast",
+        "Klone ein Paper von einem beliebigen git-Remote und committe, pulle und pushe dann aus der Werkzeugleiste",
+        "Führt den Compiler nie mit Shell-Escape aus, damit eine bösartige .tex-Datei keine Befehle ausführen kann"
+      ]
+    },
+    "es": {
+      "displayName": "Papyrus",
+      "description": "Un editor de artículos en LaTeX con vista previa del PDF en vivo y un coautor con IA. Escribe en un editor de panel dividido, pulsa Cmd+S (Ctrl+S en Windows y Linux) para compilar con pdflatex o tectonic, y lee el PDF renderizado junto a tu código fuente. Los errores de compilación se analizan en una lista donde puedes hacer clic para saltar a la línea que los provoca. Clona un artículo existente desde cualquier remoto de git y luego confirma y envía los cambios desde la barra de herramientas. El panel del coautor es una sesión de chat real de Kiro Crew acotada al artículo, así que el agente puede leer y editar tu LaTeX mientras ves cómo se actualiza el PDF.",
+      "pageLabel": "Papyrus",
+      "highlights": [
+        "Editor de LaTeX en panel dividido con una vista previa del PDF en vivo al lado",
+        "Compila al guardar (Cmd+S, o Ctrl+S en Windows y Linux) con pdflatex o tectonic, y ejecuta el ciclo de bibtex por ti",
+        "¿No tienes TeX instalado? Un clic instala un compilador Tectonic verificado en la carpeta propia de Papyrus",
+        "Errores y advertencias del compilador analizados en una lista donde puedes hacer clic para saltar a la línea",
+        "Chat con el coautor de IA acotado al artículo — lee y edita el LaTeX que tienes delante",
+        "Clona un artículo desde cualquier remoto de git y luego confirma, trae y envía los cambios desde la barra de herramientas",
+        "Nunca ejecuta el compilador con shell escape, así que un archivo .tex hostil no puede ejecutar comandos"
+      ]
+    },
+    "fr": {
+      "displayName": "Papyrus",
+      "description": "Un éditeur d’articles LaTeX avec aperçu PDF en direct et un co-auteur doté d’IA. Écris dans un éditeur en deux volets, appuie sur Cmd+S (Ctrl+S sous Windows et Linux) pour compiler avec pdflatex ou tectonic, et lis le PDF rendu à côté de ton source. Les erreurs de compilation sont analysées en une liste cliquable qui saute à la ligne fautive. Clone un article existant depuis n’importe quel dépôt git distant, puis commite et pousse depuis la barre d’outils. Le panneau de co-auteur est une véritable session de chat Kiro Crew limitée à l’article, pour que l’agent puisse lire et modifier ton LaTeX pendant que tu regardes le PDF se mettre à jour.",
+      "pageLabel": "Papyrus",
+      "highlights": [
+        "Éditeur LaTeX en deux volets avec un aperçu PDF en direct à côté",
+        "Compilation à l’enregistrement (Cmd+S, ou Ctrl+S sous Windows et Linux) via pdflatex ou tectonic, avec le cycle bibtex exécuté pour toi",
+        "Pas de TeX installé ? Un clic installe un compilateur Tectonic vérifié dans le dossier propre à Papyrus",
+        "Erreurs et avertissements du compilateur analysés en une liste cliquable qui saute à la ligne",
+        "Chat de co-auteur IA limité à l’article — il lit et modifie le LaTeX que tu as sous les yeux",
+        "Clone un article depuis n’importe quel dépôt git distant, puis commite, récupère et pousse depuis la barre d’outils",
+        "N’exécute jamais le compilateur avec shell escape, donc un fichier .tex hostile ne peut pas exécuter de commandes"
+      ]
+    },
+    "hi": {
+      "displayName": "Papyrus",
+      "description": "लाइव PDF प्रीव्यू और AI सह-लेखक वाला LaTeX पेपर एडिटर। स्प्लिट-पेन एडिटर में लिखो, pdflatex या tectonic से कंपाइल करने के लिए Cmd+S (Windows और Linux पर Ctrl+S) दबाओ, और रेंडर हुई PDF अपने सोर्स के साथ पढ़ो। कंपाइल की गलतियाँ एक क्लिक करने योग्य सूची में बदल जाती हैं जो सीधे गड़बड़ वाली लाइन पर ले जाती है। किसी भी git रिमोट से मौजूदा पेपर क्लोन करो, फिर टूलबार से कमिट और पुश करो। सह-लेखक पैनल पेपर तक सीमित एक असली Kiro Crew चैट सेशन है, इसलिए एजेंट तुम्हारा LaTeX पढ़ और बदल सकता है जबकि तुम PDF अपडेट होते देखते हो।",
+      "pageLabel": "Papyrus",
+      "highlights": [
+        "साथ में लाइव PDF प्रीव्यू वाला स्प्लिट-पेन LaTeX एडिटर",
+        "सेव पर कंपाइल (Cmd+S, या Windows और Linux पर Ctrl+S) pdflatex या tectonic से, और bibtex चक्र तुम्हारे लिए चला दिया जाता है",
+        "TeX इंस्टॉल नहीं है? एक क्लिक में जाँचा-परखा Tectonic कंपाइलर Papyrus के अपने फ़ोल्डर में इंस्टॉल हो जाता है",
+        "कंपाइलर की गलतियाँ और चेतावनियाँ एक क्लिक करने योग्य सूची में बदलती हैं जो सीधे उस लाइन पर ले जाती है",
+        "पेपर तक सीमित AI सह-लेखक चैट — यह वही LaTeX पढ़ता और बदलता है जो तुम देख रहे हो",
+        "किसी भी git रिमोट से पेपर क्लोन करो, फिर टूलबार से कमिट, पुल और पुश करो",
+        "कंपाइलर को कभी shell escape के साथ नहीं चलाता, इसलिए कोई ख़तरनाक .tex फ़ाइल कमांड नहीं चला सकती"
+      ]
+    },
+    "it": {
+      "displayName": "Papyrus",
+      "description": "Un editor per articoli in LaTeX con anteprima PDF dal vivo e un coautore AI. Scrivi in un editor a due riquadri, premi Cmd+S (Ctrl+S su Windows e Linux) per compilare con pdflatex o tectonic e leggi il PDF prodotto accanto al sorgente. Gli errori di compilazione vengono raccolti in un elenco cliccabile che salta alla riga incriminata. Clona un articolo esistente da qualsiasi remoto git, poi fai commit e push dalla barra degli strumenti. Il pannello del coautore è una vera sessione di chat di Kiro Crew limitata all’articolo, così l’agente può leggere e modificare il tuo LaTeX mentre guardi il PDF aggiornarsi.",
+      "pageLabel": "Papyrus",
+      "highlights": [
+        "Editor LaTeX a due riquadri con l’anteprima PDF dal vivo accanto",
+        "Compilazione al salvataggio (Cmd+S, o Ctrl+S su Windows e Linux) con pdflatex o tectonic, e il ciclo bibtex eseguito per te",
+        "Nessun TeX installato? Un clic installa un compilatore Tectonic verificato nella cartella di Papyrus",
+        "Errori e avvisi del compilatore raccolti in un elenco cliccabile che salta alla riga",
+        "Chat con il coautore AI limitata all’articolo — legge e modifica il LaTeX che hai davanti",
+        "Clona un articolo da qualsiasi remoto git, poi fai commit, pull e push dalla barra degli strumenti",
+        "Non esegue mai il compilatore con lo shell escape, così un file .tex ostile non può eseguire comandi"
+      ]
+    },
+    "ja": {
+      "displayName": "Papyrus",
+      "description": "LaTeX ペーパーエディターで、ライブ PDF プレビューと AI 共著者を備えています。スプリットペインエディターで執筆し、Cmd+S（Windows および Linux では Ctrl+S）を押して pdflatex または tectonic でコンパイルします。ソースの横でレンダリングされた PDF を読みます。コンパイルエラーはクリック可能なリストに解析され、問題のある行にジャンプします。任意の git リモートから既存のペーパーをクローンして、ツールバーからコミットしてプッシュします。共著者パネルは、ペーパーにスコープされた実際の Kiro Crew チャットセッションであるため、エージェントは LaTeX を読み取りして編集でき、PDF が更新されるのを見ることができます。",
+      "pageLabel": "Papyrus",
+      "highlights": [
+        "ライブ PDF プレビュー横のスプリットペイン LaTeX エディター",
+        "保存時にコンパイル（Cmd+S、または Windows および Linux では Ctrl+S）pdflatex または tectonic 経由、bibtex サイクルを実行します",
+        "TeX がインストールされていない場合は、Papyrus 独自のフォルダーに検証済み Tectonic コンパイラーをワンクリックでインストールします",
+        "コンパイラーのエラーと警告は、クリック可能なリストに解析され、その行にジャンプします",
+        "AI 共著者チャット、ペーパーにスコープ。見ている LaTeX を読み取りおよび編集します",
+        "任意の git リモートからペーパーをクローンして、ツールバーからコミット、プル、プッシュします",
+        "シェルエスケープなしでコンパイラーを実行するため、敵対的な .tex ファイルはコマンドを実行できません"
+      ]
+    },
+    "ko": {
+      "displayName": "Papyrus",
+      "description": "실시간 PDF 미리보기와 AI 공동 저자를 갖춘 LaTeX 논문 에디터입니다. 분할 창 에디터에서 작성하고 Cmd+S(Windows 및 Linux에서는 Ctrl+S)를 눌러 pdflatex 또는 tectonic으로 컴파일하며, 소스 옆에서 렌더링된 PDF를 읽습니다. 컴파일 오류는 문제가 된 행으로 이동하는 클릭 가능한 목록으로 파싱됩니다. 임의의 git 리모트에서 기존 논문을 클론한 뒤 툴바에서 커밋하고 푸시하세요. 공동 저자 패널은 논문에 범위가 지정된 실제 Kiro Crew 채팅 세션이므로, PDF가 갱신되는 것을 보는 동안 에이전트가 LaTeX를 읽고 편집할 수 있습니다.",
+      "pageLabel": "Papyrus",
+      "highlights": [
+        "실시간 PDF 미리보기를 옆에 둔 분할 창 LaTeX 에디터",
+        "저장 시 컴파일(Cmd+S, Windows 및 Linux에서는 Ctrl+S), pdflatex 또는 tectonic 경유, bibtex 주기까지 대신 실행",
+        "TeX가 설치되어 있지 않다면? 한 번의 클릭으로 검증된 Tectonic 컴파일러를 Papyrus 전용 폴더에 설치합니다",
+        "컴파일러 오류와 경고를 해당 행으로 이동하는 클릭 가능한 목록으로 파싱",
+        "논문에 범위가 지정된 AI 공동 저자 채팅 — 보고 있는 LaTeX를 읽고 편집합니다",
+        "임의의 git 리모트에서 논문을 클론한 뒤 툴바에서 커밋, 풀, 푸시",
+        "셸 이스케이프로 컴파일러를 실행하지 않으므로 악의적인 .tex 파일이 명령을 실행할 수 없습니다"
+      ]
+    },
+    "pt": {
+      "displayName": "Papyrus",
+      "description": "Um editor de artigos em LaTeX com pré-visualização de PDF ao vivo e um coautor de IA. Escreva em um editor de painel dividido, pressione Cmd+S (Ctrl+S no Windows e no Linux) para compilar com pdflatex ou tectonic e leia o PDF renderizado ao lado do seu código. Os erros de compilação são convertidos em uma lista clicável que salta para a linha problemática. Clone um artigo existente de qualquer remoto git e faça commit e push pela barra de ferramentas. O painel do coautor é uma sessão de chat real do Kiro Crew delimitada ao artigo, para o agente ler e editar o seu LaTeX enquanto você vê o PDF se atualizar.",
+      "pageLabel": "Papyrus",
+      "highlights": [
+        "Editor LaTeX de painel dividido com uma pré-visualização de PDF ao vivo ao lado",
+        "Compilação ao salvar (Cmd+S ou Ctrl+S no Windows e no Linux) via pdflatex ou tectonic, com o ciclo do bibtex executado para você",
+        "Sem TeX instalado? Um clique instala um compilador Tectonic verificado na pasta do próprio Papyrus",
+        "Erros e avisos do compilador convertidos em uma lista clicável que salta para a linha",
+        "Chat de coautor de IA delimitado ao artigo — ele lê e edita o LaTeX que você está vendo",
+        "Clone um artigo de qualquer remoto git e faça commit, pull e push pela barra de ferramentas",
+        "Nunca executa o compilador com shell escape, então um arquivo .tex hostil não consegue executar comandos"
+      ]
+    },
+    "ru": {
+      "displayName": "Papyrus",
+      "description": "Редактор статей на LaTeX с живым предпросмотром PDF и соавтором на базе ИИ. Пиши в редакторе с двумя областями, нажимай Cmd+S (Ctrl+S на Windows и Linux), чтобы собрать документ через pdflatex или tectonic, и читай готовый PDF рядом с исходником. Ошибки сборки разбираются в кликабельный список, который переходит к нужной строке. Склонируй готовую статью с любого удалённого репозитория git, а потом делай коммит и push с панели инструментов. Панель соавтора — это настоящая сессия чата Kiro Crew, привязанная к статье, поэтому агент может читать и править твой LaTeX, пока ты смотришь, как обновляется PDF.",
+      "pageLabel": "Papyrus",
+      "highlights": [
+        "Редактор LaTeX с двумя областями и живым предпросмотром PDF рядом",
+        "Сборка при сохранении (Cmd+S или Ctrl+S на Windows и Linux) через pdflatex или tectonic, цикл bibtex прогоняется за тебя",
+        "Нет TeX? Один клик — и проверенный компилятор Tectonic ставится в собственную папку Papyrus",
+        "Ошибки и предупреждения компилятора разбираются в кликабельный список с переходом к строке",
+        "Чат с соавтором на базе ИИ привязан к статье — он читает и правит тот LaTeX, который у тебя на экране",
+        "Склонируй статью с любого удалённого репозитория git, а затем делай коммит, pull и push с панели инструментов",
+        "Компилятор никогда не запускается с shell escape, поэтому враждебный файл .tex не сможет выполнить команды"
+      ]
+    },
+    "zh-CN": {
+      "displayName": "Papyrus",
+      "description": "带实时 PDF 预览和 AI 合著者的 LaTeX 论文编辑器。在分栏编辑器里写作，按 Cmd+S（Windows 和 Linux 上是 Ctrl+S）用 pdflatex 或 tectonic 编译，渲染好的 PDF 就在源码旁边。编译错误会解析成可点击的列表，点一下跳到出错的那一行。可以从任意 git 远端克隆已有论文，然后在工具栏里提交和推送。合著者面板是一个限定在这篇论文范围内的真实 Kiro Crew 会话，代理可以读写你的 LaTeX，你则看着 PDF 实时更新。",
+      "pageLabel": "Papyrus",
+      "highlights": [
+        "分栏 LaTeX 编辑器，旁边是实时 PDF 预览",
+        "保存即编译（Cmd+S，Windows 和 Linux 上为 Ctrl+S），走 pdflatex 或 tectonic，bibtex 的多轮编译也帮你跑完",
+        "没装 TeX？一键把校验过的 Tectonic 编译器装进 Papyrus 自己的文件夹",
+        "编译器的错误和警告会解析成可点击的列表，点一下跳到对应行",
+        "AI 合著者聊天限定在这篇论文范围内 — 它读写你正在看的 LaTeX",
+        "从任意 git 远端克隆论文，然后在工具栏里提交、拉取和推送",
+        "从不带 shell escape 运行编译器，因此恶意 .tex 文件无法执行命令"
+      ]
+    }
+  }
+}

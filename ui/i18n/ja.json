@@ -1,0 +1,154 @@
+{
+  "apps": {
+    "papyrus": {
+      "coAuthor": {
+        "close_co_author_panel": "共著者パネルを閉じる",
+        "close_panel": "パネルを閉じます。セッションは開いたままです",
+        "co_author": "共著者",
+        "co_author_chat": "共著者チャット",
+        "no_co_author_session_for_this_paper_yet": "このペーパーの共著者セッションはまだありません。",
+        "open_in_chat_page": "チャットページで開く",
+        "start_a_session": "セッションを開始",
+        "starting_session": "セッション開始中…"
+      },
+      "diagnostics": {
+        "jump_to_line": "{{line}} 行目に移動",
+        "line_short": "L{{line}}",
+        "no_messages": "コンパイラーが何も報告していません。",
+        "typesetting_hints_other": "{{count}} 件の植字ヒント"
+      },
+      "fileTree": {
+        "delete_file": "{{file}} を削除",
+        "files": "ファイル",
+        "main": "メイン",
+        "new_file": "新規ファイル",
+        "no_source_files": "ソースファイルがありません。"
+      },
+      "manifest": {
+        "configuration_1": "アプリから管理対象の Tectonic をインストールするか、tectonic または pdflatex を PATH に追加します。その後、論文を作成するか、非対話型の Git 認証情報を事前設定してリポジトリをクローンします。",
+        "description": "LaTeX ペーパーエディターで、ライブ PDF プレビューと AI 共著者を備えています。スプリットペインエディターで執筆し、Cmd+S（Windows および Linux では Ctrl+S）を押して pdflatex または tectonic でコンパイルします。ソースの横でレンダリングされた PDF を読みます。コンパイルエラーはクリック可能なリストに解析され、問題のある行にジャンプします。任意の git リモートから既存のペーパーをクローンして、ツールバーからコミットしてプッシュします。共著者パネルは、ペーパーにスコープされた実際の Kiro Crew チャットセッションであるため、エージェントは LaTeX を読み取りして編集でき、PDF が更新されるのを見ることができます。",
+        "display_name": "Papyrus",
+        "highlight_1": "ライブ PDF プレビュー横のスプリットペイン LaTeX エディター",
+        "highlight_2": "保存時にコンパイル（Cmd+S、または Windows および Linux では Ctrl+S）pdflatex または tectonic 経由、bibtex サイクルを実行します",
+        "highlight_3": "TeX がインストールされていない場合は、Papyrus 独自のフォルダーに検証済み Tectonic コンパイラーをワンクリックでインストールします",
+        "highlight_4": "コンパイラーのエラーと警告は、クリック可能なリストに解析され、その行にジャンプします",
+        "highlight_5": "AI 共著者チャット、ペーパーにスコープ。見ている LaTeX を読み取りおよび編集します",
+        "highlight_6": "任意の git リモートからペーパーをクローンして、ツールバーからコミット、プル、プッシュします",
+        "highlight_7": "シェルエスケープなしでコンパイラーを実行するため、敵対的な .tex ファイルはコマンドを実行できません",
+        "page_label": "Papyrus",
+        "use_case_1": "コンパイル済み PDF と並べて LaTeX 論文を執筆し、ビルドエラーからソースへ移動し、論文専用エージェントと共同作業します。"
+      },
+      "page": {
+        "actions": "操作",
+        "clone": "クローン",
+        "clone_url": "リポジトリー URL",
+        "clone_url_placeholder": "git URL からクローン…",
+        "cloning": "クローン中…",
+        "compiled_count_label": "コンパイル済み",
+        "compiler": "コンパイラー",
+        "compiler_tip": "{{productName}} を実行しているマシンで見つかった LaTeX コンパイラー。Papyrus は pdflatex を優先し、tectonic にフォールバックします。",
+        "create": "作成",
+        "create_one_above_or_clone_an_existing_repository": "上記を作成するか、既存のリポジトリーをクローンしてください。",
+        "delete_paper": "{{name}} を削除",
+        "delete_paper_confirm": "「{{name}}」とそのすべてのファイルを削除しますか？これは取り消せません。",
+        "downloading_compiler_progress": "ダウンロード中… {{done}} / {{total}}",
+        "install_compiler": "コンパイラーをインストール",
+        "installing_compiler": "インストール中…",
+        "invalid_project_name": "ペーパー名はフォルダー名になるため、使用できるのは小文字のラテン文字（a–z）、数字（0–9）、ピリオド、ハイフン、アンダースコアのみです。先頭は英字か数字にし、64 文字以内にする必要があります。",
+        "invalid_project_name_char": "「{{char}}」はペーパー名に使用できません。小文字の a–z、0–9、. -⁠ _ を使用してください。",
+        "invalid_project_name_letter": "「{{char}}」（{{script}}、{{code}}）はペーパー名に使用できません。小文字の a–z、0–9、. -⁠ _ を使用してください。",
+        "last_edited": "最終編集",
+        "latex_papers_with_a_live_pdf_preview": "ライブ PDF プレビュー付き LaTeX ペーパー",
+        "new_paper_name": "新規ペーパー名",
+        "new_paper_name_placeholder": "ペーパーに名前を付けます…",
+        "no_compiler_found_install_texlive_or_tectonic": "このマシンで LaTeX コンパイラーが見つかりません。コンパイルするには TeX Live（pdflatex）または tectonic をインストールしてください。",
+        "no_compiler_install_bundled_prompt": "このマシンで LaTeX コンパイラーが見つかりません。バンドルされた Tectonic コンパイラーをインストールしてください。Papyrus 独自のフォルダー内に保持される、検証済みの単一ダウンロード。",
+        "no_papers_yet": "まだペーパーがありません",
+        "none_found": "なし",
+        "paper": "ペーパー",
+        "paper_name": "ペーパー名",
+        "papers": "ペーパー",
+        "papyrus": "Papyrus",
+        "pdf": "PDF",
+        "pdf_missing_status": "コンパイル未実施",
+        "pdf_ready_status": "準備完了",
+        "rename_config_refused": "名前は保存されませんでした。Papyrus はこのペーパーの設定を変更できません。",
+        "rename_paper": "{{name}} の名前を変更",
+        "rename_paper_replaced": "一覧を読み込んだ後にこのペーパーが変更されました。一覧は最新の状態になりました。もう一度 Enter キーを押して名前を保存してください。",
+        "rename_title_rejected": "表示できる文字で名前を入力するか、欄を空にして {{name}} の表示に戻してください。",
+        "start_a_paper": "ペーパーを開始",
+        "start_a_paper_tip": "標準記事テンプレートから空のペーパーを作成するか、git リモートからクローンしてください。.tex ファイルがあるものなら何でも動作します。",
+        "verifying_compiler": "検証中…",
+        "your_papers": "ペーパー"
+      },
+      "preview": {
+        "compile_to_see_the_pdf": "PDF を表示するようコンパイルします。",
+        "download_pdf": "PDF をダウンロード",
+        "pdf_preview": "PDF プレビュー"
+      },
+      "workspace": {
+        "co_author": "共著者",
+        "co_author_conflict": "共著者がこのファイルを変更しました",
+        "co_author_conflict_discard": "変更を破棄して再度読み込む",
+        "co_author_conflict_discard_button": "変更を破棄",
+        "co_author_conflict_discard_confirm": "「{{file}}」への保存されていない変更を破棄して、共著者のバージョンを読み込みます。これは取り消せません。",
+        "co_author_conflict_discard_title": "保存されていない変更を破棄しますか？",
+        "commit_and_push": "コミット＆プッシュ",
+        "commit_message_prompt": "このコミットについて説明してください。ペーパー内のすべての変更をステージングします。",
+        "compile": "コンパイル",
+        "compiling": "コンパイル中…",
+        "context_not_attached": "次のメッセージでペーパーに言及すると、共著者が参照できます。 言及したら、この通知は閉じてかまいません。",
+        "context_notice_title": "このペーパーを共著者に共有できませんでした",
+        "cursor_position": "行 {{line}}、列 {{column}}",
+        "delete_file_confirm": "「{{file}}」を削除しますか？",
+        "download_pdf": "PDF をダウンロード",
+        "editing": "{{file}} を編集中",
+        "editing_unsaved": "{{file}} を編集中 — 未保存",
+        "error_count_other": "{{count}} 個のエラー",
+        "git_branch": "現在のブランチ",
+        "log": "ログ",
+        "main_document": "メインドキュメント",
+        "new_file_prompt": "新しいファイルに名前を付けてください。例: methods.tex",
+        "papers": "論文",
+        "pull": "プル",
+        "save_and_compile_hint": "Cmd+S (Windows と Linux では Ctrl+S) を押して保存およびコンパイルします。",
+        "session_title": "Papyrus: {{name}}",
+        "warning_count_other": "{{count}} 個の警告",
+        "word_count_other": "{{count}} 個の単語"
+      }
+    },
+    "specBuilder": {
+      "components": {
+        "specDetail": {
+          "resize_document_panel": "ドキュメントパネルのサイズ変更"
+        }
+      }
+    }
+  },
+  "components": {
+    "confirmDialog": {
+      "cancel": "キャンセル"
+    },
+    "resizeHandle": {
+      "drag_to_resize": "ドラッグしてサイズを変更"
+    }
+  },
+  "lib": {
+    "scriptLabel": {
+      "cyrillic": "キリル文字",
+      "greek": "ギリシャ文字",
+      "latin": "ラテン文字",
+      "other": "文字"
+    }
+  },
+  "pages": {
+    "chat": {
+      "fileBrowserRail": {
+        "resize": "ファイルブラウザーのサイズを変更"
+      },
+      "sidePanel": {
+        "resize_panel": "パネルのサイズを変更"
+      }
+    }
+  }
+}

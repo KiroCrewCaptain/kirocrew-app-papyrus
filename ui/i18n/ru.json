@@ -1,0 +1,166 @@
+{
+  "apps": {
+    "papyrus": {
+      "coAuthor": {
+        "close_co_author_panel": "Закрыть панель соавтора",
+        "close_panel": "Закрыть панель — сессия останется открытой",
+        "co_author": "Соавтор",
+        "co_author_chat": "Чат с соавтором",
+        "no_co_author_session_for_this_paper_yet": "Для этой статьи пока нет сессии соавтора.",
+        "open_in_chat_page": "Открыть на странице чата",
+        "start_a_session": "Начать сессию",
+        "starting_session": "Запуск сессии…"
+      },
+      "diagnostics": {
+        "jump_to_line": "Перейти к строке {{line}}",
+        "line_short": "стр. {{line}}",
+        "no_messages": "Компилятор ничего не сообщил.",
+        "typesetting_hints_few": "{{count}} замечания по вёрстке",
+        "typesetting_hints_many": "{{count}} замечаний по вёрстке",
+        "typesetting_hints_one": "{{count}} замечание по вёрстке",
+        "typesetting_hints_other": "{{count}} замечания по вёрстке"
+      },
+      "fileTree": {
+        "delete_file": "Удалить {{file}}",
+        "files": "Файлы",
+        "main": "Главный",
+        "new_file": "Новый файл",
+        "no_source_files": "Нет исходных файлов."
+      },
+      "manifest": {
+        "configuration_1": "Установите управляемый Tectonic из приложения либо добавьте tectonic или pdflatex в PATH, затем создайте документ или клонируйте репозиторий с заранее настроенными неинтерактивными учётными данными Git.",
+        "description": "Редактор статей на LaTeX с живым предпросмотром PDF и соавтором на базе ИИ. Пиши в редакторе с двумя областями, нажимай Cmd+S (Ctrl+S на Windows и Linux), чтобы собрать документ через pdflatex или tectonic, и читай готовый PDF рядом с исходником. Ошибки сборки разбираются в кликабельный список, который переходит к нужной строке. Склонируй готовую статью с любого удалённого репозитория git, а потом делай коммит и push с панели инструментов. Панель соавтора — это настоящая сессия чата Kiro Crew, привязанная к статье, поэтому агент может читать и править твой LaTeX, пока ты смотришь, как обновляется PDF.",
+        "display_name": "Papyrus",
+        "highlight_1": "Редактор LaTeX с двумя областями и живым предпросмотром PDF рядом",
+        "highlight_2": "Сборка при сохранении (Cmd+S или Ctrl+S на Windows и Linux) через pdflatex или tectonic, цикл bibtex прогоняется за тебя",
+        "highlight_3": "Нет TeX? Один клик — и проверенный компилятор Tectonic ставится в собственную папку Papyrus",
+        "highlight_4": "Ошибки и предупреждения компилятора разбираются в кликабельный список с переходом к строке",
+        "highlight_5": "Чат с соавтором на базе ИИ привязан к статье — он читает и правит тот LaTeX, который у тебя на экране",
+        "highlight_6": "Склонируй статью с любого удалённого репозитория git, а затем делай коммит, pull и push с панели инструментов",
+        "highlight_7": "Компилятор никогда не запускается с shell escape, поэтому враждебный файл .tex не сможет выполнить команды",
+        "page_label": "Papyrus",
+        "use_case_1": "Пишите LaTeX-документ рядом с готовым PDF, переходите от ошибок сборки к исходному коду и работайте с агентом, ограниченным этим документом."
+      },
+      "page": {
+        "actions": "Действия",
+        "clone": "Клонировать",
+        "clone_url": "URL репозитория",
+        "clone_url_placeholder": "Клонировать по git-адресу…",
+        "cloning": "Клонирование…",
+        "compiled_count_label": "Скомпилировано",
+        "compiler": "Компилятор",
+        "compiler_tip": "Компилятор LaTeX, найденный на машине с {{productName}}. Papyrus предпочитает pdflatex, а при его отсутствии использует tectonic.",
+        "create": "Создать",
+        "create_one_above_or_clone_an_existing_repository": "Создайте статью выше или клонируйте существующий репозиторий.",
+        "delete_paper": "Удалить {{name}}",
+        "delete_paper_confirm": "Удалить «{{name}}» и все её файлы? Это действие нельзя отменить.",
+        "downloading_compiler_progress": "Загрузка… {{done}} из {{total}}",
+        "install_compiler": "Установить компилятор",
+        "installing_compiler": "Установка…",
+        "invalid_project_name": "Названия статей становятся именами папок, поэтому в них можно использовать только строчные латинские буквы (a–z), цифры (0–9), точки, дефисы и подчёркивания. Название должно начинаться с буквы или цифры и содержать не более 64 символов.",
+        "invalid_project_name_char": "«{{char}}» нельзя использовать в названии статьи. Используй строчные буквы a–z, 0–9, . -⁠ _",
+        "invalid_project_name_letter": "«{{char}}» ({{script}}, {{code}}) нельзя использовать в названии статьи. Используй строчные буквы a–z, 0–9, . -⁠ _",
+        "last_edited": "Последнее изменение",
+        "latex_papers_with_a_live_pdf_preview": "Статьи на LaTeX с живым предпросмотром PDF",
+        "new_paper_name": "Название новой статьи",
+        "new_paper_name_placeholder": "Назовите статью…",
+        "no_compiler_found_install_texlive_or_tectonic": "На этой машине не найден компилятор LaTeX. Установите TeX Live (pdflatex) или tectonic, чтобы компилировать.",
+        "no_compiler_install_bundled_prompt": "На этой машине не найден компилятор LaTeX. Установите входящий в комплект компилятор Tectonic — одна проверенная загрузка, которая остаётся в собственной папке Papyrus.",
+        "no_papers_yet": "Статей пока нет",
+        "none_found": "Нет",
+        "paper": "Статья",
+        "paper_name": "Название статьи",
+        "papers": "Статьи",
+        "papyrus": "Papyrus",
+        "pdf": "PDF",
+        "pdf_missing_status": "Не скомпилировано",
+        "pdf_ready_status": "Готово",
+        "rename_config_refused": "Название не сохранено: Papyrus не может изменить настройки этой статьи.",
+        "rename_paper": "Переименовать {{name}}",
+        "rename_paper_replaced": "Статья изменилась после загрузки списка. Список уже обновлён; нажми Enter, чтобы сохранить название ещё раз.",
+        "rename_title_rejected": "Введи название с видимыми символами или очисти поле, чтобы снова показывать {{name}}.",
+        "start_a_paper": "Начать статью",
+        "start_a_paper_tip": "Создайте пустую статью по стандартному шаблону article или клонируйте её с git-удалённого репозитория — подойдёт любой, где есть файл .tex.",
+        "verifying_compiler": "Проверка…",
+        "your_papers": "Ваши статьи"
+      },
+      "preview": {
+        "compile_to_see_the_pdf": "Скомпилируйте, чтобы увидеть PDF.",
+        "download_pdf": "Скачать PDF",
+        "pdf_preview": "Предпросмотр PDF"
+      },
+      "workspace": {
+        "co_author": "Соавтор",
+        "co_author_conflict": "Соавтор изменил этот файл",
+        "co_author_conflict_discard": "Отбросить мои изменения и перезагрузить",
+        "co_author_conflict_discard_button": "Отбросить изменения",
+        "co_author_conflict_discard_confirm": "Отбрасывает несохранённые изменения в «{{file}}» и загружает версию соавтора. Это действие нельзя отменить.",
+        "co_author_conflict_discard_title": "Отбросить несохранённые изменения?",
+        "commit_and_push": "Зафиксировать и отправить",
+        "commit_message_prompt": "Опишите этот коммит. В него войдут все изменения статьи.",
+        "compile": "Скомпилировать",
+        "compiling": "Компиляция…",
+        "context_not_attached": "Упомяни статью в следующем сообщении, чтобы соавтор увидел её. Это уведомление можно закрыть после упоминания.",
+        "context_notice_title": "Не удалось передать эту статью соавтору",
+        "cursor_position": "Стр. {{line}}, стлб. {{column}}",
+        "delete_file_confirm": "Удалить «{{file}}»?",
+        "download_pdf": "Скачать PDF",
+        "editing": "Редактируется {{file}}",
+        "editing_unsaved": "Редактируется {{file}} — не сохранено",
+        "error_count_few": "{{count}} ошибки",
+        "error_count_many": "{{count}} ошибок",
+        "error_count_one": "{{count}} ошибка",
+        "error_count_other": "{{count}} ошибки",
+        "git_branch": "Текущая ветка",
+        "log": "Журнал",
+        "main_document": "Главный документ",
+        "new_file_prompt": "Назовите новый файл, например methods.tex",
+        "papers": "Статьи",
+        "pull": "Забрать",
+        "save_and_compile_hint": "Нажмите Cmd+S (Ctrl+S в Windows и Linux), чтобы сохранить и скомпилировать.",
+        "session_title": "Papyrus: {{name}}",
+        "warning_count_few": "{{count}} предупреждения",
+        "warning_count_many": "{{count}} предупреждений",
+        "warning_count_one": "{{count}} предупреждение",
+        "warning_count_other": "{{count}} предупреждения",
+        "word_count_few": "{{count}} слова",
+        "word_count_many": "{{count}} слов",
+        "word_count_one": "{{count}} слово",
+        "word_count_other": "{{count}} слова"
+      }
+    },
+    "specBuilder": {
+      "components": {
+        "specDetail": {
+          "resize_document_panel": "Изменить размер панели документа"
+        }
+      }
+    }
+  },
+  "components": {
+    "confirmDialog": {
+      "cancel": "Отмена"
+    },
+    "resizeHandle": {
+      "drag_to_resize": "Потяните, чтобы изменить размер"
+    }
+  },
+  "lib": {
+    "scriptLabel": {
+      "cyrillic": "кириллическая буква",
+      "greek": "греческая буква",
+      "latin": "латинская буква",
+      "other": "символ"
+    }
+  },
+  "pages": {
+    "chat": {
+      "fileBrowserRail": {
+        "resize": "Изменить размер обозревателя файлов"
+      },
+      "sidePanel": {
+        "resize_panel": "Изменить размер панели"
+      }
+    }
+  }
+}

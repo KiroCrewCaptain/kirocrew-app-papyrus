@@ -1,0 +1,159 @@
+{
+  "apps": {
+    "papyrus": {
+      "coAuthor": {
+        "close_co_author_panel": "Close co-author panel",
+        "close_panel": "Close the panel — the session stays open",
+        "co_author": "Co-author",
+        "co_author_chat": "Co-author chat",
+        "no_co_author_session_for_this_paper_yet": "No co-author session for this paper yet.",
+        "open_in_chat_page": "Open in the chat page",
+        "start_a_session": "Start a session",
+        "starting_session": "Starting session…"
+      },
+      "diagnostics": {
+        "jump_to_line": "Go to line {{line}}",
+        "line_short": "L{{line}}",
+        "no_messages": "The compiler reported nothing.",
+        "typesetting_hints_one": "{{count}} typesetting hint",
+        "typesetting_hints_other": "{{count}} typesetting hints"
+      },
+      "editor": {},
+      "fileTree": {
+        "delete_file": "Delete {{file}}",
+        "files": "Files",
+        "main": "Main",
+        "new_file": "New file",
+        "no_source_files": "No source files."
+      },
+      "manifest": {
+        "configuration_1": "Install managed Tectonic from the app or put tectonic or pdflatex on PATH, then create a paper or clone a repository with non-interactive Git credentials already configured.",
+        "description": "A LaTeX paper editor with live PDF preview and an AI co-author. Write in a split-pane editor, press Cmd+S (Ctrl+S on Windows and Linux) to compile with pdflatex or tectonic, and read the rendered PDF beside your source. Compilation errors are parsed into a clickable list that jumps to the offending line. Clone an existing paper from any git remote, then commit and push from the toolbar. The co-author panel is a real Kiro Crew chat session scoped to the paper, so the agent can read and edit your LaTeX while you watch the PDF update.",
+        "display_name": "Papyrus",
+        "highlight_1": "Split-pane LaTeX editor with a live PDF preview beside it",
+        "highlight_2": "Compile on save (Cmd+S, or Ctrl+S on Windows and Linux) via pdflatex or tectonic, with the bibtex cycle run for you",
+        "highlight_3": "No TeX installed? One click installs a verified Tectonic compiler into Papyrus’s own folder",
+        "highlight_4": "Compiler errors and warnings parsed into a clickable list that jumps to the line",
+        "highlight_5": "AI co-author chat scoped to the paper — it reads and edits the LaTeX you are looking at",
+        "highlight_6": "Clone a paper from any git remote, then commit, pull, and push from the toolbar",
+        "highlight_7": "Never runs the compiler with shell escape, so a hostile .tex file cannot execute commands",
+        "page_label": "Papyrus",
+        "use_case_1": "Write a LaTeX paper beside its compiled PDF, jump from build errors to source, and collaborate with a paper-scoped agent."
+      },
+      "page": {
+        "actions": "Actions",
+        "clone": "Clone",
+        "clone_url": "Repository URL",
+        "clone_url_placeholder": "Clone from a git URL…",
+        "cloning": "Cloning…",
+        "compiled_count_label": "Compiled",
+        "compiler": "Compiler",
+        "compiler_tip": "The LaTeX compiler found on the machine running {{productName}}. Papyrus prefers pdflatex and falls back to tectonic.",
+        "create": "Create",
+        "create_one_above_or_clone_an_existing_repository": "Create one above, or clone an existing repository.",
+        "delete_paper": "Delete {{name}}",
+        "delete_paper_confirm": "Delete “{{name}}” and all of its files? This cannot be undone.",
+        "downloading_compiler_progress": "Downloading… {{done}} of {{total}}",
+        "install_compiler": "Install compiler",
+        "installing_compiler": "Installing…",
+        "invalid_project_name": "Paper names become folder names, so they can use only lowercase Latin letters (a–z), digits (0–9), dots, hyphens and underscores, must start with a letter or digit, and can be at most 64 characters.",
+        "invalid_project_name_char": "“{{char}}” can’t be used in a paper name. Use lowercase a–z, 0–9, . -⁠ _",
+        "invalid_project_name_letter": "“{{char}}” ({{script}}, {{code}}) can’t be used in a paper name. Use lowercase a–z, 0–9, . -⁠ _",
+        "last_edited": "Last edited",
+        "latex_papers_with_a_live_pdf_preview": "LaTeX papers with a live PDF preview",
+        "new_paper_name": "New paper name",
+        "new_paper_name_placeholder": "Name your paper…",
+        "no_compiler_found_install_texlive_or_tectonic": "No LaTeX compiler was found on this machine. Install TeX Live (pdflatex) or tectonic to compile.",
+        "no_compiler_install_bundled_prompt": "No LaTeX compiler was found on this machine. Install the bundled Tectonic compiler — a single verified download, kept inside Papyrus's own folder.",
+        "no_papers_yet": "No papers yet",
+        "none_found": "None",
+        "paper": "Paper",
+        "paper_name": "Paper name",
+        "papers": "Papers",
+        "papyrus": "Papyrus",
+        "pdf": "PDF",
+        "pdf_missing_status": "Not compiled",
+        "pdf_ready_status": "Ready",
+        "rename_config_refused": "The name wasn’t saved: Papyrus can’t change this paper’s settings.",
+        "rename_paper": "Rename {{name}}",
+        "rename_paper_replaced": "This paper changed since the list loaded. The list is up to date now; press Enter to save the name again.",
+        "rename_title_rejected": "Type a name with visible characters, or clear the field to show {{name}} again.",
+        "start_a_paper": "Start a paper",
+        "start_a_paper_tip": "Create an empty paper from a standard article template, or clone one from a git remote — anything with a .tex file works.",
+        "verifying_compiler": "Verifying…",
+        "your_papers": "Your papers"
+      },
+      "preview": {
+        "compile_to_see_the_pdf": "Compile to see the PDF.",
+        "download_pdf": "Download the PDF",
+        "pdf_preview": "PDF preview"
+      },
+      "workspace": {
+        "co_author": "Co-author",
+        "co_author_conflict": "Co-author changed this file",
+        "co_author_conflict_discard": "Discard my changes and reload",
+        "co_author_conflict_discard_button": "Discard changes",
+        "co_author_conflict_discard_confirm": "Discards your unsaved changes to “{{file}}” and loads the co-author’s version. This cannot be undone.",
+        "co_author_conflict_discard_title": "Discard unsaved changes?",
+        "commit_and_push": "Commit & Push",
+        "commit_message_prompt": "Describe this commit. It stages every change in the paper.",
+        "compile": "Compile",
+        "compiling": "Compiling…",
+        "context_not_attached": "Mention the paper in your next message so the co-author can see it. You can dismiss this once you've mentioned it.",
+        "context_notice_title": "Couldn't share this paper with the co-author",
+        "cursor_position": "Ln {{line}}, Col {{column}}",
+        "delete_file_confirm": "Delete “{{file}}”?",
+        "download_pdf": "Download PDF",
+        "editing": "Editing {{file}}",
+        "editing_unsaved": "Editing {{file}} — unsaved",
+        "error_count_one": "{{count}} error",
+        "error_count_other": "{{count}} errors",
+        "git_branch": "Current branch",
+        "log": "Log",
+        "main_document": "Main document",
+        "new_file_prompt": "Name the new file, for example methods.tex",
+        "papers": "Papers",
+        "pull": "Pull",
+        "save_and_compile_hint": "Press Cmd+S (Ctrl+S on Windows and Linux) to save and compile.",
+        "session_title": "Papyrus: {{name}}",
+        "warning_count_one": "{{count}} warning",
+        "warning_count_other": "{{count}} warnings",
+        "word_count_one": "{{count}} word",
+        "word_count_other": "{{count}} words"
+      }
+    },
+    "specBuilder": {
+      "components": {
+        "specDetail": {
+          "resize_document_panel": "Resize document panel"
+        }
+      }
+    }
+  },
+  "components": {
+    "confirmDialog": {
+      "cancel": "Cancel"
+    },
+    "resizeHandle": {
+      "drag_to_resize": "Drag to resize"
+    }
+  },
+  "lib": {
+    "scriptLabel": {
+      "cyrillic": "Cyrillic letter",
+      "greek": "Greek letter",
+      "latin": "Latin letter",
+      "other": "character"
+    }
+  },
+  "pages": {
+    "chat": {
+      "fileBrowserRail": {
+        "resize": "Resize file browser"
+      },
+      "sidePanel": {
+        "resize_panel": "Resize panel"
+      }
+    }
+  }
+}
