@@ -1,0 +1,101 @@
+{
+  "app": "papyrus",
+  "captured_at": "2026-11-02T08:06:37Z",
+  "app_commit": "b3cfab6809c1a020131fa127aa1e50cc89fd5586",
+  "kirocrew_commit": "f360976c1bcf7f3eb08ff28df3979eeff6e4989e",
+  "kirocrew_tree_dirty": true,
+  "gateway": "isolated temporary home, approval=reads; a freshly seeded gateway for the stub screenshots, one for the live ones and one for the walkthrough",
+  "data": "fictional, seeded through the app's HTTP API (capture/scenes.json)",
+  "agent_backend": {
+    "live": [
+      "use-case-coauthor"
+    ],
+    "live_model": "the operator's own installed, signed-in kiro-cli over ACP with model \"auto\"; the replies on screen are that model's and vary from run to run",
+    "stub": "Kiro Crew's offline stub ACP backend (capture/stub_backend.py) for every other scene; no chat reply is shown from it",
+    "credit_reading": "the browser answers the top bar's credit readout (/api/sessions/usage) with \"no reading\", so no account balance or email can be shown"
+  },
+  "note": "The isolated gateway ran Kiro Crew at the App Kit level-1 seams commit with its built-in Papyrus (src/kiro_crew/apps/builtins/papyrus and the papyrus-* builtin skills) removed from that throwaway checkout, and served this repository installed from a clean clone of the commit named in app_commit, trusted and enabled through the dashboard API. The compiler is the app's own managed Tectonic, installed through the app's 'Install compiler' route.",
+  "data_notes": [
+    "Every paper, person, journal and citation is fictional; the bibliography entries do not refer to real publications.",
+    "Each paper's 'Last edited' time is the moment the capture created it, from the gateway's clock.",
+    "The grazing-abstract paper is seeded with an undefined macro (\\tempdiff) on purpose, to show the compiler's error list."
+  ],
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "device_scale": 2,
+  "screenshots": [
+    {
+      "file": "hero-dark.png",
+      "name": "hero",
+      "theme": "dark",
+      "bytes": 421254,
+      "width": 1600,
+      "height": 1000,
+      "alt": "A paper open in Papyrus: the file tree with main.tex and a sections folder on the left, the LaTeX source of 'Afternoon Heat in Rocky Tide Pools' in the middle, and its compiled two-page PDF on the right"
+    },
+    {
+      "file": "hero-light.png",
+      "name": "hero",
+      "theme": "light",
+      "bytes": 382557,
+      "width": 1600,
+      "height": 1000,
+      "alt": "A paper open in Papyrus: the file tree with main.tex and a sections folder on the left, the LaTeX source of 'Afternoon Heat in Rocky Tide Pools' in the middle, and its compiled two-page PDF on the right"
+    },
+    {
+      "file": "paper-list-light.png",
+      "name": "paper-list",
+      "theme": "light",
+      "bytes": 156026,
+      "width": 1600,
+      "height": 1000,
+      "alt": "The Papyrus paper list: Papers 3, Compiled 2, Compiler tectonic, the Start a paper box with a name field, Create, a git URL field and Clone, and Your papers listing grazing-abstract (Not compiled), seed-bank-survey (Ready) and 'Afternoon heat in rocky tide pools' (Ready) with rename and delete buttons"
+    },
+    {
+      "file": "use-case-coauthor-light.png",
+      "name": "use-case-coauthor",
+      "theme": "light",
+      "bytes": 321594,
+      "width": 1600,
+      "height": 1000,
+      "alt": "A co-author chat in Sessions for the tide-pool paper: after the paper's context and the request to suggest two sentences in sections/methods.tex that could be shorter without editing any file, the agent reads its skill and the methods section, then offers two rewrites as old and shorter LaTeX (the depth and surface-area sentence in the active voice, and the logger sentence with the date range and a semicolon), says it did not change any file, and asks the author to check that 'each pool' still means what they want"
+    },
+    {
+      "file": "use-case-errors-light.png",
+      "name": "use-case-errors",
+      "theme": "light",
+      "bytes": 173554,
+      "width": 1600,
+      "height": 1000,
+      "alt": "The grazing-abstract paper after a failed build: line 9, '\\tempdiff).', is marked red in the margin, the status bar says 1 error, the list below the editor reads 'L9 Undefined control sequence.', and the PDF pane says 'Compile to see the PDF.'"
+    },
+    {
+      "file": "use-case-write-light.png",
+      "name": "use-case-write",
+      "theme": "light",
+      "bytes": 236302,
+      "width": 1600,
+      "height": 1000,
+      "alt": "Editing sections/methods.tex of the tide-pool paper: a new last sentence, 'Pools deeper than 25 cm never ran warmer than the open water.', has been added and saved, and the rebuilt two-page PDF is shown on the right"
+    }
+  ],
+  "walkthrough": {
+    "shortened_waits_s": [
+      0.4
+    ],
+    "mp4": {
+      "file": "walkthrough.mp4",
+      "bytes": 586909
+    },
+    "gif": {
+      "file": "walkthrough.gif",
+      "bytes": 4327544,
+      "width": 960,
+      "fps": 10
+    },
+    "theme": "light",
+    "alt": "A walkthrough of Papyrus: a paper open beside its PDF, adding a sentence to sections/methods.tex and pressing Cmd+S so the PDF rebuilds, going back to the paper list, opening the grazing-abstract paper and compiling it to get 'Undefined control sequence' on line 9, clicking the error, then pressing Co-author, which opens a Sessions chat whose message box already names the paper and its main document"
+  }
+}

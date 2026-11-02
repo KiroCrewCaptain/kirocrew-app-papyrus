@@ -198,7 +198,7 @@
       ],
       "ready_after": "[data-testid='papyrus-pdf'] iframe",
       "settle_ms": 3000,
-      "alt": "PLACEHOLDER"
+      "alt": "A paper open in Papyrus: the file tree with main.tex and a sections folder on the left, the LaTeX source of 'Afternoon Heat in Rocky Tide Pools' in the middle, and its compiled two-page PDF on the right"
     },
     {
       "name": "paper-list",
@@ -216,7 +216,7 @@
       ],
       "ready_after": "text=grazing-abstract",
       "settle_ms": 800,
-      "alt": "PLACEHOLDER"
+      "alt": "The Papyrus paper list: Papers 3, Compiled 2, Compiler tectonic, the Start a paper box with a name field, Create, a git URL field and Clone, and Your papers listing grazing-abstract (Not compiled), seed-bank-survey (Ready) and 'Afternoon heat in rocky tide pools' (Ready) with rename and delete buttons"
     },
     {
       "name": "use-case-write",
@@ -258,7 +258,7 @@
       ],
       "ready_after": "[data-testid='papyrus-pdf'] iframe",
       "settle_ms": 3000,
-      "alt": "PLACEHOLDER"
+      "alt": "Editing sections/methods.tex of the tide-pool paper: a new last sentence, 'Pools deeper than 25 cm never ran warmer than the open water.', has been added and saved, and the rebuilt two-page PDF is shown on the right"
     },
     {
       "name": "use-case-errors",
@@ -285,7 +285,7 @@
         }
       ],
       "settle_ms": 800,
-      "alt": "PLACEHOLDER"
+      "alt": "The grazing-abstract paper after a failed build: line 9, '\\tempdiff).', is marked red in the margin, the status bar says 1 error, the list below the editor reads 'L9 Undefined control sequence.', and the PDF pane says 'Compile to see the PDF.'"
     },
     {
       "name": "use-case-coauthor",
@@ -326,7 +326,7 @@
         }
       ],
       "ready_after": "[data-role='assistant'] [data-testid='turn-stats']",
-      "alt": "PLACEHOLDER"
+      "alt": "A co-author chat in Sessions for the tide-pool paper: after the paper's context and the request to suggest two sentences in sections/methods.tex that could be shorter without editing any file, the agent reads its skill and the methods section, then offers two rewrites as old and shorter LaTeX (the depth and surface-area sentence in the active voice, and the logger sentence with the date range and a semicolon), says it did not change any file, and asks the author to check that 'each pool' still means what they want"
     }
   ],
   "walkthrough": {
@@ -334,7 +334,7 @@
     "theme": "light",
     "path": "/apps/papyrus",
     "ready_after": "[data-testid='papyrus-pdf'] iframe",
-    "alt": "PLACEHOLDER",
+    "alt": "A walkthrough of Papyrus: a paper open beside its PDF, adding a sentence to sections/methods.tex and pressing Cmd+S so the PDF rebuilds, going back to the paper list, opening the grazing-abstract paper and compiling it to get 'Undefined control sequence' on line 9, clicking the error, then pressing Co-author, which opens a Sessions chat whose message box already names the paper and its main document",
     "tail_ms": 3500,
     "steps": [
       {
