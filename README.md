@@ -68,13 +68,13 @@ Open the paper and choose **Co-author**. Papyrus saves your work and opens a new
 chat in **Sessions** whose message box already says which paper this is and which
 file is its main document; type your request after it and send. Here the request
 was to suggest two sentences in `sections/methods.tex` that could be shorter,
-without editing any file. The co-author read the section and offered two shorter
-versions next to the originals, said it had not changed any file, and asked the
-author to check that one wording change still meant the same thing. It can also
+without editing any file. The co-author read the section, set out each sentence
+next to a shorter version, said it had not changed any file, and pointed out one
+word it had swapped that the author might want to keep. It can also
 edit the files when you ask it to and approve the change; press **Compile** back in
 Papyrus to see the result.
 
-![A co-author chat in Sessions for the tide-pool paper: after the paper's context and the request to suggest two sentences in sections/methods.tex that could be shorter without editing any file, the agent reads its skill and the methods section, then offers two rewrites as old and shorter LaTeX (the depth and surface-area sentence in the active voice, and the logger sentence with the date range and a semicolon), says it did not change any file, and asks the author to check that 'each pool' still means what they want](docs/media/use-case-coauthor-light.png)
+![A co-author chat in Sessions for the tide-pool paper: the paper's context is collapsed at the top, the agent reads its skill, finds the paper's sections folder and reads methods.tex, then lists two sentences from sections/methods.tex in a table with the current wording and a shorter one (the depth and surface-area sentence starting with 'We measured', and the logger sentence split with a semicolon), says it did not change any file, and notes that 'isolated' replaces 'cut off', which the author can keep if they prefer](docs/media/use-case-coauthor-light.png)
 
 ## Watch it
 
@@ -82,7 +82,7 @@ Papyrus to see the result.
 
 [Watch the walkthrough as a video (MP4)](docs/media/walkthrough.mp4).
 
-<sub>Recorded from a real Kiro Crew dashboard (Kiro Crew `f360976c1b`, with
+<sub>Recorded from a real Kiro Crew dashboard (Kiro Crew `99161724c0`, with
 this repository installed into a throwaway home in place of the copy that comes
 with Kiro Crew) with made-up papers. The compiler is the Tectonic that Papyrus
 installs itself. The walkthrough sends no chat message. The co-author reply in

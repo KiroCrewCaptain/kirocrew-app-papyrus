@@ -327,7 +327,7 @@
         }
       ],
       "ready_after": "[data-role='assistant'] [data-testid='turn-stats']",
-      "alt": "A co-author chat in Sessions for the tide-pool paper: after the paper's context and the request to suggest two sentences in sections/methods.tex that could be shorter without editing any file, the agent reads its skill and the methods section, then offers two rewrites as old and shorter LaTeX (the depth and surface-area sentence in the active voice, and the logger sentence with the date range and a semicolon), says it did not change any file, and asks the author to check that 'each pool' still means what they want"
+      "alt": "A co-author chat in Sessions for the tide-pool paper: the paper's context is collapsed at the top, the agent reads its skill, finds the paper's sections folder and reads methods.tex, then lists two sentences from sections/methods.tex in a table with the current wording and a shorter one (the depth and surface-area sentence starting with 'We measured', and the logger sentence split with a semicolon), says it did not change any file, and notes that 'isolated' replaces 'cut off', which the author can keep if they prefer"
     }
   ],
   "walkthrough": {
