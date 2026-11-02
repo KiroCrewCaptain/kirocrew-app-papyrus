@@ -322,7 +322,8 @@
           "timeout_ms": 600000
         },
         {
-          "scroll_reply": "start"
+          "scroll_reply": "start",
+          "margin": 48
         }
       ],
       "ready_after": "[data-role='assistant'] [data-testid='turn-stats']",

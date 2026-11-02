@@ -110,9 +110,12 @@ without it, and `register_routes` reports the reason through `ctx.health`.
    the paper's context, visibly, for the author to send with their request
    (`ui/src/PapyrusPage.tsx`, `openCoAuthor`). There is no per-paper session
    memory (each press opens a new chat) and no automatic recompile; returning to
-   the Papyrus tab re-reads the open file when it has no unsaved edits. The
-   co-author conflict guard (`resolveConflict`) is kept but has no caller that
-   records a conflict. Closing this needs an app-agnostic seam that lets an app
+   the Papyrus tab re-reads the open file when it has no unsaved edits. When it
+   has unsaved edits, returning compares the file on disk with the copy the
+   buffer was loaded from or last saved as, and a difference records the
+   co-author conflict, as the built-in's post-turn refresh did: the editor goes
+   read-only with the "Co-author changed this file" notice, saves are refused,
+   and `resolveConflict` is the exit (`detectDiskChange`). Closing this needs an app-agnostic seam that lets an app
    embed a chat on a session it creates without widening its manifest grant (or
    an adoption rule that carries such a grant with consent), plus an SDK signal
    for "this session's turn ended".
@@ -129,7 +132,7 @@ without it, and `register_routes` reports the reason through `ctx.health`.
    (`website/src/apps/papyrus/PapyrusEditor.tsx:11`) with syntax colouring and
    inline markers. The SDK exposes no editor, so `ui/src/PapyrusEditor.tsx` is a
    `<textarea>` with a line-number gutter, diagnostic marks in the gutter,
-   Cmd/Ctrl+S, Tab-indents and jump-to-line. Lines do not wrap.
+   Cmd/Ctrl+S, Tab-indents and jump-to-line. Long lines wrap.
 4. **Other private UI components**, restated in `ui/src/host/` or replaced:
    `useConfirm` (over the SDK `Modal`), `useColumnResize` / `usePointerDrag` /
    `ResizeHandle` / `columnWidth` (copied), `useIsMobile`, `safeStorage`, the

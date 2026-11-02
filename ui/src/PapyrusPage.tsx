@@ -152,16 +152,15 @@ export default function PapyrusPage() {
   const [compileMs, setCompileMs] = useState<number | null>(null)
   const [cursor, setCursor] = useState({ line: 1, column: 1 })
   const isMobile = useIsMobile()
-  // Four surfaces competed for one row: a 50% source column holding a 176px
-  // `w-44` file tree beside the editor, a PDF column, and a 420px co-author
-  // panel that alone exceeds a phone viewport. At 390px the editor -- the pane
-  // that carries the text being written -- measured 19px. While narrow the row
-  // becomes a column, the tree becomes a drawer reached from a bar at the TOP,
-  // and the co-author panel owns the pane when it is open.
+  // Three surfaces compete for one row: a 50% source column holding a 176px
+  // `w-44` file tree beside the editor, and a PDF column. On a phone the editor
+  // -- the pane that carries the text being written -- would be crushed, so while
+  // narrow the row becomes a column and the tree becomes a drawer reached from a
+  // bar at the TOP.
   const [treeOpen, setTreeOpen] = useState(false)
-  // Three drag splitters, each owning one column's width (the editor takes what
-  // is left, so it is never the pane a drag shrinks to nothing). The PDF and
-  // co-author grips sit on their column's LEFT edge, hence `edge: 'left'`: there,
+  // Two drag splitters, each owning one column's width (the editor takes what
+  // is left, so it is never the pane a drag shrinks to nothing). The PDF grip
+  // sits on its column's LEFT edge, hence `edge: 'left'`: there,
   // dragging left GROWS the column, and the hook flips the pointer delta so
   // every caller doesn't hand-roll the same minus sign.
   const viewportWidth = useSyncExternalStore(
@@ -207,17 +206,11 @@ export default function PapyrusPage() {
   // Re-entry guard for save-and-compile. In a ref so the Cmd+S handler passed to
   // The editor keeps a stable identity across compile cycles.
   const compilingRef = useRef(false)
-  // The breakpoint, mirrored in a ref. The paper-switch effect has to know whether
-  // it is narrow before restoring the stored co-author preference, but it resets the
-  // buffer, the diagnostics and the compile output — so taking `isMobile` as a
-  // dependency would replay that whole reset every time the viewport crosses 768px.
-  const isMobileRef = useRef(isMobile)
 
   useEffect(() => { bufferFileRef.current = currentFile }, [currentFile])
   useEffect(() => { dirtyRef.current = dirty }, [dirty])
   useEffect(() => { conflictFileRef.current = conflictFile }, [conflictFile])
   useEffect(() => { bufferRef.current = buffer }, [buffer])
-  useEffect(() => { isMobileRef.current = isMobile }, [isMobile])
   useEffect(() => { saveLastProject(project) }, [project])
 
   // ── Project metadata ──────────────────────────────────────────────────────
@@ -718,19 +711,48 @@ export default function PapyrusPage() {
     openChat({ message: companionContext() + '\n\n', memoryMode: 'persistent' })
   }, [flushBuffer, openChat, companionContext])
 
+  /** Record a conflict when the open file changed on disk under an unsaved buffer.
+   *
+   * The base is the cached copy of the file: what the buffer was last loaded from
+   * or saved as (`saveMutation.onSuccess` keeps it current). A disk copy that no
+   * longer matches it was written by someone else, usually the co-author, and the
+   * next save would write the buffer over it. Recording the conflict makes the
+   * editor read-only with the "Co-author changed this file" notice, whose only
+   * exit is `resolveConflict`. A disk copy that still matches the base is no
+   * conflict, so leaving the tab with unsaved typing and coming back blocks
+   * nothing. The cache is left alone: the base must stay what the buffer started
+   * from. */
+  const detectDiskChange = useCallback(async () => {
+    const path = bufferFileRef.current
+    if (!project || !path || !dirtyRef.current) return
+    const base = queryClient.getQueryData<{ path: string; content: string }>(
+      ['papyrus', 'file', project, path],
+    )
+    if (!base) return
+    const disk = await papyrusApi.readFile(project, path)
+    if (disk.content === base.content) return
+    // The await let the user switch file or save; only a buffer still dirty on
+    // the file just read is in conflict with it.
+    if (bufferFileRef.current !== path || !dirtyRef.current) return
+    conflictFileRef.current = path
+    setConflictFile(path)
+  }, [project, queryClient])
+
   // The co-author edits the paper on disk from another page, and may do so while
   // this one sits in a background tab or window. Coming back to it re-reads the
   // file tree and the open file, so the pane shows the agent's edits instead of
-  // a stale copy. Only a CLEAN buffer is refreshed, and through the no-flush
-  // path: a dirty one is the user's typing, which must neither be saved over the
-  // agent's version nor replaced by it, so it is left for the user's next save.
+  // a stale copy. A CLEAN buffer is refreshed through the no-flush path. A dirty
+  // one is the user's typing, which must neither be saved over the agent's
+  // version nor replaced by it: it is kept, and if the file changed on disk the
+  // conflict is recorded so the next save cannot overwrite the agent's version.
   useEffect(() => {
     const onVisible = () => {
-      if (document.visibilityState !== 'visible' || !project || dirtyRef.current) return
+      if (document.visibilityState !== 'visible' || !project) return
       void (async () => {
         try {
           await invalidateFiles()
-          await reloadOpenFile(false)
+          if (dirtyRef.current) await detectDiskChange()
+          else await reloadOpenFile(false)
         } catch {
           // A refresh failure is not worth a banner: the next open or save recovers.
         }
@@ -738,13 +760,18 @@ export default function PapyrusPage() {
     }
     document.addEventListener('visibilitychange', onVisible)
     return () => document.removeEventListener('visibilitychange', onVisible)
-  }, [project, invalidateFiles, reloadOpenFile])
+  }, [project, invalidateFiles, reloadOpenFile, detectDiskChange])
 
   // ── Derived ───────────────────────────────────────────────────────────────
 
   const counts = useMemo(() => countDiagnostics(diagnostics), [diagnostics])
   const wordCount = useMemo(() => countWords(buffer), [buffer])
   const branchLabel = gitBranchLabel(git)
+  const editingLabel = currentFile && (dirty || currentFile !== mainFile)
+    ? dirty
+      ? i18nT('apps.papyrus.workspace.editing_unsaved', { file: currentFile })
+      : i18nT('apps.papyrus.workspace.editing', { file: currentFile })
+    : ''
   const pdfSrc = project && hasPdf ? pdfUrl(project, pdfVersion) : null
   const mainCandidates = useMemo(() => texFiles(files), [files])
   // Option objects, not just names: a new array identity on every render would
@@ -907,11 +934,16 @@ export default function PapyrusPage() {
           </span>
         </span>
 
-        {currentFile && (dirty || currentFile !== mainFile) && (
-          <span className="text-[12px] text-muted truncate">
-            {dirty
-              ? i18nT('apps.papyrus.workspace.editing_unsaved', { file: currentFile })
-              : i18nT('apps.papyrus.workspace.editing', { file: currentFile })}
+        {editingLabel && (
+          // `basis-0` + a 6rem floor: the toolbar wraps on each item's flex
+          // basis, and this label's basis was its whole text, so a long path
+          // pushed the buttons after it onto a second row. Now it shrinks first,
+          // truncating, and only a row too narrow for 6rem of it wraps.
+          <span
+            className="flex-1 basis-0 min-w-[6rem] text-[12px] text-muted truncate"
+            title={editingLabel}
+          >
+            {editingLabel}
           </span>
         )}
 
@@ -927,7 +959,9 @@ export default function PapyrusPage() {
           </span>
         )}
 
-        <div className="flex-1" />
+        {/* The label grows into the free space itself; a spacer beside it
+            would take half of that space and truncate the label early. */}
+        {!editingLabel && <div className="flex-1" />}
 
         <Btn primary onClick={saveAndCompile} disabled={compiling}>
           {compiling

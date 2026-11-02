@@ -6,7 +6,7 @@
 import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { createRef } from 'react'
-import { describe, it, expect, vi } from 'vitest'
+import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
 import PapyrusEditor, { type PapyrusEditorHandle } from '../src/PapyrusEditor'
 import { CATALOGS, localeChain, t } from '../src/i18n'
@@ -99,6 +99,38 @@ describe('the source editor', () => {
     renderEditor({ value: 'x\ny\nz' })
     const gutter = screen.getByTestId('papyrus-editor').firstElementChild!
     expect(gutter.textContent).toBe('123')
+  })
+  it('wraps long lines instead of scrolling them sideways', () => {
+    const { area } = renderEditor()
+    expect(area.getAttribute('wrap')).toBe('soft')
+    expect(area.className).toContain('whitespace-pre-wrap')
+    expect(area.className).toContain('overflow-x-hidden')
+  })
+
+  describe('with a line that wraps onto three rows', () => {
+    // jsdom lays nothing out, so the mirror's line blocks are given heights:
+    // the line holding "long" wraps onto three 20px rows, every other is one.
+    beforeEach(() => {
+      vi.spyOn(HTMLElement.prototype, 'offsetHeight', 'get').mockImplementation(function (this: HTMLElement) {
+        return this.textContent === 'long' ? 60 : 20
+      })
+    })
+    afterEach(() => { vi.restoreAllMocks() })
+
+    it('makes its gutter row as tall as the line is on screen', () => {
+      renderEditor({ value: 'a\nlong\nc' })
+      const rows = Array.from(screen.getByTestId('papyrus-editor').firstElementChild!.children) as HTMLElement[]
+      expect(rows.map(row => [row.textContent, row.style.height])).toEqual([
+        ['1', '20px'], ['2', '60px'], ['3', '20px'],
+      ])
+    })
+
+    it('counts the wrapped rows when it scrolls to a line', () => {
+      const { ref, area } = renderEditor({ value: 'long\nb\nc\nd\ne\nf' })
+      ref.current!.jumpToLine(6)
+      // Lines 1-5 take 60 + 4 x 20 = 140px; three rows of context stay above.
+      expect(area.scrollTop).toBe(140 - 60)
+    })
   })
 })
 

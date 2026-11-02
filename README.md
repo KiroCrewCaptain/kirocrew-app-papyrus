@@ -34,8 +34,11 @@ into Papyrus's own folder. The co-author works on the same files you are
 editing.
 
 Papyrus never lets a document run commands: the compiler always runs with
-shell escape off and inside Kiro Crew's sandbox, so a paper you cloned from
-somewhere cannot reach your other files.
+shell escape off. On a Mac or Linux it also runs inside Kiro Crew's sandbox, so
+a paper you cloned from somewhere cannot reach your other files. Windows has no
+such sandbox, so there Papyrus compiles only if whoever runs Kiro Crew chooses
+to allow programs to run unsandboxed, and a paper's compiler can then reach
+whatever Kiro Crew can.
 
 ## Top 3 use cases
 
@@ -119,8 +122,8 @@ computer without asking for a password. No accounts or keys are needed
 otherwise.
 
 On Windows, Kiro Crew has no sandbox for the compiler, so Papyrus refuses to
-compile until whoever runs Kiro Crew allows unsandboxed programs (see
-[Troubleshooting](#troubleshooting--faq)).
+compile until whoever runs Kiro Crew allows programs to run unsandboxed (see
+[Troubleshooting](#troubleshooting--faq)). Only compile papers you trust there.
 
 ## First run
 
@@ -152,6 +155,9 @@ that and shows its name under **Compiler**.
    opens a new chat in **Sessions** whose message box already names the paper.
    Type what you want after it and send. When you come back to **Papyrus** it
    re-reads the open file; press **Compile** to see the agent's changes in the PDF.
+   If you had unsaved changes in a file the co-author also changed, Papyrus says
+   **Co-author changed this file** and will not save over its version (see
+   [Troubleshooting](#troubleshooting--faq)).
 7. **Use git (cloned papers).** The toolbar shows the branch. **Pull** fetches
    changes; **Commit & Push** asks for a message, then commits every change in the
    paper and pushes.
@@ -159,8 +165,8 @@ that and shows its name under **Compiler**.
 ## Settings & data
 
 - **Where your data lives:** each paper is a folder in
-  `~/.kiro/crew/apps/papyrus/data/projects/` (under `$KIROCREW_HOME` if you set
-  it), and the compiler Papyrus installs is in `…/apps/papyrus/data/vendor/tectonic/`.
+  `~/.kiro/crew/apps/papyrus/data/projects/` (or in the same place under the
+  folder you chose for Kiro Crew's data, if you moved it), and the compiler Papyrus installs is in `…/apps/papyrus/data/vendor/tectonic/`.
   Nothing is uploaded by Papyrus itself.
 - **What goes over the internet:** **Install compiler** downloads Tectonic from
   its official GitHub release, and Papyrus checks the file against a fixed
@@ -184,9 +190,10 @@ or Tectonic yourself and reload the page.
 
 **A build fails with a message about the sandbox.**
 Kiro Crew could not put the compiler in its sandbox, so Papyrus did not run it.
-On Windows there is no sandbox at all: whoever runs Kiro Crew can allow
-unsandboxed programs in its settings (`agent.sandbox_allow_unsandboxed_exec`).
-Elsewhere, try again; if it keeps failing, the message says what to change.
+On Windows there is no sandbox at all: whoever runs Kiro Crew can allow programs
+to run unsandboxed in its settings, and the compiler then runs without one (the
+setting is named in [Development](#development)). Elsewhere, try again; if it
+keeps failing, the message says what to change.
 
 **"Refusing to compile: … exist as symbolic links."**
 The paper folder contains links (often from a cloned repository). The compiler
@@ -194,9 +201,15 @@ writes files by name and could overwrite whatever a link points at, so Papyrus
 will not compile. Delete the links and try again.
 
 **The co-author's changes do not show in the PDF.**
-Papyrus does not compile by itself. Press **Compile**. If the editor still shows
-your old text, you had unsaved changes in that file: save them or reopen the
-paper.
+Papyrus does not compile by itself. Press **Compile**.
+
+**"Co-author changed this file", and the editor will not let me type.**
+You had unsaved changes in a file while the co-author changed the same file
+(this can happen when Papyrus is open in another tab or window). Papyrus stops
+you from saving, because saving would replace the co-author's version with
+yours. Copy any of your text you want to keep, then choose **Discard my changes
+and reload**: the editor shows the co-author's version, and you can add your
+changes back to it.
 
 **"Paper names become folder names, so they can use only lowercase Latin letters …"**
 Use only lowercase a–z, 0–9, `.`, `-` and `_`, starting with a letter or digit,
@@ -204,8 +217,9 @@ at most 64 characters. When one character is to blame, the message names it
 instead ("“É” can't be used in a paper name").
 
 **Push says I am not signed in.**
-Papyrus never asks for a password. Make sure `git push` works for that remote from
-your own terminal (an SSH key or a saved credential), then try again.
+Papyrus never asks for a password. Make sure pushing to that remote already works
+on your computer without one (with an SSH key or a saved sign-in), then try
+again.
 
 **Papyrus shows an error on every action, saying only the owner may do it.**
 You are using a Kiro Crew someone else set up and shared with you. Only its owner
@@ -251,7 +265,10 @@ gives its page `Select` and `guideCaution`. Papyrus also uses `ctx.scrub` (outpu
 redaction) and `ctx.audit` (the security event log).
 
 The compiler and git must run inside Kiro Crew's sandbox, and no App Kit seam
-offers that yet. `backend/_host.py` therefore looks up the gateway's sandbox,
+offers that yet. Where the gateway has no sandbox (Windows), the gateway's own
+`agent.sandbox_allow_unsandboxed_exec` opt-in decides: off, Papyrus refuses to
+compile or run git; on, the gateway runs them unwrapped. The data folder is
+`$KIROCREW_HOME/apps/papyrus/data/` when `KIROCREW_HOME` is set. `backend/_host.py` therefore looks up the gateway's sandbox,
 sensitive-path gate, pinned file reader, git-hook scanner and verified downloader
 by name at the moment it needs them, and when one is missing it refuses the
 operation instead of running it unprotected; `register_routes` reports what is

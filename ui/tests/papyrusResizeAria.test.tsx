@@ -1,5 +1,5 @@
 /**
- * The three resize grips as ARIA window-splitters: the position each one reports
+ * The resize grips as ARIA window-splitters: the position each one reports
  * must lie inside the range it advertises.
  *
  * This is not decoration. `ResizeHandle` is the splitter widget, so a screen
@@ -15,8 +15,7 @@
  *
  * Both are invisible to a sighted user, which is exactly why they need a test.
  * The same mocks as `PapyrusPageCoverage` apply for the same reasons (Monaco has
- * no accessible input under jsdom, `PdfPreview` fetches a blob URL, and
- * `CoAuthorPanel` mounts the whole ChatPage).
+ * no accessible input under jsdom and `PdfPreview` fetches a blob URL).
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { screen } from '@testing-library/react'
@@ -25,8 +24,7 @@ import PapyrusPage from '../src/PapyrusPage'
 import { renderWithProviders } from './helpers'
 import { papyrusApi } from '../src/api'
 import {
-  CHAT_OPEN_KEY, CHAT_WIDTH_KEY, DEFAULT_PDF_WIDTH, DEFAULT_TREE_WIDTH,
-  LAST_PROJECT_KEY, MIN_CHAT_WIDTH, MIN_EDITOR_WIDTH,
+  DEFAULT_PDF_WIDTH, DEFAULT_TREE_WIDTH, LAST_PROJECT_KEY,
 } from '../src/lib'
 
 vi.mock('../src/api', async (importOriginal) => ({

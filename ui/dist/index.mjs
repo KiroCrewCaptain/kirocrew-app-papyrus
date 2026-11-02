@@ -1,5 +1,5 @@
 import { activeLocale, compareText, fmtDateTime, fmtNumber, useAppApi, useChatLauncher, useImeGuard, useLanguageGeneration } from "@kirocrew/app-sdk";
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AlertTriangle, ArrowDownToLine, ArrowLeft, ArrowUpFromLine, ChevronDown, ChevronRight, ChevronUp, Download, FileCheck2, FileDown, FilePlus2, FileText, FileWarning, Folder, GitBranch, Image, Library, Loader2, Pencil, Play, Plus, Ruler, ScrollText, Settings2, Sparkles, TerminalSquare, Trash2, XCircle } from "lucide-react";
 import * as ui from "@kirocrew/app-sdk/ui";
@@ -2957,7 +2957,11 @@ function FileTree({ files, currentFile, mainFile, onOpenFile, onCreateFile, onDe
 * the message as the tooltip. Cmd/Ctrl+S calls `onSave`; Tab inserts two spaces
 * instead of leaving the field.
 *
-* Lines do not wrap, so a gutter number always sits beside its own line.
+* Long lines wrap, as prose does. A gutter number sits at the top of its line,
+* and each gutter row is as tall as its line is on screen: a hidden mirror with
+* the textarea's width, font and wrapping lays the lines out once more so their
+* heights can be measured. Where nothing can be measured (no layout, as under
+* jsdom), every row is one line tall.
 */
 var LINE_HEIGHT_PX = 20;
 var INDENT = "  ";
@@ -2999,6 +3003,31 @@ function lineOffset(text, line) {
 var PapyrusEditor = forwardRef(function PapyrusEditor({ path, value, onChange, onSave, diagnostics, onCursorChange, readOnly = false }, ref) {
 	const areaRef = useRef(null);
 	const gutterRef = useRef(null);
+	const mirrorRef = useRef(null);
+	const [heights, setHeights] = useState([]);
+	const heightsRef = useRef([]);
+	const lines = useMemo(() => value.split("\n"), [value]);
+	const measure = useCallback(() => {
+		const area = areaRef.current;
+		const mirror = mirrorRef.current;
+		if (!area || !mirror) return;
+		mirror.style.width = `${area.clientWidth}px`;
+		const next = Array.from(mirror.children, (child) => child.offsetHeight);
+		const prev = heightsRef.current;
+		if (next.length === prev.length && next.every((h, i) => h === prev[i])) return;
+		heightsRef.current = next;
+		setHeights(next);
+	}, []);
+	useLayoutEffect(() => {
+		measure();
+	}, [lines, measure]);
+	useLayoutEffect(() => {
+		const area = areaRef.current;
+		if (!area || typeof ResizeObserver === "undefined") return;
+		const observer = new ResizeObserver(() => measure());
+		observer.observe(area);
+		return () => observer.disconnect();
+	}, [measure]);
 	useImperativeHandle(ref, () => ({
 		jumpToLine: (line) => {
 			const area = areaRef.current;
@@ -3006,7 +3035,10 @@ var PapyrusEditor = forwardRef(function PapyrusEditor({ path, value, onChange, o
 			const offset = lineOffset(area.value, line);
 			area.focus();
 			area.setSelectionRange(offset, offset);
-			area.scrollTop = Math.max(0, (Math.max(1, line) - 4) * LINE_HEIGHT_PX);
+			const target = Math.max(1, Math.floor(line)) - 1;
+			let top = 0;
+			for (let i = 0; i < target; i++) top += heightsRef.current[i] || LINE_HEIGHT_PX;
+			area.scrollTop = Math.max(0, top - 60);
 			onCursorChange?.(...caretPosition(area.value, offset));
 		},
 		focus: () => areaRef.current?.focus()
@@ -3028,11 +3060,7 @@ var PapyrusEditor = forwardRef(function PapyrusEditor({ path, value, onChange, o
 		}
 		return byLine;
 	}, [diagnostics]);
-	const lineCount = useMemo(() => {
-		let n = 1;
-		for (let i = 0; i < value.length; i++) if (value.charCodeAt(i) === 10) n += 1;
-		return n;
-	}, [value]);
+	const lineCount = lines.length;
 	const reportCursor = useCallback(() => {
 		const area = areaRef.current;
 		if (area && onCursorChange) onCursorChange(...caretPosition(area.value, area.selectionStart));
@@ -3066,13 +3094,18 @@ var PapyrusEditor = forwardRef(function PapyrusEditor({ path, value, onChange, o
 			const mark = marks.get(line);
 			rows.push(/* @__PURE__ */ jsx("div", {
 				className: `pr-2 pl-1 text-right tabular-nums ${mark ? MARK_CLASS[mark.severity] : ""}`,
+				style: { height: heights[line - 1] || LINE_HEIGHT_PX },
 				title: mark ? mark.messages.join("\n") : void 0,
 				"data-marker": mark ? mark.severity : void 0,
 				children: line
 			}, line));
 		}
 		return rows;
-	}, [lineCount, marks]);
+	}, [
+		lineCount,
+		marks,
+		heights
+	]);
 	return /* @__PURE__ */ jsxs("div", {
 		className: "h-full w-full min-h-0 flex overflow-hidden bg-bg font-mono text-[13px]",
 		"data-testid": "papyrus-editor",
@@ -3085,28 +3118,41 @@ var PapyrusEditor = forwardRef(function PapyrusEditor({ path, value, onChange, o
 				minWidth: "3.25rem"
 			},
 			children: gutter
-		}), /* @__PURE__ */ jsx("textarea", {
-			ref: areaRef,
-			value,
-			readOnly,
-			spellCheck: false,
-			autoCapitalize: "off",
-			autoComplete: "off",
-			autoCorrect: "off",
-			wrap: "off",
-			"aria-label": path,
-			onChange: (e) => onChange(e.target.value),
-			onKeyDown,
-			onKeyUp: reportCursor,
-			onClick: reportCursor,
-			onSelect: reportCursor,
-			onScroll: syncGutter,
-			className: `flex-1 min-w-0 h-full resize-none border-0 outline-none bg-transparent text-text px-3 py-2 whitespace-pre overflow-auto ${readOnly ? "opacity-60" : ""}`,
-			style: {
-				lineHeight: `${LINE_HEIGHT_PX}px`,
-				tabSize: 2
-			}
-		}, path)]
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "relative flex-1 min-w-0 h-full",
+			children: [/* @__PURE__ */ jsx("div", {
+				ref: mirrorRef,
+				"aria-hidden": "true",
+				className: "absolute top-0 left-0 invisible pointer-events-none px-3 whitespace-pre-wrap [overflow-wrap:anywhere]",
+				style: {
+					lineHeight: `${LINE_HEIGHT_PX}px`,
+					tabSize: 2,
+					boxSizing: "border-box"
+				},
+				children: lines.map((text, i) => /* @__PURE__ */ jsx("div", { children: text || "​" }, i))
+			}), /* @__PURE__ */ jsx("textarea", {
+				ref: areaRef,
+				value,
+				readOnly,
+				spellCheck: false,
+				autoCapitalize: "off",
+				autoComplete: "off",
+				autoCorrect: "off",
+				wrap: "soft",
+				"aria-label": path,
+				onChange: (e) => onChange(e.target.value),
+				onKeyDown,
+				onKeyUp: reportCursor,
+				onClick: reportCursor,
+				onSelect: reportCursor,
+				onScroll: syncGutter,
+				className: `relative block w-full h-full resize-none border-0 outline-none bg-transparent text-text px-3 py-2 whitespace-pre-wrap [overflow-wrap:anywhere] overflow-x-hidden overflow-y-auto ${readOnly ? "opacity-60" : ""}`,
+				style: {
+					lineHeight: `${LINE_HEIGHT_PX}px`,
+					tabSize: 2
+				}
+			}, path)]
+		})]
 	});
 });
 // src/PdfPreview.tsx
@@ -3364,7 +3410,6 @@ function PapyrusPage() {
 	const conflictFileRef = useRef(null);
 	const bufferRef = useRef("");
 	const compilingRef = useRef(false);
-	const isMobileRef = useRef(isMobile);
 	useEffect(() => {
 		bufferFileRef.current = currentFile;
 	}, [currentFile]);
@@ -3377,9 +3422,6 @@ function PapyrusPage() {
 	useEffect(() => {
 		bufferRef.current = buffer;
 	}, [buffer]);
-	useEffect(() => {
-		isMobileRef.current = isMobile;
-	}, [isMobile]);
 	useEffect(() => {
 		saveLastProject(project);
 	}, [project]);
@@ -3722,13 +3764,40 @@ function PapyrusPage() {
 		openChat,
 		companionContext
 	]);
+	/** Record a conflict when the open file changed on disk under an unsaved buffer.
+	*
+	* The base is the cached copy of the file: what the buffer was last loaded from
+	* or saved as (`saveMutation.onSuccess` keeps it current). A disk copy that no
+	* longer matches it was written by someone else, usually the co-author, and the
+	* next save would write the buffer over it. Recording the conflict makes the
+	* editor read-only with the "Co-author changed this file" notice, whose only
+	* exit is `resolveConflict`. A disk copy that still matches the base is no
+	* conflict, so leaving the tab with unsaved typing and coming back blocks
+	* nothing. The cache is left alone: the base must stay what the buffer started
+	* from. */
+	const detectDiskChange = useCallback(async () => {
+		const path = bufferFileRef.current;
+		if (!project || !path || !dirtyRef.current) return;
+		const base = queryClient.getQueryData([
+			"papyrus",
+			"file",
+			project,
+			path
+		]);
+		if (!base) return;
+		if ((await papyrusApi.readFile(project, path)).content === base.content) return;
+		if (bufferFileRef.current !== path || !dirtyRef.current) return;
+		conflictFileRef.current = path;
+		setConflictFile(path);
+	}, [project, queryClient]);
 	useEffect(() => {
 		const onVisible = () => {
-			if (document.visibilityState !== "visible" || !project || dirtyRef.current) return;
+			if (document.visibilityState !== "visible" || !project) return;
 			(async () => {
 				try {
 					await invalidateFiles();
-					await reloadOpenFile(false);
+					if (dirtyRef.current) await detectDiskChange();
+					else await reloadOpenFile(false);
 				} catch {}
 			})();
 		};
@@ -3737,11 +3806,13 @@ function PapyrusPage() {
 	}, [
 		project,
 		invalidateFiles,
-		reloadOpenFile
+		reloadOpenFile,
+		detectDiskChange
 	]);
 	const counts = useMemo(() => countDiagnostics(diagnostics), [diagnostics]);
 	const wordCount = useMemo(() => countWords(buffer), [buffer]);
 	const branchLabel = gitBranchLabel(git);
+	const editingLabel = currentFile && (dirty || currentFile !== mainFile) ? dirty ? i18nT("apps.papyrus.workspace.editing_unsaved", { file: currentFile }) : i18nT("apps.papyrus.workspace.editing", { file: currentFile }) : "";
 	const pdfSrc = project && hasPdf ? pdfUrl(project, pdfVersion) : null;
 	const mainCandidates = useMemo(() => texFiles(files), [files]);
 	const mainOptions = useMemo(() => mainCandidates.map((file) => ({
@@ -3822,9 +3893,10 @@ function PapyrusPage() {
 							})
 						})]
 					}),
-					currentFile && (dirty || currentFile !== mainFile) && /* @__PURE__ */ jsx("span", {
-						className: "text-[12px] text-muted truncate",
-						children: dirty ? i18nT("apps.papyrus.workspace.editing_unsaved", { file: currentFile }) : i18nT("apps.papyrus.workspace.editing", { file: currentFile })
+					editingLabel && /* @__PURE__ */ jsx("span", {
+						className: "flex-1 basis-0 min-w-[6rem] text-[12px] text-muted truncate",
+						title: editingLabel,
+						children: editingLabel
 					}),
 					hasConflict && /* @__PURE__ */ jsxs("span", {
 						className: "flex items-center gap-2 text-[12px] text-warn",
@@ -3837,7 +3909,7 @@ function PapyrusPage() {
 							})
 						]
 					}),
-					/* @__PURE__ */ jsx("div", { className: "flex-1" }),
+					!editingLabel && /* @__PURE__ */ jsx("div", { className: "flex-1" }),
 					/* @__PURE__ */ jsxs(Btn, {
 						primary: true,
 						onClick: saveAndCompile,

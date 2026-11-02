@@ -82,61 +82,6 @@ export const defaultPdfWidth = (viewportWidth: number): number => (
   Math.min(maxPdfWidth(viewportWidth), DEFAULT_PDF_WIDTH)
 )
 
-/** Co-author column. The default is the width the panel opened at before it
- *  became resizable. */
-export const CHAT_WIDTH_KEY = 'kc:papyrus:chat-width'
-export const DEFAULT_CHAT_WIDTH = 420
-export const MIN_CHAT_WIDTH = 280
-export const MAX_CHAT_WIDTH = 720
-
-/** The narrowest the editor may be squeezed to before the co-author panel gives
- *  ground — the one bound the editor has, since it owns no grip and takes what
- *  the other three columns leave.
- *
- *  280 is the minimum the two other CONTENT columns already use, and the
- *  arithmetic leaves little choice: on a 1280px window with the tree and preview
- *  at their defaults (176 + 520) the room left is 584px, and the co-author panel
- *  cannot go under its own 280px minimum — so 304px is the most any floor can
- *  actually be given. A floor of 400 would simply not be honoured.
- *
- *  It is a budget for the editor COLUMN: the three 6px grips are drawn in the
- *  same row, so at the boundary the editor measures ~262px of text. */
-export const MIN_EDITOR_WIDTH = 280
-
-/** The co-author ceiling: its own maximum, or the room left beside the editor's
- *  floor, whichever is smaller.
- *
- *  Persisting the open state turned a transient squeeze into the layout the
- *  author lands in on every return — with the defaults on a 1280px window
- *  (176 + 520 + 420 = 1116) the editor measured 164px. The panel is the column
- *  to take it from: it is the last one opened, and the only one whose content
- *  (a chat transcript) reads acceptably at its minimum.
- *
- *  Deliberately a CEILING applied where the width is consumed, not a discard on
- *  load the way an out-of-range stored width is treated: the room here depends on
- *  the other two columns, not only on the window, so a panel narrowed beside a
- *  wide preview must come back at its full width once the preview is dragged in
- *  or the tree collapsed. Yielding is not forgetting. */
-export const maxChatWidth = (
-  viewportWidth: number, treeWidth: number, pdfWidth: number,
-): number => (
-  viewportWidth > 0
-    ? Math.max(MIN_CHAT_WIDTH, Math.min(
-      MAX_CHAT_WIDTH, viewportWidth - treeWidth - pdfWidth - MIN_EDITOR_WIDTH,
-    ))
-    : MAX_CHAT_WIDTH
-)
-/** Whether the co-author panel is open. Persisting only the WIDTH still lost the
- *  layout on every return to a paper: the panel came back closed, so the
- *  workspace the author left was not the one restored. Absent means closed,
- *  which is the state the panel has always opened at.
- *
- *  A DESKTOP preference, read and written only while the viewport is wide, the
- *  same rule `useColumnResize.persist` applies to its own collapsed flag: while
- *  narrow the panel covers the pane, so an imported desktop flag would hide the
- *  editor and the PDF, and dismissing it there would rewrite a desktop layout. */
-export const CHAT_OPEN_KEY = 'kc:papyrus:chat-open'
-
 /** Suffixes hidden from the file tree — LaTeX build artifacts, never editable. */
 const ARTIFACT_SUFFIXES = [
   '.aux', '.bbl', '.blg', '.fdb_latexmk', '.fls', '.log', '.out',

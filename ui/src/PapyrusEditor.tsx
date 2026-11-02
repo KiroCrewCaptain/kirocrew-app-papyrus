@@ -11,9 +11,16 @@
  * the message as the tooltip. Cmd/Ctrl+S calls `onSave`; Tab inserts two spaces
  * instead of leaving the field.
  *
- * Lines do not wrap, so a gutter number always sits beside its own line.
+ * Long lines wrap, as prose does. A gutter number sits at the top of its line,
+ * and each gutter row is as tall as its line is on screen: a hidden mirror with
+ * the textarea's width, font and wrapping lays the lines out once more so their
+ * heights can be measured. Where nothing can be measured (no layout, as under
+ * jsdom), every row is one line tall.
  */
-import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, type KeyboardEvent } from 'react'
+import {
+  forwardRef, useCallback, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState,
+  type KeyboardEvent,
+} from 'react'
 import type { Diagnostic } from './api'
 
 export interface PapyrusEditorHandle {
@@ -90,6 +97,37 @@ const PapyrusEditor = forwardRef<PapyrusEditorHandle, PapyrusEditorProps>(functi
 ) {
   const areaRef = useRef<HTMLTextAreaElement | null>(null)
   const gutterRef = useRef<HTMLDivElement | null>(null)
+  const mirrorRef = useRef<HTMLDivElement | null>(null)
+  // The on-screen height of each line, in pixels, from the mirror. Empty until
+  // measured, and a missing or zero entry means one line.
+  const [heights, setHeights] = useState<number[]>([])
+  const heightsRef = useRef<number[]>([])
+
+  const lines = useMemo(() => value.split('\n'), [value])
+
+  const measure = useCallback(() => {
+    const area = areaRef.current
+    const mirror = mirrorRef.current
+    if (!area || !mirror) return
+    // `clientWidth` leaves out the textarea's scrollbar, so the mirror wraps at
+    // the same column as the text the user sees.
+    mirror.style.width = `${area.clientWidth}px`
+    const next = Array.from(mirror.children, child => (child as HTMLElement).offsetHeight)
+    const prev = heightsRef.current
+    if (next.length === prev.length && next.every((h, i) => h === prev[i])) return
+    heightsRef.current = next
+    setHeights(next)
+  }, [])
+
+  useLayoutEffect(() => { measure() }, [lines, measure])
+
+  useLayoutEffect(() => {
+    const area = areaRef.current
+    if (!area || typeof ResizeObserver === 'undefined') return
+    const observer = new ResizeObserver(() => measure())
+    observer.observe(area)
+    return () => observer.disconnect()
+  }, [measure])
 
   useImperativeHandle(ref, () => ({
     jumpToLine: (line: number) => {
@@ -98,7 +136,11 @@ const PapyrusEditor = forwardRef<PapyrusEditorHandle, PapyrusEditorProps>(functi
       const offset = lineOffset(area.value, line)
       area.focus()
       area.setSelectionRange(offset, offset)
-      area.scrollTop = Math.max(0, (Math.max(1, line) - 4) * LINE_HEIGHT_PX)
+      // Three lines of context above the target, counted in on-screen rows.
+      const target = Math.max(1, Math.floor(line)) - 1
+      let top = 0
+      for (let i = 0; i < target; i++) top += heightsRef.current[i] || LINE_HEIGHT_PX
+      area.scrollTop = Math.max(0, top - 3 * LINE_HEIGHT_PX)
       onCursorChange?.(...caretPosition(area.value, offset))
     },
     focus: () => areaRef.current?.focus(),
@@ -122,11 +164,7 @@ const PapyrusEditor = forwardRef<PapyrusEditorHandle, PapyrusEditorProps>(functi
     return byLine
   }, [diagnostics])
 
-  const lineCount = useMemo(() => {
-    let n = 1
-    for (let i = 0; i < value.length; i++) if (value.charCodeAt(i) === 10) n += 1
-    return n
-  }, [value])
+  const lineCount = lines.length
 
   const reportCursor = useCallback(() => {
     const area = areaRef.current
@@ -163,6 +201,7 @@ const PapyrusEditor = forwardRef<PapyrusEditorHandle, PapyrusEditorProps>(functi
         <div
           key={line}
           className={`pr-2 pl-1 text-right tabular-nums ${mark ? MARK_CLASS[mark.severity] : ''}`}
+          style={{ height: heights[line - 1] || LINE_HEIGHT_PX }}
           title={mark ? mark.messages.join('\n') : undefined}
           data-marker={mark ? mark.severity : undefined}
         >
@@ -171,7 +210,7 @@ const PapyrusEditor = forwardRef<PapyrusEditorHandle, PapyrusEditorProps>(functi
       )
     }
     return rows
-  }, [lineCount, marks])
+  }, [lineCount, marks, heights])
 
   return (
     <div className="h-full w-full min-h-0 flex overflow-hidden bg-bg font-mono text-[13px]" data-testid="papyrus-editor">
@@ -183,6 +222,17 @@ const PapyrusEditor = forwardRef<PapyrusEditorHandle, PapyrusEditorProps>(functi
       >
         {gutter}
       </div>
+      <div className="relative flex-1 min-w-0 h-full">
+      {/* The measuring mirror: the same box, font and wrapping as the textarea,
+          one block per line. Invisible and out of the accessibility tree. */}
+      <div
+        ref={mirrorRef}
+        aria-hidden="true"
+        className="absolute top-0 left-0 invisible pointer-events-none px-3 whitespace-pre-wrap [overflow-wrap:anywhere]"
+        style={{ lineHeight: `${LINE_HEIGHT_PX}px`, tabSize: 2, boxSizing: 'border-box' }}
+      >
+        {lines.map((text, i) => <div key={i}>{text || '\u200b'}</div>)}
+      </div>
       <textarea
         ref={areaRef}
         key={path}
@@ -192,7 +242,7 @@ const PapyrusEditor = forwardRef<PapyrusEditorHandle, PapyrusEditorProps>(functi
         autoCapitalize="off"
         autoComplete="off"
         autoCorrect="off"
-        wrap="off"
+        wrap="soft"
         aria-label={path}
         onChange={e => onChange(e.target.value)}
         onKeyDown={onKeyDown}
@@ -200,9 +250,10 @@ const PapyrusEditor = forwardRef<PapyrusEditorHandle, PapyrusEditorProps>(functi
         onClick={reportCursor}
         onSelect={reportCursor}
         onScroll={syncGutter}
-        className={`flex-1 min-w-0 h-full resize-none border-0 outline-none bg-transparent text-text px-3 py-2 whitespace-pre overflow-auto ${readOnly ? 'opacity-60' : ''}`}
+        className={`relative block w-full h-full resize-none border-0 outline-none bg-transparent text-text px-3 py-2 whitespace-pre-wrap [overflow-wrap:anywhere] overflow-x-hidden overflow-y-auto ${readOnly ? 'opacity-60' : ''}`}
         style={{ lineHeight: `${LINE_HEIGHT_PX}px`, tabSize: 2 }}
       />
+      </div>
     </div>
   )
 })

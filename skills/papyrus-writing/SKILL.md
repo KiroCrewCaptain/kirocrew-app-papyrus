@@ -15,8 +15,8 @@ else:
 - **Suggest, don't overwrite.** When a sentence is merely different-not-better,
   leave it alone.
 - **Read before you edit.** The author may have changed the file since your last
-  read, and in Papyrus they are editing it live in the other pane. Read the
-  file, then make a minimal, surgical edit.
+  read, and they may still have the paper open in Papyrus, in another tab or
+  window, while you work. Read the file, then make a minimal, surgical edit.
 
 Show the exact LaTeX you changed — a two-line diff is more useful than a
 paragraph describing the change.

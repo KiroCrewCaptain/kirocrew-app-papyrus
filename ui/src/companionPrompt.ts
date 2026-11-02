@@ -5,7 +5,7 @@
  * name, the file paths and the role framing are English identifiers the agent
  * matches on, so this text is deliberately NOT routed through the i18n catalog.
  * Translating it would degrade the agent's instruction-following without changing
- * anything the user ever sees. The user-visible copy for this panel lives in the
+ * anything the user ever sees. The user-visible co-author copy lives in the
  * catalog like every other string.
  */
 
