@@ -25,12 +25,14 @@ change here.
 
 ## What carried over unchanged
 
-- `app.json` `name` (`papyrus`), `version` (`0.2.0`), `author`, `license`,
-  `permissions`, `dependencies`, `platform`, `defaultEnabled: false` and every
-  display field (`displayName`, `description`, `highlights`, `useCases`,
-  `configuration`). `tests/test_manifest_contract.py` compares them with the
-  built-in's manifest (`tests/fixtures/builtin-app.json`), because adoption
-  refuses a manifest that widens a grant or forces the app off.
+- `app.json` `name` (`papyrus`), `author`, `license`, `permissions`,
+  `dependencies`, `platform`, `defaultEnabled: false` and every display field
+  (`displayName`, `description`, `highlights`, `useCases`, `configuration`).
+  `tests/test_manifest_contract.py` compares them with the built-in's manifest
+  (`tests/fixtures/builtin-app.json`), because adoption refuses a manifest that
+  widens a grant or forces the app off. The `version` started equal to the
+  built-in's (`0.2.0`) and only moves forward, one patch release per batch of
+  Kiro Crew fixes carried over (see below).
 - Every route's method, path, validation, status codes, error `code`s and
   response shape. The handler bodies are the built-in's.
 - The security behaviour: the compiler runs in the sandbox's `strict` mode with
@@ -196,6 +198,20 @@ shared strings the page used), plural forms by `Intl.PluralRules`.
 | `website/src/test/PapyrusEditorSeed.test.tsx` | `ui/tests/externalSeams.test.tsx` | The Pierre seeding it pinned is gone (gap 3); the new editor's contract is tested instead, with the catalogs, the transport and the older-host fallbacks. |
 | `website/src/test/papyrusNarrow.test.ts` | Dropped | Source-text assertions over the dashboard's own layout files (`App.tsx`, `routeActive.ts`) and the co-author panel. |
 | `test/test_skill_trigger_unusable.py:131` | Stays in Kiro Crew | It tests the host's trigger matcher, reading `papyrus-diagnose-compilation` as a fixture; it needs another fixture when core stops shipping the skill. |
+
+## Kiro Crew fixes carried over after the port
+
+The built-in kept receiving fixes on Kiro Crew `main` after `390c5315be`. Each
+user-visible one is carried here so an adopted user has it too; test-only
+changes are carried when they add a case this repository lacks.
+
+| Kiro Crew commit | Here | Release |
+|---|---|---|
+| `00a0937467` fix(papyrus): probe tectonic.exe/pdflatex.exe in userspace on Windows (#30438) | `backend/latex.py` `_userspace_compiler_globs`, its five cases in `tests/test_latex.py` (`TestFindCompiler`) | 0.2.1 |
+| `7a4e28199b` test: give weak long-tail tests real outcome checks (#29493) | The Papyrus outcome checks in `tests/test_latex.py` (the compiler cache, the two symlinked-artifact compiles) | 0.2.1 |
+| `2f241cbfce` test(papyrus): cover the paper list create, clone and delete (#27774) | `ui/tests/ProjectList.coverage.test.tsx` | 0.2.1 |
+| `a430ddd454` refactor: make core independent of the papyrus app (#27978) | Nothing to carry: it moves the built-in's frontend tests and guards core's boundary; `tests/test_host_seams.py` already pins the count-after-compile order it adds | — |
+| `ed97f28e63` test(co-author-panel): wait for the chat switch before header clicks (#27977) | Nothing to carry: the panel is gone here (gap 1) | — |
 
 ## What Kiro Crew keeps doing
 

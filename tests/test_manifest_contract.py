@@ -4,10 +4,12 @@ Kiro Crew adopts a user's built-in record onto this repository in place, at a
 pinned commit, with no consent dialog, so the tree must be something it can take
 over unchanged:
 
-- the same name, version, permissions, dependencies, platform and
-  ``defaultEnabled`` as the built-in (``tests/fixtures/builtin-app.json`` is its
-  manifest at the commit this was ported from). A widened grant would be held
-  back or force the app off, and adoption refuses that;
+- the same name, permissions, dependencies, platform and ``defaultEnabled`` as
+  the built-in (``tests/fixtures/builtin-app.json`` is its manifest at the commit
+  this was ported from). A widened grant would be held back or force the app
+  off, and adoption refuses that. The version may move forward, never back:
+  adoption reads the manifest at the commit Kiro Crew pins, and a later release
+  here reaches the adopted record as an update;
 - the five ``papyrus-*`` skills the built-in's co-author prompt names, now
   shipped and declared by the app instead of by Kiro Crew;
 - nothing that needs a build at install time, and no symlinks or file names a
@@ -173,10 +175,17 @@ class TestTheManifest(unittest.TestCase):
 
     def test_what_adoption_compares_is_the_builtins(self) -> None:
         manifest, builtin = _manifest(), _builtin()
-        for key in ("name", "version", "permissions", "dependencies", "defaultEnabled"):
+        for key in ("name", "permissions", "dependencies", "defaultEnabled"):
             with self.subTest(field=key):
                 self.assertEqual(manifest[key], builtin[key])
         self.assertEqual(manifest["platform"], builtin["platform"])
+
+    def test_the_version_never_falls_below_the_builtins(self) -> None:
+        def parts(version: str) -> tuple[int, ...]:
+            self.assertRegex(version, r"^\d+\.\d+\.\d+$")
+            return tuple(int(p) for p in version.split("."))
+
+        self.assertGreaterEqual(parts(_manifest()["version"]), parts(_builtin()["version"]))
 
     def test_declares_nothing_adoption_cannot_carry(self) -> None:
         manifest = _manifest()
