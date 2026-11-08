@@ -197,6 +197,26 @@ def normalize_project_name(raw: str) -> str:
     return re.sub(r"\s+", "-", (raw or "").strip()).lower()
 
 
+#: The device names Windows resolves in every directory, matched against the part
+#: of a name before its first ``.`` (Kiro Crew's ``constants.WINDOWS_DEVICE_STEMS``).
+WINDOWS_DEVICE_STEMS = frozenset(
+    {"con", "prn", "aux", "nul"}
+    | {f"com{n}" for n in range(1, 10)}
+    | {f"lpt{n}" for n in range(1, 10)}
+)
+
+
+def is_unportable_project_name(name: str) -> bool:
+    """Whether Windows would store the slug *name* under another name, or as a device.
+
+    Windows strips a trailing dot (``draft.`` becomes ``draft``) and resolves a
+    device stem (``nul``, ``con.paper``) in every directory. Create and clone refuse
+    such a name on every platform, so it cannot break when the data home moves to
+    Windows; opening an existing one is unchanged.
+    """
+    return name.endswith(".") or name.split(".", 1)[0] in WINDOWS_DEVICE_STEMS
+
+
 #: ``os.path.isjunction`` exists only on Python 3.12+. Preferred when present; the
 #: fallback below covers 3.10/3.11, which this project still supports.
 _ISJUNCTION = getattr(os.path, "isjunction", None)
