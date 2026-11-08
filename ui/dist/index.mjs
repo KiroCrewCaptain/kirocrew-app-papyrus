@@ -1,5 +1,5 @@
 import { activeLocale, compareText, fmtDateTime, fmtNumber, useAppApi, useChatLauncher, useImeGuard, useLanguageGeneration } from "@kirocrew/app-sdk";
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { forwardRef, useCallback, useEffect, useId, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AlertTriangle, ArrowDownToLine, ArrowLeft, ArrowUpFromLine, ChevronDown, ChevronRight, ChevronUp, Download, FileCheck2, FileDown, FilePlus2, FileText, FileWarning, Folder, GitBranch, Image, Library, Loader2, Pencil, Play, Plus, Ruler, ScrollText, Settings2, Sparkles, TerminalSquare, Trash2, XCircle } from "lucide-react";
 import * as ui from "@kirocrew/app-sdk/ui";
@@ -3234,6 +3234,7 @@ function LevelGlyph({ level }) {
 }
 function DiagnosticRow({ diagnostic, onJumpToLine }) {
 	const line = diagnostic.line;
+	const messageId = useId();
 	const label = line !== null ? i18nT("apps.papyrus.diagnostics.jump_to_line", { line }) : void 0;
 	const body = /* @__PURE__ */ jsxs(Fragment, { children: [
 		/* @__PURE__ */ jsx(LevelGlyph, { level: diagnostic.level }),
@@ -3242,6 +3243,7 @@ function DiagnosticRow({ diagnostic, onJumpToLine }) {
 			children: i18nT("apps.papyrus.diagnostics.line_short", { line })
 		}),
 		/* @__PURE__ */ jsx("span", {
+			id: messageId,
 			className: "min-w-0 flex-1 text-[13px] break-words",
 			children: diagnostic.message
 		}),
@@ -3257,6 +3259,7 @@ function DiagnosticRow({ diagnostic, onJumpToLine }) {
 	return /* @__PURE__ */ jsx(Clickable, {
 		onClick: () => onJumpToLine(line),
 		"aria-label": label,
+		"aria-describedby": messageId,
 		title: label,
 		className: "flex items-start gap-2 px-2 py-1 rounded cursor-pointer hover:bg-bg-hover focus-ring",
 		children: body
