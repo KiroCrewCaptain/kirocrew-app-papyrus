@@ -11,6 +11,7 @@ import sys
 import tempfile
 import time
 from pathlib import Path
+from typing import Callable
 
 _WINDOWS = sys.platform == "win32"
 #: Windows refuses to replace a file another process holds open without
@@ -19,15 +20,36 @@ _REPLACE_RETRIES = 5
 _REPLACE_RETRY_SECS = 0.05
 
 
-def _replace(src: str, dst: Path) -> None:
+def _retry_hold(rename: Callable[[str, str], None], src: str, dst: str) -> None:
+    """Run *rename*, retrying the brief Windows hold described above.
+
+    Only a ``PermissionError`` on Windows is retried; any other error, and every
+    error elsewhere, is raised on the first attempt.
+    """
     for attempt in range(_REPLACE_RETRIES):
         try:
-            os.replace(src, dst)
+            rename(src, dst)
             return
         except PermissionError:
             if not _WINDOWS or attempt == _REPLACE_RETRIES - 1:
                 raise
             time.sleep(_REPLACE_RETRY_SECS)
+
+
+def _replace(src: str, dst: Path) -> None:
+    _retry_hold(os.replace, src, str(dst))
+
+
+def rename_with_retry(src: Path | str, dst: Path | str) -> None:
+    """``os.rename(src, dst)``, retried over the same brief Windows hold.
+
+    For a move that must never overwrite: an occupied *dst* raises
+    ``FileExistsError`` (or ``ENOTEMPTY`` for a non-empty directory on POSIX),
+    which is not retried. On Windows a file held open under the moved directory
+    (an antivirus scan, the search indexer, a sync client) makes the rename fail
+    with "Access is denied" until the holder lets go.
+    """
+    _retry_hold(os.rename, str(src), str(dst))
 
 
 def atomic_write(

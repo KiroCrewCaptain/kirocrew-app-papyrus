@@ -207,6 +207,7 @@ changes are carried when they add a case this repository lacks.
 
 | Kiro Crew commit | Here | Release |
 |---|---|---|
+| kirodotdev/KiroCrew#32682 fix(papyrus): retry a held clone publish instead of a false conflict | `backend/_fs.py` `rename_with_retry` (the retry loop shared with `atomic_write` as `_retry_hold`), `backend/gitops.py` `_publish_clone` and `clone`'s error mapping, two cases in `tests/test_gitops.py` (`TestClone`) | 0.2.2 |
 | `00a0937467` fix(papyrus): probe tectonic.exe/pdflatex.exe in userspace on Windows (#30438) | `backend/latex.py` `_userspace_compiler_globs`, its five cases in `tests/test_latex.py` (`TestFindCompiler`) | 0.2.1 |
 | `7a4e28199b` test: give weak long-tail tests real outcome checks (#29493) | The Papyrus outcome checks in `tests/test_latex.py` (the compiler cache, the two symlinked-artifact compiles) | 0.2.1 |
 | `2f241cbfce` test(papyrus): cover the paper list create, clone and delete (#27774) | `ui/tests/ProjectList.coverage.test.tsx` | 0.2.1 |

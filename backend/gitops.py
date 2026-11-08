@@ -21,6 +21,7 @@ push commits back. Every git invocation here follows the same three rules as
 from __future__ import annotations
 
 import asyncio
+import errno
 import functools
 import logging
 import os
@@ -34,7 +35,7 @@ from typing import Any
 
 from . import _compat as platform_compat
 from . import _host, procio, store
-from ._fs import atomic_write
+from ._fs import atomic_write, rename_with_retry
 from ._host import (
     ConfigHookScanError,
     SandboxUnavailableError,
@@ -573,7 +574,7 @@ def _publish_clone(staging: Path, destination: Path) -> str:
     this clone made.
     """
     with store.config_lock(destination):
-        os.rename(staging, destination)
+        rename_with_retry(staging, destination)
         return store.project_generation(destination)
 
 
@@ -591,8 +592,11 @@ async def clone(url: str, destination: Path) -> str:
     error, and its cleanup then deleted the WINNER's freshly-cloned checkout — turning
     a duplicate-request 500 into data loss for the request that succeeded.
 
-    The rename is ``os.rename``, which fails rather than merging if the destination
-    appeared meanwhile, so the loser reports a conflict and the winner keeps its tree.
+    The rename is :func:`._fs.rename_with_retry` (``os.rename``, retried over a brief
+    Windows hold on a file in the fresh checkout), which fails rather than merging if
+    the destination appeared meanwhile, so the loser reports a conflict and the winner
+    keeps its tree. Any other rename failure is reported as a failed move, not as a
+    conflict.
 
     The generation (:func:`.store.project_generation`) is read in the same locked
     step as the rename, so a caller can later tell whether the folder still holds
@@ -621,7 +625,10 @@ async def clone(url: str, destination: Path) -> str:
         return await asyncio.to_thread(_publish_clone, staging, destination)
     except OSError as exc:
         await _remove_tree(staging)
-        raise GitError("a project with that name already exists", output=str(exc))
+        # An occupied destination raises EEXIST or ENOTEMPTY, depending on the OS.
+        if exc.errno in (errno.EEXIST, errno.ENOTEMPTY):
+            raise GitError("a project with that name already exists", output=str(exc))
+        raise GitError("could not move the clone into place; retry the clone", output=str(exc))
 
 
 async def _remove_tree(path: Path) -> None:

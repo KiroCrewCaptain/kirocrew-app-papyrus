@@ -32,7 +32,7 @@ from helpers import GIT_MAINTENANCE_OFF_CONFIG
 
 from helpers import make_dir_link, requires_symlinks
 from backend import _host as sandbox
-from backend import gitops, store
+from backend import _fs, gitops, store
 from helpers import UNALLOCATABLE_PID
 from helpers import await_until
 
@@ -228,6 +228,47 @@ class TestClone:
                 await gitops.clone("https://example.com/g/p.git", dest)
         assert "already exists" in str(excinfo.value)
         assert (dest / "existing.tex").read_text(encoding="utf-8") == "mine"
+
+    @staticmethod
+    def _hold_the_publish(monkeypatch: pytest.MonkeyPatch, holds: int) -> list[str]:
+        """Fail the first *holds* renames the way Windows does while a file under the
+        moved directory is open (an antivirus scan of the fresh checkout)."""
+        monkeypatch.setattr(_fs, "_WINDOWS", True)
+        monkeypatch.setattr(_fs, "_REPLACE_RETRY_SECS", 0)
+        real = os.rename
+        calls: list[str] = []
+
+        def _rename(src: str, dst: str) -> None:
+            calls.append(src)
+            if len(calls) <= holds:
+                raise PermissionError(13, "Access is denied", src)
+            real(src, dst)
+
+        monkeypatch.setattr(os, "rename", _rename)
+        return calls
+
+    async def test_a_brief_windows_hold_on_the_clone_is_waited_out(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        dest = tmp_path / "dest"
+        calls = self._hold_the_publish(monkeypatch, holds=1)
+        with mock.patch.object(gitops, "_git", _GitScript()):
+            await gitops.clone("https://example.com/g/p.git", dest)
+        assert len(calls) == 2
+        assert dest.is_dir()
+        assert list(tmp_path.iterdir()) == [dest]
+
+    async def test_a_hold_that_never_clears_is_not_reported_as_a_conflict(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        dest = tmp_path / "dest"
+        self._hold_the_publish(monkeypatch, holds=10_000)
+        with mock.patch.object(gitops, "_git", _GitScript()):
+            with pytest.raises(gitops.GitError) as excinfo:
+                await gitops.clone("https://example.com/g/p.git", dest)
+        assert "could not move the clone into place" in str(excinfo.value)
+        assert "Access is denied" in excinfo.value.output
+        assert list(tmp_path.iterdir()) == []
 
 
 @pytest.mark.asyncio
