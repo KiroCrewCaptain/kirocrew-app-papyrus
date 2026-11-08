@@ -207,6 +207,7 @@ changes are carried when they add a case this repository lacks.
 
 | Kiro Crew commit | Here | Release |
 |---|---|---|
+| `8d42b860e4` fix(a11y): read out the compiler message on a clickable diagnostic row (#33129) | `ui/src/DiagnosticsList.tsx` `DiagnosticRow` (`aria-describedby` on the message), `ui/tests/PapyrusDiagnosticsDescription.a11y.test.tsx`, the rebuilt `ui/dist/index.mjs`; merged here as #1 | 0.2.2 |
 | kirodotdev/KiroCrew#32682 fix(papyrus): retry a held clone publish instead of a false conflict | `backend/_fs.py` `rename_with_retry` (the retry loop shared with `atomic_write` as `_retry_hold`), `backend/gitops.py` `_publish_clone` and `clone`'s error mapping, two cases in `tests/test_gitops.py` (`TestClone`) | 0.2.2 |
 | `bf9e89ed0c` fix(papyrus): refuse project names windows cannot keep as a folder (#31531) | `backend/store.py` `WINDOWS_DEVICE_STEMS` and `is_unportable_project_name`, `backend/routes.py` `_project_for_create`, two cases in `tests/test_routes.py` (`TestProjects`) | 0.2.2 |
 | `00a0937467` fix(papyrus): probe tectonic.exe/pdflatex.exe in userspace on Windows (#30438) | `backend/latex.py` `_userspace_compiler_globs`, its five cases in `tests/test_latex.py` (`TestFindCompiler`) | 0.2.1 |
