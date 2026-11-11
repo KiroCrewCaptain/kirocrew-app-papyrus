@@ -54,6 +54,7 @@
         "create_one_above_or_clone_an_existing_repository": "Создайте статью выше или клонируйте существующий репозиторий.",
         "delete_paper": "Удалить {{name}}",
         "delete_paper_confirm": "Удалить «{{name}}» и все её файлы? Это действие нельзя отменить.",
+        "delete": "Удалить",
         "downloading_compiler_progress": "Загрузка… {{done}} из {{total}}",
         "install_compiler": "Установить компилятор",
         "installing_compiler": "Установка…",

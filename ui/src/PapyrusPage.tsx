@@ -20,13 +20,14 @@
  * off disk, so compiling an unsaved buffer would silently typeset the previous
  * revision. That is why `saveAndCompile` awaits the save before it compiles.
  */
-import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
 import { useChatLauncher } from '@kirocrew/app-sdk'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { AlertTriangle, ArrowDownToLine, ArrowLeft, ArrowUpFromLine, FileDown, Loader2, Play, Sparkles, TerminalSquare, ChevronDown, ChevronRight, ChevronUp } from 'lucide-react'
 import { Btn } from '@kirocrew/app-sdk/ui'
 import { ErrorNotice } from '@kirocrew/app-sdk/ui'
 import { useConfirm } from './host/useConfirm'
+import { useTextPrompt } from './host/useTextPrompt'
 import { useIsMobile } from './host/useIsMobile'
 import SearchableSelect from './host/SearchableSelect'
 import { papyrusApi, pdfUrl, type Diagnostic } from './api'
@@ -136,11 +137,19 @@ const isFlushAbort = (err: Error): boolean => err.message === FLUSH_FAILED
  */
 
 export default function PapyrusPage() {
-  const { confirm, confirmDialog } = useConfirm()
+  const { confirm, cancel: cancelConfirm, confirmDialog } = useConfirm()
+  const { textPrompt, cancel: cancelTextPrompt, textPromptDialog } = useTextPrompt()
   const queryClient = useQueryClient()
   const { openChat } = useChatLauncher()
 
   const [project, setProject] = useState<string | null>(loadLastProject)
+  // The paper open right now, for results that arrive after the user has left the
+  // paper they were asked for.
+  const projectRef = useRef(project)
+  useLayoutEffect(() => { projectRef.current = project }, [project])
+  // Both dialogs render only inside a paper, so a question left open when the paper
+  // goes away (its first load failed) would reappear, still pending, in the next one.
+  useEffect(() => { cancelConfirm(); cancelTextPrompt() }, [project, cancelConfirm, cancelTextPrompt])
   const [currentFile, setCurrentFile] = useState('')
   const [buffer, setBuffer] = useState('')
   const [dirty, setDirty] = useState(false)
@@ -592,33 +601,46 @@ export default function PapyrusPage() {
     setCurrentFile(path)
   }, [project, flushBuffer, isMobile])
 
+  // The three mutations below are asked for a specific paper, answered later. A
+  // failure is always shown; once the user has left that paper it names it, so the
+  // message does not read as belonging to the paper now open.
+  const reportFailureFor = (paper: string, err: Error) => {
+    if (isFlushAbort(err)) return
+    setError(projectRef.current === paper ? err.message : `${paper}: ${err.message}`)
+  }
+  const invalidateFilesOf = (paper: string) =>
+    queryClient.invalidateQueries({ queryKey: projectQueryKey(paper) })
+
   const createFileMutation = useMutation({
     // Flush FIRST: on success this switches `currentFile` to the new file, which
     // abandons the outgoing buffer exactly the way `openFile` is careful not to.
     // A failed flush aborts the create rather than trading the user's text for a
-    // new empty file.
-    mutationFn: async (path: string) => {
-      if (!(await flushBuffer())) throw new Error(FLUSH_FAILED)
-      return papyrusApi.createFile(project as string, path)
+    // new empty file. After leaving the paper the buffer belongs to another view.
+    mutationFn: async (vars: { project: string; path: string }) => {
+      if (projectRef.current === vars.project && !(await flushBuffer())) throw new Error(FLUSH_FAILED)
+      return papyrusApi.createFile(vars.project, vars.path)
     },
-    onSuccess: async (result) => {
-      await invalidateFiles()
+    onSuccess: async (result, vars) => {
+      await invalidateFilesOf(vars.project)
+      if (projectRef.current !== vars.project) return
       setDirty(false)
       setCurrentFile(result.path)
     },
-    onError: (err: Error) => { if (!isFlushAbort(err)) setError(err.message) },
+    onError: (err: Error, vars) => reportFailureFor(vars.project, err),
   })
 
   const deleteFileMutation = useMutation({
-    mutationFn: (path: string) => papyrusApi.deleteFile(project as string, path),
-    onSuccess: async (_result, path) => {
-      await invalidateFiles()
-      if (path === bufferFileRef.current) {
+    mutationFn: (vars: { project: string; path: string }) =>
+      papyrusApi.deleteFile(vars.project, vars.path),
+    onSuccess: async (_result, vars) => {
+      await invalidateFilesOf(vars.project)
+      if (projectRef.current !== vars.project) return
+      if (vars.path === bufferFileRef.current) {
         setDirty(false)
         setCurrentFile(mainFile)
       }
     },
-    onError: (err: Error) => setError(err.message),
+    onError: (err: Error, vars) => reportFailureFor(vars.project, err),
   })
 
   const setMainMutation = useMutation({
@@ -663,30 +685,37 @@ export default function PapyrusPage() {
   // canned message hid that: "Push" read as "publish what I already committed",
   // and there was no field, no preview and no way to describe the change.
   const pushMutation = useMutation({
-    mutationFn: async (message: string) => {
+    mutationFn: async (vars: { project: string; message: string }) => {
       // Same guard as every other transition: committing a snapshot the user has
       // already typed past would push the wrong revision AND lose the newer text.
-      if (!(await flushBuffer())) throw new Error(FLUSH_FAILED)
+      // After leaving the paper the buffer belongs to another view.
+      if (projectRef.current === vars.project && !(await flushBuffer())) throw new Error(FLUSH_FAILED)
       // An empty message is deliberately forwarded as `""` rather than filled in
       // here: the backend owns the fallback (`gitops.DEFAULT_COMMIT_MESSAGE`), and
       // a commit message is repository content read by collaborators and CI — not
       // UI chrome — so it must not come from a translated catalog. It used to, so
       // a German dashboard wrote German subjects into a shared history.
-      await papyrusApi.gitCommit(project as string, message)
-      return papyrusApi.gitPush(project as string)
+      await papyrusApi.gitCommit(vars.project, vars.message)
+      return papyrusApi.gitPush(vars.project)
     },
-    onSuccess: () => invalidateGit(),
-    onError: (err: Error) => { if (!isFlushAbort(err)) setError(err.message) },
+    onSuccess: (_result, vars) =>
+      queryClient.invalidateQueries({ queryKey: ['papyrus', 'git', vars.project] }),
+    onError: (err: Error, vars) => reportFailureFor(vars.project, err),
   })
 
-  const onCommitAndPushClick = useCallback(() => {
-    // Same one-field prompt as "new file" — the right weight for one line of
-    // text, and it is what makes the `add -A` scope visible before it happens.
-    const message = window.prompt(i18nT('apps.papyrus.workspace.commit_message_prompt'))
+  const onCommitAndPushClick = useCallback(async () => {
+    if (!project) return
+    // The one-field prompt is what makes the `add -A` scope visible before it happens.
+    const message = await textPrompt({
+      title: i18nT('apps.papyrus.workspace.commit_and_push'),
+      body: i18nT('apps.papyrus.workspace.commit_message_prompt'),
+      confirmLabel: i18nT('apps.papyrus.workspace.commit_and_push'),
+      allowEmpty: true,
+    })
     // `null` is Cancel and must abort; an empty string is "use the default".
     if (message === null) return
-    pushMutation.mutate(message.trim())
-  }, [pushMutation])
+    pushMutation.mutate({ project, message: message.trim() })
+  }, [project, pushMutation, textPrompt])
 
   // ── Co-author ──────────────────────────────────────────────────────────────
 
@@ -842,19 +871,26 @@ export default function PapyrusPage() {
     setCompileMs(null)
   }, [])
 
-  const onCreateFileClick = useCallback(() => {
-    // A one-field prompt is the right weight for "name a new file"; a modal would
-    // be more chrome than the action deserves.
-    const name = window.prompt(i18nT('apps.papyrus.workspace.new_file_prompt'))
+  const onCreateFileClick = useCallback(async () => {
+    if (!project) return
+    const name = await textPrompt({
+      title: i18nT('apps.papyrus.fileTree.new_file'),
+      body: i18nT('apps.papyrus.workspace.new_file_prompt'),
+      confirmLabel: i18nT('apps.papyrus.fileTree.new_file'),
+    })
     const trimmed = name?.trim()
-    if (trimmed) createFileMutation.mutate(trimmed)
-  }, [createFileMutation])
+    if (trimmed) createFileMutation.mutate({ project, path: trimmed })
+  }, [project, createFileMutation, textPrompt])
 
-  const onDeleteFileClick = useCallback((path: string) => {
-    if (window.confirm(i18nT('apps.papyrus.workspace.delete_file_confirm', { file: path }))) {
-      deleteFileMutation.mutate(path)
-    }
-  }, [deleteFileMutation])
+  const onDeleteFileClick = useCallback(async (path: string) => {
+    if (!project) return
+    const ok = await confirm({
+      title: i18nT('apps.papyrus.fileTree.delete_file', { file: path }),
+      body: i18nT('apps.papyrus.workspace.delete_file_confirm', { file: path }),
+      confirmLabel: i18nT('apps.papyrus.page.delete'),
+    })
+    if (ok) deleteFileMutation.mutate({ project, path })
+  }, [project, confirm, deleteFileMutation])
 
   if (!project) {
     return (
@@ -1213,6 +1249,7 @@ export default function PapyrusPage() {
 
       </div>
       {confirmDialog}
+      {textPromptDialog}
     </div>
   )
 }

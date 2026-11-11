@@ -213,6 +213,7 @@ changes are carried when they add a case this repository lacks.
 | `00a0937467` fix(papyrus): probe tectonic.exe/pdflatex.exe in userspace on Windows (#30438) | `backend/latex.py` `_userspace_compiler_globs`, its five cases in `tests/test_latex.py` (`TestFindCompiler`) | 0.2.1 |
 | `7a4e28199b` test: give weak long-tail tests real outcome checks (#29493) | The Papyrus outcome checks in `tests/test_latex.py` (the compiler cache, the two symlinked-artifact compiles) | 0.2.1 |
 | `2f241cbfce` test(papyrus): cover the paper list create, clone and delete (#27774) | `ui/tests/ProjectList.coverage.test.tsx` | 0.2.1 |
+| kirodotdev/KiroCrew#30517 and #30752 fix(apps) / fix(dialogs): ask in-app instead of a native dialog | `ui/src/host/useTextPrompt.tsx` (new), `ui/src/PapyrusPage.tsx` (New file, Commit & Push, Delete file), `ui/src/ProjectList.tsx` (Delete paper), `apps.papyrus.page.delete` in all 12 catalogs, the cases in `ui/tests/`, the rebuilt `ui/dist/index.mjs`. The text prompt is app-local because the dashboard's own is private | unreleased |
 | `a430ddd454` refactor: make core independent of the papyrus app (#27978) | Nothing to carry: it moves the built-in's frontend tests and guards core's boundary; `tests/test_host_seams.py` already pins the count-after-compile order it adds | — |
 | `ed97f28e63` test(co-author-panel): wait for the chat switch before header clicks (#27977) | Nothing to carry: the panel is gone here (gap 1) | — |
 

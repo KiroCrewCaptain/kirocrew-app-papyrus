@@ -20,7 +20,7 @@
         "typesetting_hints_other": "{{count}} avisos de composição"
       },
       "fileTree": {
-        "delete_file": "Eliminar {{file}}",
+        "delete_file": "Excluir {{file}}",
         "files": "Arquivos",
         "main": "Principal",
         "new_file": "Novo arquivo",
@@ -51,8 +51,9 @@
         "compiler_tip": "O compilador LaTeX encontrado na máquina que executa o {{productName}}. O Papyrus prefere pdflatex e recorre ao tectonic.",
         "create": "Criar",
         "create_one_above_or_clone_an_existing_repository": "Crie um acima ou clone um repositório existente.",
-        "delete_paper": "Eliminar {{name}}",
+        "delete_paper": "Excluir {{name}}",
         "delete_paper_confirm": "Excluir “{{name}}” e todos os seus arquivos? Esta ação não pode ser desfeita.",
+        "delete": "Excluir",
         "downloading_compiler_progress": "A baixar… {{done}} de {{total}}",
         "install_compiler": "Instalar compilador",
         "installing_compiler": "A instalar…",
@@ -102,7 +103,7 @@
         "context_not_attached": "Mencione o artigo na próxima mensagem para que o coautor possa vê-lo. Você pode fechar este aviso após a menção.",
         "context_notice_title": "Não foi possível compartilhar este artigo com o coautor",
         "cursor_position": "Lin. {{line}}, col. {{column}}",
-        "delete_file_confirm": "Eliminar “{{file}}”?",
+        "delete_file_confirm": "Excluir “{{file}}”?",
         "download_pdf": "Baixar PDF",
         "editing": "A editar {{file}}",
         "editing_unsaved": "A editar {{file}} — não guardado",

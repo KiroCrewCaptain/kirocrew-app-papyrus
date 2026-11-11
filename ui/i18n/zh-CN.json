@@ -51,6 +51,7 @@
         "create_one_above_or_clone_an_existing_repository": "在上方新建一篇，或克隆一个已有的仓库。",
         "delete_paper": "删除 {{name}}",
         "delete_paper_confirm": "删除“{{name}}”及其所有文件？此操作无法撤销。",
+        "delete": "删除",
         "downloading_compiler_progress": "正在下载…… {{done}} / {{total}}",
         "install_compiler": "安装编译器",
         "installing_compiler": "正在安装……",
