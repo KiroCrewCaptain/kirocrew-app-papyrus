@@ -58,6 +58,7 @@ export function useConfirm(): {
   const confirmDialog = opts ? (
     <Modal
       open
+      wrapTitle
       onClose={() => settle(false)}
       title={opts.title}
       maxWidth={440}
@@ -71,7 +72,7 @@ export function useConfirm(): {
       }
     >
       {opts.body == null ? null : typeof opts.body === 'string'
-        ? <p className="text-sm text-text m-0">{opts.body}</p>
+        ? <p className="text-sm text-text m-0 break-words">{opts.body}</p>
         : <div className="text-sm text-text">{opts.body}</div>}
     </Modal>
   ) : null

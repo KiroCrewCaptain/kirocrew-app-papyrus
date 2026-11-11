@@ -53,6 +53,7 @@
         "create_one_above_or_clone_an_existing_repository": "Create one above, or clone an existing repository.",
         "delete_paper": "Delete {{name}}",
         "delete_paper_confirm": "Delete “{{name}}” and all of its files? This cannot be undone.",
+        "delete": "Delete",
         "downloading_compiler_progress": "Downloading… {{done}} of {{total}}",
         "install_compiler": "Install compiler",
         "installing_compiler": "Installing…",

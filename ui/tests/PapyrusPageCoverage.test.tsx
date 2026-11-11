@@ -122,6 +122,17 @@ function makeDirty(text: string) {
   fireEvent.change(screen.getByLabelText('editor'), { target: { value: text } })
 }
 
+async function submitTextPrompt(user: ReturnType<typeof userEvent.setup>, value: string, label: string) {
+  const dialog = await screen.findByRole('dialog')
+  if (value) await user.type(within(dialog).getByRole('textbox'), value)
+  await user.click(within(dialog).getByRole('button', { name: label, exact: true }))
+}
+
+async function answerDialog(user: ReturnType<typeof userEvent.setup>, label: string) {
+  const dialog = await screen.findByRole('dialog')
+  await user.click(within(dialog).getByRole('button', { name: label, exact: true }))
+}
+
 const compileBtn = () => screen.getByRole('button', { name: /^Compile$/ })
 
 beforeEach(() => {
@@ -368,7 +379,6 @@ describe('Papyrus file tree mutations', () => {
     // The main document has no delete control, so the open-file case is reached by
     // deleting a chapter the user is currently editing.
     api.deleteFile.mockResolvedValue({ ok: true, path: CHAPTER })
-    vi.spyOn(window, 'confirm').mockReturnValue(true)
     const { user } = openWorkspace()
     await workspaceReady()
     await user.click(screen.getByRole('button', { name: CHAPTER }))
@@ -378,6 +388,7 @@ describe('Papyrus file tree mutations', () => {
       ))
 
     await user.click(screen.getByRole('button', { name: `Delete ${CHAPTER}` }))
+    await answerDialog(user, 'Delete')
 
     await waitFor(() => expect(api.deleteFile).toHaveBeenCalledWith(PROJECT, CHAPTER))
     await waitFor(() =>
@@ -387,33 +398,68 @@ describe('Papyrus file tree mutations', () => {
   })
 
   it('does not delete when the confirmation is declined', async () => {
-    vi.spyOn(window, 'confirm').mockReturnValue(false)
     const { user } = openWorkspace()
     await workspaceReady()
 
     await user.click(screen.getByRole('button', { name: `Delete ${CHAPTER}` }))
+    await answerDialog(user, 'Cancel')
 
     expect(api.deleteFile).not.toHaveBeenCalled()
   })
 
   it('reports a failed delete', async () => {
     api.deleteFile.mockRejectedValue(new Error('file is locked'))
-    vi.spyOn(window, 'confirm').mockReturnValue(true)
     const { user } = openWorkspace()
     await workspaceReady()
 
     await user.click(screen.getByRole('button', { name: `Delete ${CHAPTER}` }))
+    await answerDialog(user, 'Delete')
 
     expect(await screen.findByText('file is locked')).toBeInTheDocument()
   })
 
+  it('keeps the new-file question open until a name is typed', async () => {
+    const { user } = openWorkspace()
+    await workspaceReady()
+    await user.click(screen.getByRole('button', { name: 'New file' }))
+    const dialog = await screen.findByRole('dialog')
+    expect(within(dialog).getByRole('button', { name: 'New file', exact: true })).toBeDisabled()
+    await user.type(within(dialog).getByRole('textbox'), '  ')
+    expect(within(dialog).getByRole('button', { name: 'New file', exact: true })).toBeDisabled()
+    await user.click(within(dialog).getByRole('button', { name: 'Cancel' }))
+    expect(api.createFile).not.toHaveBeenCalled()
+  })
+
+  it('creates the file when Enter is pressed in the name field', async () => {
+    const { user } = openWorkspace()
+    await workspaceReady()
+    await user.click(screen.getByRole('button', { name: 'New file' }))
+    const input = within(await screen.findByRole('dialog')).getByRole('textbox')
+    await waitFor(() => expect(input).toHaveFocus())
+    await user.type(input, 'methods.tex{Enter}')
+    await waitFor(() => expect(api.createFile).toHaveBeenCalledWith(PROJECT, 'methods.tex'))
+  })
+
+  it('names the paper when a create fails after the user has left it', async () => {
+    const request = deferred<{ ok: boolean; path: string }>()
+    api.createFile.mockReturnValue(request.promise)
+    const { user } = openWorkspace()
+    await workspaceReady()
+    await user.click(screen.getByRole('button', { name: 'New file' }))
+    await submitTextPrompt(user, 'methods.tex', 'New file')
+    await waitFor(() => expect(api.createFile).toHaveBeenCalledWith(PROJECT, 'methods.tex'))
+    await user.click(screen.getByRole('button', { name: /Papers/ }))
+    await act(async () => { request.reject(new Error('name already taken')) })
+    expect(await screen.findByText(`${PROJECT}: name already taken`)).toBeInTheDocument()
+  })
+
   it('reports a failed create without inventing a flush error', async () => {
     api.createFile.mockRejectedValue(new Error('name already taken'))
-    vi.spyOn(window, 'prompt').mockReturnValue('methods.tex')
     const { user } = openWorkspace()
     await workspaceReady()
 
     await user.click(screen.getByRole('button', { name: 'New file' }))
+    await submitTextPrompt(user, 'methods.tex', 'New file')
 
     expect(await screen.findByText('name already taken')).toBeInTheDocument()
   })
@@ -495,11 +541,11 @@ describe('Papyrus git row', () => {
   it('commits with the typed message before pushing', async () => {
     // The button stages every change in the paper, so the message has to be the
     // user's, not a canned one.
-    vi.spyOn(window, 'prompt').mockReturnValue('  Tighten the abstract  ')
     const { user } = openWorkspace()
     await workspaceReady()
 
     await user.click(await screen.findByRole('button', { name: /Commit & Push/ }))
+    await submitTextPrompt(user, '  Tighten the abstract  ', 'Commit & Push')
 
     await waitFor(() =>
       expect(api.gitCommit).toHaveBeenCalledWith(PROJECT, 'Tighten the abstract'))
@@ -507,21 +553,21 @@ describe('Papyrus git row', () => {
   })
 
   it('forwards an empty message so the backend picks the default', async () => {
-    vi.spyOn(window, 'prompt').mockReturnValue('')
     const { user } = openWorkspace()
     await workspaceReady()
 
     await user.click(await screen.findByRole('button', { name: /Commit & Push/ }))
+    await submitTextPrompt(user, '', 'Commit & Push')
 
     await waitFor(() => expect(api.gitCommit).toHaveBeenCalledWith(PROJECT, ''))
   })
 
   it('aborts the push when the prompt is cancelled', async () => {
-    vi.spyOn(window, 'prompt').mockReturnValue(null)
     const { user } = openWorkspace()
     await workspaceReady()
 
     await user.click(await screen.findByRole('button', { name: /Commit & Push/ }))
+    await answerDialog(user, 'Cancel')
 
     expect(api.gitCommit).not.toHaveBeenCalled()
     expect(api.gitPush).not.toHaveBeenCalled()
@@ -529,11 +575,11 @@ describe('Papyrus git row', () => {
 
   it('reports a failed push', async () => {
     api.gitPush.mockRejectedValue(new Error('remote rejected'))
-    vi.spyOn(window, 'prompt').mockReturnValue('wip')
     const { user } = openWorkspace()
     await workspaceReady()
 
     await user.click(await screen.findByRole('button', { name: /Commit & Push/ }))
+    await submitTextPrompt(user, 'wip', 'Commit & Push')
 
     expect(await screen.findByText('remote rejected')).toBeInTheDocument()
   })
@@ -542,12 +588,12 @@ describe('Papyrus git row', () => {
     // The flush sentinel is internal plumbing: the save error is what the user
     // needs, so the abort must not overwrite it.
     api.saveFile.mockRejectedValue(new Error('disk full'))
-    vi.spyOn(window, 'prompt').mockReturnValue('wip')
     const { user } = openWorkspace()
     await workspaceReady()
     makeDirty(`${BODY}\n% unsaved`)
 
     await user.click(await screen.findByRole('button', { name: /Commit & Push/ }))
+    await submitTextPrompt(user, 'wip', 'Commit & Push')
 
     await waitFor(() => expect(api.saveFile).toHaveBeenCalled())
     expect(api.gitCommit).not.toHaveBeenCalled()
@@ -615,6 +661,21 @@ describe('Papyrus project errors', () => {
 
     await user.click(within(banner).getByRole('button', { name: 'Dismiss' }))
     expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+  })
+
+  it('drops a question left open when the paper fails to load, so it is not asked again in the next paper', async () => {
+    const load = deferred<never>()
+    api.getProject.mockReturnValueOnce(load.promise)
+    const { user } = openWorkspace()
+    await user.click(await screen.findByRole('button', { name: 'New file' }))
+    await screen.findByRole('dialog')
+    await act(async () => { load.reject(new Error('gateway restarting')) })
+    await waitFor(() => expect(screen.queryByTestId('papyrus-workspace')).not.toBeInTheDocument())
+
+    await user.click(await screen.findByText(PROJECT))
+    await workspaceReady()
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+    expect(api.createFile).not.toHaveBeenCalled()
   })
 
   it('keeps the workspace mounted when a background refresh fails', async () => {

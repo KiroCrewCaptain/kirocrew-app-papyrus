@@ -7,7 +7,7 @@
  * API is mocked at the network boundary; the page, its mutations and its banner are real.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { screen, waitFor } from '@testing-library/react'
+import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import ProjectList from '../src/ProjectList'
 import { renderWithProviders } from './helpers'
@@ -86,12 +86,24 @@ describe('ProjectList clone', () => {
 
 describe('ProjectList delete', () => {
   it('keeps the paper in the list and shows the reason when the delete is refused', async () => {
-    vi.spyOn(window, 'confirm').mockReturnValue(true)
     mocked.deleteProject.mockRejectedValue(new Error('paper is locked'))
     mount([project('draft')])
     await userEvent.click(await screen.findByRole('button', { name: 'Delete draft' }))
-    expect(mocked.deleteProject).toHaveBeenCalledWith('draft')
+    await userEvent.click(within(await screen.findByRole('dialog')).getByRole('button', { name: 'Delete', exact: true }))
+    await waitFor(() => expect(mocked.deleteProject).toHaveBeenCalledWith('draft'))
     expect(await screen.findByText('paper is locked')).toBeTruthy()
+    expect(screen.getByText('draft')).toBeTruthy()
+  })
+})
+
+describe('ProjectList delete question', () => {
+  it('keeps the paper when the question is cancelled', async () => {
+    mount([project('draft')])
+    await userEvent.click(await screen.findByRole('button', { name: 'Delete draft' }))
+    const dialog = await screen.findByRole('dialog')
+    expect(within(dialog).getByText('Delete “draft” and all of its files? This cannot be undone.')).toBeInTheDocument()
+    await userEvent.click(within(dialog).getByRole('button', { name: 'Cancel' }))
+    expect(mocked.deleteProject).not.toHaveBeenCalled()
     expect(screen.getByText('draft')).toBeTruthy()
   })
 })

@@ -219,7 +219,7 @@ var papyrusApi = {
 */
 var CATALOGS = {
 	bn: {
-		apps: /* @__PURE__ */ JSON.parse("{\"papyrus\":{\"coAuthor\":{\"close_co_author_panel\":\"সহ-লেখক প্যানেল বন্ধ করুন\",\"close_panel\":\"প্যানেল বন্ধ করুন — সেশন খোলা থাকবে\",\"co_author\":\"সহ-লেখক\",\"co_author_chat\":\"সহ-লেখক চ্যাট\",\"no_co_author_session_for_this_paper_yet\":\"এই পেপারের জন্য এখনও কোনও সহ-লেখক সেশন নেই।\",\"open_in_chat_page\":\"চ্যাট পৃষ্ঠায় খুলুন\",\"start_a_session\":\"একটি সেশন শুরু করুন\",\"starting_session\":\"সেশন শুরু হচ্ছে…\"},\"diagnostics\":{\"jump_to_line\":\"{{line}} নম্বর লাইনে যান\",\"line_short\":\"লা{{line}}\",\"no_messages\":\"কম্পাইলার কিছুই জানায়নি।\",\"typesetting_hints_one\":\"{{count}}টি টাইপসেটিং পরামর্শ\",\"typesetting_hints_other\":\"{{count}}টি টাইপসেটিং পরামর্শ\"},\"fileTree\":{\"delete_file\":\"{{file}} মুছুন\",\"files\":\"ফাইল\",\"main\":\"মূল\",\"new_file\":\"নতুন ফাইল\",\"no_source_files\":\"কোনও সোর্স ফাইল নেই।\"},\"manifest\":{\"configuration_1\":\"অ্যাপ থেকে managed Tectonic install করুন অথবা tectonic বা pdflatex-কে PATH-এ রাখুন, তারপর paper তৈরি করুন বা আগে থেকে non-interactive Git credential সেট করা repository clone করুন।\",\"description\":\"লাইভ PDF প্রিভিউ আর একজন AI সহ-লেখক নিয়ে একটি LaTeX পেপার এডিটর। ভাগ করা প্যানের এডিটরে লেখো, pdflatex বা tectonic দিয়ে কম্পাইল করতে Cmd+S (Windows ও Linux-এ Ctrl+S) চাপো, আর নিজের সোর্সের পাশেই তৈরি হওয়া PDF পড়ো। কম্পাইলের ত্রুটিগুলো ক্লিক করার মতো একটি তালিকায় সাজানো হয়, যা সোজা সমস্যার লাইনে নিয়ে যায়। যেকোনো git রিমোট থেকে আগে থেকে থাকা কোনো পেপার ক্লোন করো, তারপর টুলবার থেকেই কমিট ও পুশ করো। সহ-লেখক প্যানেলটি পেপারের জন্য নির্দিষ্ট একটি সত্যিকারের Kiro Crew চ্যাট সেশন, তাই তুমি PDF আপডেট হতে দেখতে দেখতেই এজেন্ট তোমার LaTeX পড়তে ও সম্পাদনা করতে পারে।\",\"display_name\":\"Papyrus\",\"highlight_1\":\"পাশে লাইভ PDF প্রিভিউ নিয়ে ভাগ করা প্যানের LaTeX এডিটর\",\"highlight_2\":\"সেভ করলেই কম্পাইল (Cmd+S, বা Windows ও Linux-এ Ctrl+S) — pdflatex বা tectonic দিয়ে, সঙ্গে bibtex চক্রটিও চালিয়ে দেওয়া হয়\",\"highlight_3\":\"TeX ইনস্টল করা নেই? এক ক্লিকেই যাচাই করা একটি Tectonic কম্পাইলার Papyrus-এর নিজের ফোল্ডারে বসে যায়\",\"highlight_4\":\"কম্পাইলারের ত্রুটি ও সতর্কতা ক্লিক করার মতো একটি তালিকায় সাজানো হয়, যা সোজা সেই লাইনে নিয়ে যায়\",\"highlight_5\":\"পেপারের জন্য নির্দিষ্ট AI সহ-লেখক চ্যাট — তুমি যে LaTeX দেখছ সেটিই পড়ে ও সম্পাদনা করে\",\"highlight_6\":\"যেকোনো git রিমোট থেকে একটি পেপার ক্লোন করো, তারপর টুলবার থেকেই কমিট, পুল ও পুশ করো\",\"highlight_7\":\"কম্পাইলার কখনও shell escape দিয়ে চলে না, তাই ক্ষতিকর কোনো .tex ফাইল কমান্ড চালাতে পারে না\",\"page_label\":\"Papyrus\",\"use_case_1\":\"compiled PDF-এর পাশে LaTeX paper লিখুন, build error থেকে সরাসরি source-এ যান এবং paper-এ সীমাবদ্ধ agent-এর সঙ্গে কাজ করুন।\"},\"page\":{\"actions\":\"কাজ\",\"clone\":\"ক্লোন করুন\",\"clone_url\":\"রিপোজিটরি URL\",\"clone_url_placeholder\":\"একটি git URL থেকে ক্লোন করুন…\",\"cloning\":\"ক্লোন হচ্ছে…\",\"compiled_count_label\":\"কম্পাইল হয়েছে\",\"compiler\":\"কম্পাইলার\",\"compiler_tip\":\"{{productName}} চালানো মেশিনে পাওয়া LaTeX কম্পাইলার। Papyrus আগে pdflatex বেছে নেয়, না পেলে tectonic।\",\"create\":\"তৈরি করুন\",\"create_one_above_or_clone_an_existing_repository\":\"উপরে একটি তৈরি করুন, বা বিদ্যমান কোনও রিপোজিটরি ক্লোন করুন।\",\"delete_paper\":\"{{name}} মুছুন\",\"delete_paper_confirm\":\"“{{name}}” এবং এর সব ফাইল মুছে ফেলবেন? এটি আর ফেরানো যাবে না।\",\"downloading_compiler_progress\":\"ডাউনলোড হচ্ছে… {{total}}-এর মধ্যে {{done}}\",\"install_compiler\":\"কম্পাইলার ইনস্টল করুন\",\"installing_compiler\":\"ইনস্টল করা হচ্ছে…\",\"invalid_project_name\":\"পেপারের নামই তার ফোল্ডারের নাম হয়, তাই এতে শুধু ছোট হাতের ল্যাটিন অক্ষর (a–z), অঙ্ক (0–9), বিন্দু, হাইফেন আর আন্ডারস্কোর থাকতে পারে। নাম কোনো অক্ষর বা অঙ্ক দিয়ে শুরু হতে হবে এবং সর্বোচ্চ 64টি অক্ষরের হতে পারে।\",\"invalid_project_name_char\":\"“{{char}}” পেপারের নামে ব্যবহার করা যায় না। ছোট হাতের a–z, 0–9, .\xA0-⁠\xA0_ ব্যবহার করো।\",\"invalid_project_name_letter\":\"“{{char}}” ({{script}}, {{code}}) পেপারের নামে ব্যবহার করা যায় না। ছোট হাতের a–z, 0–9, .\xA0-⁠\xA0_ ব্যবহার করো।\",\"last_edited\":\"সর্বশেষ সম্পাদনা\",\"latex_papers_with_a_live_pdf_preview\":\"লাইভ PDF প্রিভিউ সহ LaTeX পেপার\",\"new_paper_name\":\"নতুন পেপারের নাম\",\"new_paper_name_placeholder\":\"আপনার পেপারের নাম দিন…\",\"no_compiler_found_install_texlive_or_tectonic\":\"এই মেশিনে কোনও LaTeX কম্পাইলার পাওয়া যায়নি। কম্পাইল করতে TeX Live (pdflatex) বা tectonic ইনস্টল করুন।\",\"no_compiler_install_bundled_prompt\":\"এই মেশিনে কোনও LaTeX কম্পাইলার পাওয়া যায়নি। সঙ্গে দেওয়া Tectonic কম্পাইলার ইনস্টল করুন — একটিই যাচাই করা ডাউনলোড, যা Papyrus-এর নিজের ফোল্ডারেই থাকে।\",\"no_papers_yet\":\"এখনও কোনও পেপার নেই\",\"none_found\":\"কিছুই নেই\",\"paper\":\"পেপার\",\"paper_name\":\"পেপারের নাম\",\"papers\":\"পেপার\",\"papyrus\":\"Papyrus\",\"pdf\":\"PDF\",\"pdf_missing_status\":\"কম্পাইল হয়নি\",\"pdf_ready_status\":\"প্রস্তুত\",\"rename_config_refused\":\"নামটি সেভ হয়নি: Papyrus এই পেপারের সেটিংস বদলাতে পারছে না।\",\"rename_paper\":\"{{name}} এর নাম বদলাও\",\"rename_paper_replaced\":\"লিস্ট লোড হওয়ার পর এই পেপারটি বদলেছে। লিস্ট এখন হালনাগাদ; নামটি আবার সেভ করতে Enter চাপো।\",\"rename_title_rejected\":\"দেখা যায় এমন অক্ষর দিয়ে একটি নাম লেখো, অথবা আবার {{name}} দেখাতে ঘরটি খালি করো।\",\"start_a_paper\":\"একটি পেপার শুরু করুন\",\"start_a_paper_tip\":\"প্রমিত article টেমপ্লেট থেকে একটি খালি পেপার তৈরি করুন, বা কোনও git রিমোট থেকে ক্লোন করুন — .tex ফাইল আছে এমন যে কোনওটিই চলবে।\",\"verifying_compiler\":\"যাচাই করা হচ্ছে…\",\"your_papers\":\"আপনার পেপার\"},\"preview\":{\"compile_to_see_the_pdf\":\"PDF দেখতে কম্পাইল করুন।\",\"download_pdf\":\"PDF ডাউনলোড করুন\",\"pdf_preview\":\"PDF প্রিভিউ\"},\"workspace\":{\"co_author\":\"সহ-লেখক\",\"co_author_conflict\":\"সহ-লেখক এই ফাইলটি পরিবর্তন করেছেন\",\"co_author_conflict_discard\":\"আমার পরিবর্তন বাতিল করে আবার লোড করুন\",\"co_author_conflict_discard_button\":\"পরিবর্তন বাতিল করুন\",\"co_author_conflict_discard_confirm\":\"“{{file}}”-এ আপনার অসংরক্ষিত পরিবর্তন বাতিল করে সহ-লেখকের সংস্করণ লোড করা হবে। এটি আর ফেরানো যাবে না।\",\"co_author_conflict_discard_title\":\"অসংরক্ষিত পরিবর্তন বাতিল করবেন?\",\"commit_and_push\":\"কমিট ও পুশ করুন\",\"commit_message_prompt\":\"এই কমিটের বর্ণনা দিন। এতে গবেষণাপত্রের সব পরিবর্তন যুক্ত হবে।\",\"compile\":\"কম্পাইল করুন\",\"compiling\":\"কম্পাইল হচ্ছে…\",\"context_not_attached\":\"পরবর্তী মেসেজে পেপারটির উল্লেখ করো যাতে সহ-লেখক এটি দেখতে পারে। উল্লেখ করার পরে এই বিজ্ঞপ্তিটি বন্ধ করতে পারো।\",\"context_notice_title\":\"এই পেপারটি সহ-লেখকের সাথে শেয়ার করা যায়নি\",\"cursor_position\":\"লা. {{line}}, কল. {{column}}\",\"delete_file_confirm\":\"“{{file}}” মুছে ফেলবেন?\",\"download_pdf\":\"PDF ডাউনলোড করুন\",\"editing\":\"{{file}} সম্পাদনা করছেন\",\"editing_unsaved\":\"{{file}} সম্পাদনা করছেন — সংরক্ষিত হয়নি\",\"error_count_one\":\"{{count}}টি ত্রুটি\",\"error_count_other\":\"{{count}}টি ত্রুটি\",\"git_branch\":\"বর্তমান ব্রাঞ্চ\",\"log\":\"লগ\",\"main_document\":\"মূল নথি\",\"new_file_prompt\":\"নতুন ফাইলের নাম দিন, যেমন methods.tex\",\"papers\":\"পেপার\",\"pull\":\"পুল করুন\",\"save_and_compile_hint\":\"সংরক্ষণ করে কম্পাইল করতে Cmd+S (Windows ও Linux-এ Ctrl+S) চাপুন।\",\"session_title\":\"Papyrus: {{name}}\",\"warning_count_one\":\"{{count}}টি সতর্কতা\",\"warning_count_other\":\"{{count}}টি সতর্কতা\",\"word_count_one\":\"{{count}}টি শব্দ\",\"word_count_other\":\"{{count}}টি শব্দ\"}},\"specBuilder\":{\"components\":{\"specDetail\":{\"resize_document_panel\":\"নথি প্যানেলের আকার বদলান\"}}}}"),
+		apps: /* @__PURE__ */ JSON.parse("{\"papyrus\":{\"coAuthor\":{\"close_co_author_panel\":\"সহ-লেখক প্যানেল বন্ধ করুন\",\"close_panel\":\"প্যানেল বন্ধ করুন — সেশন খোলা থাকবে\",\"co_author\":\"সহ-লেখক\",\"co_author_chat\":\"সহ-লেখক চ্যাট\",\"no_co_author_session_for_this_paper_yet\":\"এই পেপারের জন্য এখনও কোনও সহ-লেখক সেশন নেই।\",\"open_in_chat_page\":\"চ্যাট পৃষ্ঠায় খুলুন\",\"start_a_session\":\"একটি সেশন শুরু করুন\",\"starting_session\":\"সেশন শুরু হচ্ছে…\"},\"diagnostics\":{\"jump_to_line\":\"{{line}} নম্বর লাইনে যান\",\"line_short\":\"লা{{line}}\",\"no_messages\":\"কম্পাইলার কিছুই জানায়নি।\",\"typesetting_hints_one\":\"{{count}}টি টাইপসেটিং পরামর্শ\",\"typesetting_hints_other\":\"{{count}}টি টাইপসেটিং পরামর্শ\"},\"fileTree\":{\"delete_file\":\"{{file}} মুছুন\",\"files\":\"ফাইল\",\"main\":\"মূল\",\"new_file\":\"নতুন ফাইল\",\"no_source_files\":\"কোনও সোর্স ফাইল নেই।\"},\"manifest\":{\"configuration_1\":\"অ্যাপ থেকে managed Tectonic install করুন অথবা tectonic বা pdflatex-কে PATH-এ রাখুন, তারপর paper তৈরি করুন বা আগে থেকে non-interactive Git credential সেট করা repository clone করুন।\",\"description\":\"লাইভ PDF প্রিভিউ আর একজন AI সহ-লেখক নিয়ে একটি LaTeX পেপার এডিটর। ভাগ করা প্যানের এডিটরে লেখো, pdflatex বা tectonic দিয়ে কম্পাইল করতে Cmd+S (Windows ও Linux-এ Ctrl+S) চাপো, আর নিজের সোর্সের পাশেই তৈরি হওয়া PDF পড়ো। কম্পাইলের ত্রুটিগুলো ক্লিক করার মতো একটি তালিকায় সাজানো হয়, যা সোজা সমস্যার লাইনে নিয়ে যায়। যেকোনো git রিমোট থেকে আগে থেকে থাকা কোনো পেপার ক্লোন করো, তারপর টুলবার থেকেই কমিট ও পুশ করো। সহ-লেখক প্যানেলটি পেপারের জন্য নির্দিষ্ট একটি সত্যিকারের Kiro Crew চ্যাট সেশন, তাই তুমি PDF আপডেট হতে দেখতে দেখতেই এজেন্ট তোমার LaTeX পড়তে ও সম্পাদনা করতে পারে।\",\"display_name\":\"Papyrus\",\"highlight_1\":\"পাশে লাইভ PDF প্রিভিউ নিয়ে ভাগ করা প্যানের LaTeX এডিটর\",\"highlight_2\":\"সেভ করলেই কম্পাইল (Cmd+S, বা Windows ও Linux-এ Ctrl+S) — pdflatex বা tectonic দিয়ে, সঙ্গে bibtex চক্রটিও চালিয়ে দেওয়া হয়\",\"highlight_3\":\"TeX ইনস্টল করা নেই? এক ক্লিকেই যাচাই করা একটি Tectonic কম্পাইলার Papyrus-এর নিজের ফোল্ডারে বসে যায়\",\"highlight_4\":\"কম্পাইলারের ত্রুটি ও সতর্কতা ক্লিক করার মতো একটি তালিকায় সাজানো হয়, যা সোজা সেই লাইনে নিয়ে যায়\",\"highlight_5\":\"পেপারের জন্য নির্দিষ্ট AI সহ-লেখক চ্যাট — তুমি যে LaTeX দেখছ সেটিই পড়ে ও সম্পাদনা করে\",\"highlight_6\":\"যেকোনো git রিমোট থেকে একটি পেপার ক্লোন করো, তারপর টুলবার থেকেই কমিট, পুল ও পুশ করো\",\"highlight_7\":\"কম্পাইলার কখনও shell escape দিয়ে চলে না, তাই ক্ষতিকর কোনো .tex ফাইল কমান্ড চালাতে পারে না\",\"page_label\":\"Papyrus\",\"use_case_1\":\"compiled PDF-এর পাশে LaTeX paper লিখুন, build error থেকে সরাসরি source-এ যান এবং paper-এ সীমাবদ্ধ agent-এর সঙ্গে কাজ করুন।\"},\"page\":{\"actions\":\"কাজ\",\"clone\":\"ক্লোন করুন\",\"clone_url\":\"রিপোজিটরি URL\",\"clone_url_placeholder\":\"একটি git URL থেকে ক্লোন করুন…\",\"cloning\":\"ক্লোন হচ্ছে…\",\"compiled_count_label\":\"কম্পাইল হয়েছে\",\"compiler\":\"কম্পাইলার\",\"compiler_tip\":\"{{productName}} চালানো মেশিনে পাওয়া LaTeX কম্পাইলার। Papyrus আগে pdflatex বেছে নেয়, না পেলে tectonic।\",\"create\":\"তৈরি করুন\",\"create_one_above_or_clone_an_existing_repository\":\"উপরে একটি তৈরি করুন, বা বিদ্যমান কোনও রিপোজিটরি ক্লোন করুন।\",\"delete_paper\":\"{{name}} মুছুন\",\"delete_paper_confirm\":\"“{{name}}” এবং এর সব ফাইল মুছে ফেলবেন? এটি আর ফেরানো যাবে না।\",\"delete\":\"মুছুন\",\"downloading_compiler_progress\":\"ডাউনলোড হচ্ছে… {{total}}-এর মধ্যে {{done}}\",\"install_compiler\":\"কম্পাইলার ইনস্টল করুন\",\"installing_compiler\":\"ইনস্টল করা হচ্ছে…\",\"invalid_project_name\":\"পেপারের নামই তার ফোল্ডারের নাম হয়, তাই এতে শুধু ছোট হাতের ল্যাটিন অক্ষর (a–z), অঙ্ক (0–9), বিন্দু, হাইফেন আর আন্ডারস্কোর থাকতে পারে। নাম কোনো অক্ষর বা অঙ্ক দিয়ে শুরু হতে হবে এবং সর্বোচ্চ 64টি অক্ষরের হতে পারে।\",\"invalid_project_name_char\":\"“{{char}}” পেপারের নামে ব্যবহার করা যায় না। ছোট হাতের a–z, 0–9, .\xA0-⁠\xA0_ ব্যবহার করো।\",\"invalid_project_name_letter\":\"“{{char}}” ({{script}}, {{code}}) পেপারের নামে ব্যবহার করা যায় না। ছোট হাতের a–z, 0–9, .\xA0-⁠\xA0_ ব্যবহার করো।\",\"last_edited\":\"সর্বশেষ সম্পাদনা\",\"latex_papers_with_a_live_pdf_preview\":\"লাইভ PDF প্রিভিউ সহ LaTeX পেপার\",\"new_paper_name\":\"নতুন পেপারের নাম\",\"new_paper_name_placeholder\":\"আপনার পেপারের নাম দিন…\",\"no_compiler_found_install_texlive_or_tectonic\":\"এই মেশিনে কোনও LaTeX কম্পাইলার পাওয়া যায়নি। কম্পাইল করতে TeX Live (pdflatex) বা tectonic ইনস্টল করুন।\",\"no_compiler_install_bundled_prompt\":\"এই মেশিনে কোনও LaTeX কম্পাইলার পাওয়া যায়নি। সঙ্গে দেওয়া Tectonic কম্পাইলার ইনস্টল করুন — একটিই যাচাই করা ডাউনলোড, যা Papyrus-এর নিজের ফোল্ডারেই থাকে।\",\"no_papers_yet\":\"এখনও কোনও পেপার নেই\",\"none_found\":\"কিছুই নেই\",\"paper\":\"পেপার\",\"paper_name\":\"পেপারের নাম\",\"papers\":\"পেপার\",\"papyrus\":\"Papyrus\",\"pdf\":\"PDF\",\"pdf_missing_status\":\"কম্পাইল হয়নি\",\"pdf_ready_status\":\"প্রস্তুত\",\"rename_config_refused\":\"নামটি সেভ হয়নি: Papyrus এই পেপারের সেটিংস বদলাতে পারছে না।\",\"rename_paper\":\"{{name}} এর নাম বদলাও\",\"rename_paper_replaced\":\"লিস্ট লোড হওয়ার পর এই পেপারটি বদলেছে। লিস্ট এখন হালনাগাদ; নামটি আবার সেভ করতে Enter চাপো।\",\"rename_title_rejected\":\"দেখা যায় এমন অক্ষর দিয়ে একটি নাম লেখো, অথবা আবার {{name}} দেখাতে ঘরটি খালি করো।\",\"start_a_paper\":\"একটি পেপার শুরু করুন\",\"start_a_paper_tip\":\"প্রমিত article টেমপ্লেট থেকে একটি খালি পেপার তৈরি করুন, বা কোনও git রিমোট থেকে ক্লোন করুন — .tex ফাইল আছে এমন যে কোনওটিই চলবে।\",\"verifying_compiler\":\"যাচাই করা হচ্ছে…\",\"your_papers\":\"আপনার পেপার\"},\"preview\":{\"compile_to_see_the_pdf\":\"PDF দেখতে কম্পাইল করুন।\",\"download_pdf\":\"PDF ডাউনলোড করুন\",\"pdf_preview\":\"PDF প্রিভিউ\"},\"workspace\":{\"co_author\":\"সহ-লেখক\",\"co_author_conflict\":\"সহ-লেখক এই ফাইলটি পরিবর্তন করেছেন\",\"co_author_conflict_discard\":\"আমার পরিবর্তন বাতিল করে আবার লোড করুন\",\"co_author_conflict_discard_button\":\"পরিবর্তন বাতিল করুন\",\"co_author_conflict_discard_confirm\":\"“{{file}}”-এ আপনার অসংরক্ষিত পরিবর্তন বাতিল করে সহ-লেখকের সংস্করণ লোড করা হবে। এটি আর ফেরানো যাবে না।\",\"co_author_conflict_discard_title\":\"অসংরক্ষিত পরিবর্তন বাতিল করবেন?\",\"commit_and_push\":\"কমিট ও পুশ করুন\",\"commit_message_prompt\":\"এই কমিটের বর্ণনা দিন। এতে গবেষণাপত্রের সব পরিবর্তন যুক্ত হবে।\",\"compile\":\"কম্পাইল করুন\",\"compiling\":\"কম্পাইল হচ্ছে…\",\"context_not_attached\":\"পরবর্তী মেসেজে পেপারটির উল্লেখ করো যাতে সহ-লেখক এটি দেখতে পারে। উল্লেখ করার পরে এই বিজ্ঞপ্তিটি বন্ধ করতে পারো।\",\"context_notice_title\":\"এই পেপারটি সহ-লেখকের সাথে শেয়ার করা যায়নি\",\"cursor_position\":\"লা. {{line}}, কল. {{column}}\",\"delete_file_confirm\":\"“{{file}}” মুছে ফেলবেন?\",\"download_pdf\":\"PDF ডাউনলোড করুন\",\"editing\":\"{{file}} সম্পাদনা করছেন\",\"editing_unsaved\":\"{{file}} সম্পাদনা করছেন — সংরক্ষিত হয়নি\",\"error_count_one\":\"{{count}}টি ত্রুটি\",\"error_count_other\":\"{{count}}টি ত্রুটি\",\"git_branch\":\"বর্তমান ব্রাঞ্চ\",\"log\":\"লগ\",\"main_document\":\"মূল নথি\",\"new_file_prompt\":\"নতুন ফাইলের নাম দিন, যেমন methods.tex\",\"papers\":\"পেপার\",\"pull\":\"পুল করুন\",\"save_and_compile_hint\":\"সংরক্ষণ করে কম্পাইল করতে Cmd+S (Windows ও Linux-এ Ctrl+S) চাপুন।\",\"session_title\":\"Papyrus: {{name}}\",\"warning_count_one\":\"{{count}}টি সতর্কতা\",\"warning_count_other\":\"{{count}}টি সতর্কতা\",\"word_count_one\":\"{{count}}টি শব্দ\",\"word_count_other\":\"{{count}}টি শব্দ\"}},\"specBuilder\":{\"components\":{\"specDetail\":{\"resize_document_panel\":\"নথি প্যানেলের আকার বদলান\"}}}}"),
 		components: {
 			"confirmDialog": { "cancel": "বাতিল" },
 			"resizeHandle": { "drag_to_resize": "আকার বদলাতে টানুন" }
@@ -289,6 +289,7 @@ var CATALOGS = {
 					"create_one_above_or_clone_an_existing_repository": "Erstellen Sie oben eines, oder klonen Sie ein bestehendes Repository.",
 					"delete_paper": "{{name}} löschen",
 					"delete_paper_confirm": "„{{name}}“ und alle zugehörigen Dateien löschen? Dies kann nicht rückgängig gemacht werden.",
+					"delete": "Löschen",
 					"downloading_compiler_progress": "Wird heruntergeladen… {{done}} von {{total}}",
 					"install_compiler": "Compiler installieren",
 					"installing_compiler": "Installation läuft…",
@@ -430,6 +431,7 @@ var CATALOGS = {
 					"create_one_above_or_clone_an_existing_repository": "Create one above, or clone an existing repository.",
 					"delete_paper": "Delete {{name}}",
 					"delete_paper_confirm": "Delete “{{name}}” and all of its files? This cannot be undone.",
+					"delete": "Delete",
 					"downloading_compiler_progress": "Downloading… {{done}} of {{total}}",
 					"install_compiler": "Install compiler",
 					"installing_compiler": "Installing…",
@@ -571,6 +573,7 @@ var CATALOGS = {
 					"create_one_above_or_clone_an_existing_repository": "Crea uno arriba o clona un repositorio existente.",
 					"delete_paper": "Eliminar {{name}}",
 					"delete_paper_confirm": "¿Eliminar “{{name}}” y todos sus archivos? Esta acción no se puede deshacer.",
+					"delete": "Eliminar",
 					"downloading_compiler_progress": "Descargando… {{done}} de {{total}}",
 					"install_compiler": "Instalar compilador",
 					"installing_compiler": "Instalando…",
@@ -715,6 +718,7 @@ var CATALOGS = {
 					"create_one_above_or_clone_an_existing_repository": "Créez-en un ci-dessus, ou clonez un dépôt existant.",
 					"delete_paper": "Supprimer {{name}}",
 					"delete_paper_confirm": "Supprimer « {{name}} » et tous ses fichiers ? Cette action est irréversible.",
+					"delete": "Supprimer",
 					"downloading_compiler_progress": "Téléchargement… {{done}} sur {{total}}",
 					"install_compiler": "Installer le compilateur",
 					"installing_compiler": "Installation…",
@@ -805,7 +809,7 @@ var CATALOGS = {
 		} }
 	},
 	hi: {
-		apps: /* @__PURE__ */ JSON.parse("{\"papyrus\":{\"coAuthor\":{\"close_co_author_panel\":\"सह-लेखक पैनल बंद करें\",\"close_panel\":\"पैनल बंद करें — सत्र खुला रहेगा\",\"co_author\":\"सह-लेखक\",\"co_author_chat\":\"सह-लेखक चैट\",\"no_co_author_session_for_this_paper_yet\":\"इस पेपर के लिए अभी कोई सह-लेखक सत्र नहीं है।\",\"open_in_chat_page\":\"चैट पेज में खोलें\",\"start_a_session\":\"सत्र शुरू करें\",\"starting_session\":\"सत्र शुरू हो रहा है…\"},\"diagnostics\":{\"jump_to_line\":\"पंक्ति {{line}} पर जाएँ\",\"line_short\":\"पं. {{line}}\",\"no_messages\":\"कंपाइलर ने कुछ नहीं बताया।\",\"typesetting_hints_one\":\"{{count}} टाइपसेटिंग सुझाव\",\"typesetting_hints_other\":\"{{count}} टाइपसेटिंग सुझाव\"},\"fileTree\":{\"delete_file\":\"{{file}} हटाएँ\",\"files\":\"फ़ाइलें\",\"main\":\"मुख्य\",\"new_file\":\"नई फ़ाइल\",\"no_source_files\":\"कोई स्रोत फ़ाइल नहीं।\"},\"manifest\":{\"configuration_1\":\"ऐप से managed Tectonic इंस्टॉल करें या tectonic अथवा pdflatex को PATH में रखें, फिर पेपर बनाएँ या पहले से कॉन्फ़िगर non-interactive Git credential वाली रिपॉज़िटरी clone करें।\",\"description\":\"लाइव PDF प्रीव्यू और AI सह-लेखक वाला LaTeX पेपर एडिटर। स्प्लिट-पेन एडिटर में लिखो, pdflatex या tectonic से कंपाइल करने के लिए Cmd+S (Windows और Linux पर Ctrl+S) दबाओ, और रेंडर हुई PDF अपने सोर्स के साथ पढ़ो। कंपाइल की गलतियाँ एक क्लिक करने योग्य सूची में बदल जाती हैं जो सीधे गड़बड़ वाली लाइन पर ले जाती है। किसी भी git रिमोट से मौजूदा पेपर क्लोन करो, फिर टूलबार से कमिट और पुश करो। सह-लेखक पैनल पेपर तक सीमित एक असली Kiro Crew चैट सेशन है, इसलिए एजेंट तुम्हारा LaTeX पढ़ और बदल सकता है जबकि तुम PDF अपडेट होते देखते हो।\",\"display_name\":\"Papyrus\",\"highlight_1\":\"साथ में लाइव PDF प्रीव्यू वाला स्प्लिट-पेन LaTeX एडिटर\",\"highlight_2\":\"सेव पर कंपाइल (Cmd+S, या Windows और Linux पर Ctrl+S) pdflatex या tectonic से, और bibtex चक्र तुम्हारे लिए चला दिया जाता है\",\"highlight_3\":\"TeX इंस्टॉल नहीं है? एक क्लिक में जाँचा-परखा Tectonic कंपाइलर Papyrus के अपने फ़ोल्डर में इंस्टॉल हो जाता है\",\"highlight_4\":\"कंपाइलर की गलतियाँ और चेतावनियाँ एक क्लिक करने योग्य सूची में बदलती हैं जो सीधे उस लाइन पर ले जाती है\",\"highlight_5\":\"पेपर तक सीमित AI सह-लेखक चैट — यह वही LaTeX पढ़ता और बदलता है जो तुम देख रहे हो\",\"highlight_6\":\"किसी भी git रिमोट से पेपर क्लोन करो, फिर टूलबार से कमिट, पुल और पुश करो\",\"highlight_7\":\"कंपाइलर को कभी shell escape के साथ नहीं चलाता, इसलिए कोई ख़तरनाक .tex फ़ाइल कमांड नहीं चला सकती\",\"page_label\":\"Papyrus\",\"use_case_1\":\"संकलित PDF के साथ LaTeX पेपर लिखें, build error से सीधे source पर जाएँ और पेपर तक सीमित agent के साथ काम करें।\"},\"page\":{\"actions\":\"कार्रवाइयाँ\",\"clone\":\"क्लोन करें\",\"clone_url\":\"रिपॉज़िटरी URL\",\"clone_url_placeholder\":\"किसी git URL से क्लोन करें…\",\"cloning\":\"क्लोन हो रहा है…\",\"compiled_count_label\":\"कंपाइल हुए\",\"compiler\":\"कंपाइलर\",\"compiler_tip\":\"{{productName}} चलाने वाली मशीन पर मिला LaTeX कंपाइलर। Papyrus पहले pdflatex चुनता है, न मिलने पर tectonic।\",\"create\":\"बनाएँ\",\"create_one_above_or_clone_an_existing_repository\":\"ऊपर एक नया बनाएँ, या कोई मौजूदा रिपॉज़िटरी क्लोन करें।\",\"delete_paper\":\"{{name}} हटाएँ\",\"delete_paper_confirm\":\"“{{name}}” और उसकी सभी फ़ाइलें हटाएँ? इसे पूर्ववत नहीं किया जा सकता।\",\"downloading_compiler_progress\":\"डाउनलोड हो रहा है… {{total}} में से {{done}}\",\"install_compiler\":\"कंपाइलर इंस्टॉल करें\",\"installing_compiler\":\"इंस्टॉल हो रहा है…\",\"invalid_project_name\":\"पेपर का नाम उसके फ़ोल्डर का नाम बनता है, इसलिए उसमें सिर्फ़ छोटे लैटिन अक्षर (a–z), अंक (0–9), बिंदु, हाइफ़न और अंडरस्कोर हो सकते हैं। नाम किसी अक्षर या अंक से शुरू होना चाहिए और उसमें ज़्यादा से ज़्यादा 64 वर्ण हो सकते हैं।\",\"invalid_project_name_char\":\"“{{char}}” पेपर के नाम में इस्तेमाल नहीं किया जा सकता। छोटे अक्षर a–z, 0–9, .\xA0-⁠\xA0_ इस्तेमाल करो।\",\"invalid_project_name_letter\":\"“{{char}}” ({{script}}, {{code}}) पेपर के नाम में इस्तेमाल नहीं किया जा सकता। छोटे अक्षर a–z, 0–9, .\xA0-⁠\xA0_ इस्तेमाल करो।\",\"last_edited\":\"अंतिम संपादन\",\"latex_papers_with_a_live_pdf_preview\":\"लाइव PDF प्रीव्यू के साथ LaTeX पेपर\",\"new_paper_name\":\"नए पेपर का नाम\",\"new_paper_name_placeholder\":\"अपने पेपर को नाम दें…\",\"no_compiler_found_install_texlive_or_tectonic\":\"इस मशीन पर कोई LaTeX कंपाइलर नहीं मिला। कंपाइल करने के लिए TeX Live (pdflatex) या tectonic इंस्टॉल करें।\",\"no_compiler_install_bundled_prompt\":\"इस मशीन पर कोई LaTeX कंपाइलर नहीं मिला। साथ में दिया गया Tectonic कंपाइलर इंस्टॉल करें — एक ही सत्यापित डाउनलोड, जो Papyrus के अपने फ़ोल्डर में ही रहता है।\",\"no_papers_yet\":\"अभी कोई पेपर नहीं\",\"none_found\":\"कोई नहीं\",\"paper\":\"पेपर\",\"paper_name\":\"पेपर का नाम\",\"papers\":\"पेपर\",\"papyrus\":\"Papyrus\",\"pdf\":\"PDF\",\"pdf_missing_status\":\"कंपाइल नहीं हुआ\",\"pdf_ready_status\":\"तैयार\",\"rename_config_refused\":\"नाम सेव नहीं हुआ: Papyrus इस पेपर की सेटिंग्स नहीं बदल सकता।\",\"rename_paper\":\"{{name}} का नाम बदलें\",\"rename_paper_replaced\":\"सूची लोड होने के बाद यह पेपर बदल गया है। सूची अब अपडेट है; नाम फिर से सेव करने के लिए Enter दबाओ।\",\"rename_title_rejected\":\"दिखने वाले अक्षरों के साथ नाम लिखो, या फिर से {{name}} दिखाने के लिए फ़ील्ड खाली करो।\",\"start_a_paper\":\"पेपर शुरू करें\",\"start_a_paper_tip\":\"मानक article टेम्पलेट से खाली पेपर बनाएँ, या किसी git रिमोट से क्लोन करें — .tex फ़ाइल वाला कोई भी रिपॉज़िटरी चलेगा।\",\"verifying_compiler\":\"सत्यापित हो रहा है…\",\"your_papers\":\"तुम्हारे पेपर\"},\"preview\":{\"compile_to_see_the_pdf\":\"PDF देखने के लिए कंपाइल करें।\",\"download_pdf\":\"PDF डाउनलोड करें\",\"pdf_preview\":\"PDF प्रीव्यू\"},\"workspace\":{\"co_author\":\"सह-लेखक\",\"co_author_conflict\":\"सह-लेखक ने यह फ़ाइल बदली\",\"co_author_conflict_discard\":\"मेरे बदलाव छोड़ें और फिर लोड करें\",\"co_author_conflict_discard_button\":\"बदलाव छोड़ें\",\"co_author_conflict_discard_confirm\":\"“{{file}}” में तुम्हारे सहेजे न गए बदलाव छोड़कर सह-लेखक का संस्करण लोड किया जाएगा। इसे पूर्ववत नहीं किया जा सकता।\",\"co_author_conflict_discard_title\":\"सहेजे न गए बदलाव छोड़ें?\",\"commit_and_push\":\"कमिट करें और पुश करें\",\"commit_message_prompt\":\"इस कमिट का वर्णन करें। इसमें पेपर के सभी बदलाव शामिल होंगे।\",\"compile\":\"कंपाइल करें\",\"compiling\":\"कंपाइल हो रहा है…\",\"context_not_attached\":\"अगले संदेश में पेपर का उल्लेख करो ताकि सह-लेखक उसे देख सके। उल्लेख करने के बाद तुम इस सूचना को बंद कर सकते हो।\",\"context_notice_title\":\"यह पेपर सह-लेखक के साथ साझा नहीं हो सका\",\"cursor_position\":\"पं. {{line}}, स्तं. {{column}}\",\"delete_file_confirm\":\"“{{file}}” हटाएँ?\",\"download_pdf\":\"PDF डाउनलोड करें\",\"editing\":\"{{file}} संपादित हो रही है\",\"editing_unsaved\":\"{{file}} संपादित हो रही है — सहेजी नहीं गई\",\"error_count_one\":\"{{count}} त्रुटि\",\"error_count_other\":\"{{count}} त्रुटियाँ\",\"git_branch\":\"वर्तमान ब्रांच\",\"log\":\"लॉग\",\"main_document\":\"मुख्य दस्तावेज़\",\"new_file_prompt\":\"नई फ़ाइल का नाम दें, उदाहरण के लिए methods.tex\",\"papers\":\"पेपर\",\"pull\":\"पुल करें\",\"save_and_compile_hint\":\"सहेजने और कंपाइल करने के लिए Cmd+S (Windows और Linux पर Ctrl+S) दबाएँ।\",\"session_title\":\"Papyrus: {{name}}\",\"warning_count_one\":\"{{count}} चेतावनी\",\"warning_count_other\":\"{{count}} चेतावनियाँ\",\"word_count_one\":\"{{count}} शब्द\",\"word_count_other\":\"{{count}} शब्द\"}},\"specBuilder\":{\"components\":{\"specDetail\":{\"resize_document_panel\":\"दस्तावेज़ पैनल का आकार बदलें\"}}}}"),
+		apps: /* @__PURE__ */ JSON.parse("{\"papyrus\":{\"coAuthor\":{\"close_co_author_panel\":\"सह-लेखक पैनल बंद करें\",\"close_panel\":\"पैनल बंद करें — सत्र खुला रहेगा\",\"co_author\":\"सह-लेखक\",\"co_author_chat\":\"सह-लेखक चैट\",\"no_co_author_session_for_this_paper_yet\":\"इस पेपर के लिए अभी कोई सह-लेखक सत्र नहीं है।\",\"open_in_chat_page\":\"चैट पेज में खोलें\",\"start_a_session\":\"सत्र शुरू करें\",\"starting_session\":\"सत्र शुरू हो रहा है…\"},\"diagnostics\":{\"jump_to_line\":\"पंक्ति {{line}} पर जाएँ\",\"line_short\":\"पं. {{line}}\",\"no_messages\":\"कंपाइलर ने कुछ नहीं बताया।\",\"typesetting_hints_one\":\"{{count}} टाइपसेटिंग सुझाव\",\"typesetting_hints_other\":\"{{count}} टाइपसेटिंग सुझाव\"},\"fileTree\":{\"delete_file\":\"{{file}} हटाएँ\",\"files\":\"फ़ाइलें\",\"main\":\"मुख्य\",\"new_file\":\"नई फ़ाइल\",\"no_source_files\":\"कोई स्रोत फ़ाइल नहीं।\"},\"manifest\":{\"configuration_1\":\"ऐप से managed Tectonic इंस्टॉल करें या tectonic अथवा pdflatex को PATH में रखें, फिर पेपर बनाएँ या पहले से कॉन्फ़िगर non-interactive Git credential वाली रिपॉज़िटरी clone करें।\",\"description\":\"लाइव PDF प्रीव्यू और AI सह-लेखक वाला LaTeX पेपर एडिटर। स्प्लिट-पेन एडिटर में लिखो, pdflatex या tectonic से कंपाइल करने के लिए Cmd+S (Windows और Linux पर Ctrl+S) दबाओ, और रेंडर हुई PDF अपने सोर्स के साथ पढ़ो। कंपाइल की गलतियाँ एक क्लिक करने योग्य सूची में बदल जाती हैं जो सीधे गड़बड़ वाली लाइन पर ले जाती है। किसी भी git रिमोट से मौजूदा पेपर क्लोन करो, फिर टूलबार से कमिट और पुश करो। सह-लेखक पैनल पेपर तक सीमित एक असली Kiro Crew चैट सेशन है, इसलिए एजेंट तुम्हारा LaTeX पढ़ और बदल सकता है जबकि तुम PDF अपडेट होते देखते हो।\",\"display_name\":\"Papyrus\",\"highlight_1\":\"साथ में लाइव PDF प्रीव्यू वाला स्प्लिट-पेन LaTeX एडिटर\",\"highlight_2\":\"सेव पर कंपाइल (Cmd+S, या Windows और Linux पर Ctrl+S) pdflatex या tectonic से, और bibtex चक्र तुम्हारे लिए चला दिया जाता है\",\"highlight_3\":\"TeX इंस्टॉल नहीं है? एक क्लिक में जाँचा-परखा Tectonic कंपाइलर Papyrus के अपने फ़ोल्डर में इंस्टॉल हो जाता है\",\"highlight_4\":\"कंपाइलर की गलतियाँ और चेतावनियाँ एक क्लिक करने योग्य सूची में बदलती हैं जो सीधे उस लाइन पर ले जाती है\",\"highlight_5\":\"पेपर तक सीमित AI सह-लेखक चैट — यह वही LaTeX पढ़ता और बदलता है जो तुम देख रहे हो\",\"highlight_6\":\"किसी भी git रिमोट से पेपर क्लोन करो, फिर टूलबार से कमिट, पुल और पुश करो\",\"highlight_7\":\"कंपाइलर को कभी shell escape के साथ नहीं चलाता, इसलिए कोई ख़तरनाक .tex फ़ाइल कमांड नहीं चला सकती\",\"page_label\":\"Papyrus\",\"use_case_1\":\"संकलित PDF के साथ LaTeX पेपर लिखें, build error से सीधे source पर जाएँ और पेपर तक सीमित agent के साथ काम करें।\"},\"page\":{\"actions\":\"कार्रवाइयाँ\",\"clone\":\"क्लोन करें\",\"clone_url\":\"रिपॉज़िटरी URL\",\"clone_url_placeholder\":\"किसी git URL से क्लोन करें…\",\"cloning\":\"क्लोन हो रहा है…\",\"compiled_count_label\":\"कंपाइल हुए\",\"compiler\":\"कंपाइलर\",\"compiler_tip\":\"{{productName}} चलाने वाली मशीन पर मिला LaTeX कंपाइलर। Papyrus पहले pdflatex चुनता है, न मिलने पर tectonic।\",\"create\":\"बनाएँ\",\"create_one_above_or_clone_an_existing_repository\":\"ऊपर एक नया बनाएँ, या कोई मौजूदा रिपॉज़िटरी क्लोन करें।\",\"delete_paper\":\"{{name}} हटाएँ\",\"delete_paper_confirm\":\"“{{name}}” और उसकी सभी फ़ाइलें हटाएँ? इसे पूर्ववत नहीं किया जा सकता।\",\"delete\":\"हटाएँ\",\"downloading_compiler_progress\":\"डाउनलोड हो रहा है… {{total}} में से {{done}}\",\"install_compiler\":\"कंपाइलर इंस्टॉल करें\",\"installing_compiler\":\"इंस्टॉल हो रहा है…\",\"invalid_project_name\":\"पेपर का नाम उसके फ़ोल्डर का नाम बनता है, इसलिए उसमें सिर्फ़ छोटे लैटिन अक्षर (a–z), अंक (0–9), बिंदु, हाइफ़न और अंडरस्कोर हो सकते हैं। नाम किसी अक्षर या अंक से शुरू होना चाहिए और उसमें ज़्यादा से ज़्यादा 64 वर्ण हो सकते हैं।\",\"invalid_project_name_char\":\"“{{char}}” पेपर के नाम में इस्तेमाल नहीं किया जा सकता। छोटे अक्षर a–z, 0–9, .\xA0-⁠\xA0_ इस्तेमाल करो।\",\"invalid_project_name_letter\":\"“{{char}}” ({{script}}, {{code}}) पेपर के नाम में इस्तेमाल नहीं किया जा सकता। छोटे अक्षर a–z, 0–9, .\xA0-⁠\xA0_ इस्तेमाल करो।\",\"last_edited\":\"अंतिम संपादन\",\"latex_papers_with_a_live_pdf_preview\":\"लाइव PDF प्रीव्यू के साथ LaTeX पेपर\",\"new_paper_name\":\"नए पेपर का नाम\",\"new_paper_name_placeholder\":\"अपने पेपर को नाम दें…\",\"no_compiler_found_install_texlive_or_tectonic\":\"इस मशीन पर कोई LaTeX कंपाइलर नहीं मिला। कंपाइल करने के लिए TeX Live (pdflatex) या tectonic इंस्टॉल करें।\",\"no_compiler_install_bundled_prompt\":\"इस मशीन पर कोई LaTeX कंपाइलर नहीं मिला। साथ में दिया गया Tectonic कंपाइलर इंस्टॉल करें — एक ही सत्यापित डाउनलोड, जो Papyrus के अपने फ़ोल्डर में ही रहता है।\",\"no_papers_yet\":\"अभी कोई पेपर नहीं\",\"none_found\":\"कोई नहीं\",\"paper\":\"पेपर\",\"paper_name\":\"पेपर का नाम\",\"papers\":\"पेपर\",\"papyrus\":\"Papyrus\",\"pdf\":\"PDF\",\"pdf_missing_status\":\"कंपाइल नहीं हुआ\",\"pdf_ready_status\":\"तैयार\",\"rename_config_refused\":\"नाम सेव नहीं हुआ: Papyrus इस पेपर की सेटिंग्स नहीं बदल सकता।\",\"rename_paper\":\"{{name}} का नाम बदलें\",\"rename_paper_replaced\":\"सूची लोड होने के बाद यह पेपर बदल गया है। सूची अब अपडेट है; नाम फिर से सेव करने के लिए Enter दबाओ।\",\"rename_title_rejected\":\"दिखने वाले अक्षरों के साथ नाम लिखो, या फिर से {{name}} दिखाने के लिए फ़ील्ड खाली करो।\",\"start_a_paper\":\"पेपर शुरू करें\",\"start_a_paper_tip\":\"मानक article टेम्पलेट से खाली पेपर बनाएँ, या किसी git रिमोट से क्लोन करें — .tex फ़ाइल वाला कोई भी रिपॉज़िटरी चलेगा।\",\"verifying_compiler\":\"सत्यापित हो रहा है…\",\"your_papers\":\"तुम्हारे पेपर\"},\"preview\":{\"compile_to_see_the_pdf\":\"PDF देखने के लिए कंपाइल करें।\",\"download_pdf\":\"PDF डाउनलोड करें\",\"pdf_preview\":\"PDF प्रीव्यू\"},\"workspace\":{\"co_author\":\"सह-लेखक\",\"co_author_conflict\":\"सह-लेखक ने यह फ़ाइल बदली\",\"co_author_conflict_discard\":\"मेरे बदलाव छोड़ें और फिर लोड करें\",\"co_author_conflict_discard_button\":\"बदलाव छोड़ें\",\"co_author_conflict_discard_confirm\":\"“{{file}}” में तुम्हारे सहेजे न गए बदलाव छोड़कर सह-लेखक का संस्करण लोड किया जाएगा। इसे पूर्ववत नहीं किया जा सकता।\",\"co_author_conflict_discard_title\":\"सहेजे न गए बदलाव छोड़ें?\",\"commit_and_push\":\"कमिट करें और पुश करें\",\"commit_message_prompt\":\"इस कमिट का वर्णन करें। इसमें पेपर के सभी बदलाव शामिल होंगे।\",\"compile\":\"कंपाइल करें\",\"compiling\":\"कंपाइल हो रहा है…\",\"context_not_attached\":\"अगले संदेश में पेपर का उल्लेख करो ताकि सह-लेखक उसे देख सके। उल्लेख करने के बाद तुम इस सूचना को बंद कर सकते हो।\",\"context_notice_title\":\"यह पेपर सह-लेखक के साथ साझा नहीं हो सका\",\"cursor_position\":\"पं. {{line}}, स्तं. {{column}}\",\"delete_file_confirm\":\"“{{file}}” हटाएँ?\",\"download_pdf\":\"PDF डाउनलोड करें\",\"editing\":\"{{file}} संपादित हो रही है\",\"editing_unsaved\":\"{{file}} संपादित हो रही है — सहेजी नहीं गई\",\"error_count_one\":\"{{count}} त्रुटि\",\"error_count_other\":\"{{count}} त्रुटियाँ\",\"git_branch\":\"वर्तमान ब्रांच\",\"log\":\"लॉग\",\"main_document\":\"मुख्य दस्तावेज़\",\"new_file_prompt\":\"नई फ़ाइल का नाम दें, उदाहरण के लिए methods.tex\",\"papers\":\"पेपर\",\"pull\":\"पुल करें\",\"save_and_compile_hint\":\"सहेजने और कंपाइल करने के लिए Cmd+S (Windows और Linux पर Ctrl+S) दबाएँ।\",\"session_title\":\"Papyrus: {{name}}\",\"warning_count_one\":\"{{count}} चेतावनी\",\"warning_count_other\":\"{{count}} चेतावनियाँ\",\"word_count_one\":\"{{count}} शब्द\",\"word_count_other\":\"{{count}} शब्द\"}},\"specBuilder\":{\"components\":{\"specDetail\":{\"resize_document_panel\":\"दस्तावेज़ पैनल का आकार बदलें\"}}}}"),
 		components: {
 			"confirmDialog": { "cancel": "रद्द करें" },
 			"resizeHandle": { "drag_to_resize": "आकार बदलने के लिए खींचें" }
@@ -876,6 +880,7 @@ var CATALOGS = {
 					"create_one_above_or_clone_an_existing_repository": "Creane uno qui sopra, oppure clona un repository esistente.",
 					"delete_paper": "Elimina {{name}}",
 					"delete_paper_confirm": "Eliminare «{{name}}» e tutti i suoi file? Questa azione non può essere annullata.",
+					"delete": "Elimina",
 					"downloading_compiler_progress": "Download… {{done}} di {{total}}",
 					"install_compiler": "Installa compilatore",
 					"installing_compiler": "Installazione…",
@@ -1018,6 +1023,7 @@ var CATALOGS = {
 					"create_one_above_or_clone_an_existing_repository": "上記を作成するか、既存のリポジトリーをクローンしてください。",
 					"delete_paper": "{{name}} を削除",
 					"delete_paper_confirm": "「{{name}}」とそのすべてのファイルを削除しますか？これは取り消せません。",
+					"delete": "削除",
 					"downloading_compiler_progress": "ダウンロード中… {{done}} / {{total}}",
 					"install_compiler": "コンパイラーをインストール",
 					"installing_compiler": "インストール中…",
@@ -1154,6 +1160,7 @@ var CATALOGS = {
 					"create_one_above_or_clone_an_existing_repository": "위에서 하나를 만들거나 기존 저장소를 클론하세요.",
 					"delete_paper": "{{name}} 삭제",
 					"delete_paper_confirm": "‘{{name}}’와(과) 모든 파일을 삭제하시겠습니까? 되돌릴 수 없습니다.",
+					"delete": "삭제",
 					"downloading_compiler_progress": "다운로드 중… {{total}} 중 {{done}}",
 					"install_compiler": "컴파일러 설치",
 					"installing_compiler": "설치 중…",
@@ -1259,7 +1266,7 @@ var CATALOGS = {
 					"typesetting_hints_other": "{{count}} avisos de composição"
 				},
 				"fileTree": {
-					"delete_file": "Eliminar {{file}}",
+					"delete_file": "Excluir {{file}}",
 					"files": "Arquivos",
 					"main": "Principal",
 					"new_file": "Novo arquivo",
@@ -1290,8 +1297,9 @@ var CATALOGS = {
 					"compiler_tip": "O compilador LaTeX encontrado na máquina que executa o {{productName}}. O Papyrus prefere pdflatex e recorre ao tectonic.",
 					"create": "Criar",
 					"create_one_above_or_clone_an_existing_repository": "Crie um acima ou clone um repositório existente.",
-					"delete_paper": "Eliminar {{name}}",
+					"delete_paper": "Excluir {{name}}",
 					"delete_paper_confirm": "Excluir “{{name}}” e todos os seus arquivos? Esta ação não pode ser desfeita.",
+					"delete": "Excluir",
 					"downloading_compiler_progress": "A baixar… {{done}} de {{total}}",
 					"install_compiler": "Instalar compilador",
 					"installing_compiler": "A instalar…",
@@ -1341,7 +1349,7 @@ var CATALOGS = {
 					"context_not_attached": "Mencione o artigo na próxima mensagem para que o coautor possa vê-lo. Você pode fechar este aviso após a menção.",
 					"context_notice_title": "Não foi possível compartilhar este artigo com o coautor",
 					"cursor_position": "Lin. {{line}}, col. {{column}}",
-					"delete_file_confirm": "Eliminar “{{file}}”?",
+					"delete_file_confirm": "Excluir “{{file}}”?",
 					"download_pdf": "Baixar PDF",
 					"editing": "A editar {{file}}",
 					"editing_unsaved": "A editar {{file}} — não guardado",
@@ -1382,7 +1390,7 @@ var CATALOGS = {
 		} }
 	},
 	ru: {
-		apps: /* @__PURE__ */ JSON.parse("{\"papyrus\":{\"coAuthor\":{\"close_co_author_panel\":\"Закрыть панель соавтора\",\"close_panel\":\"Закрыть панель — сессия останется открытой\",\"co_author\":\"Соавтор\",\"co_author_chat\":\"Чат с соавтором\",\"no_co_author_session_for_this_paper_yet\":\"Для этой статьи пока нет сессии соавтора.\",\"open_in_chat_page\":\"Открыть на странице чата\",\"start_a_session\":\"Начать сессию\",\"starting_session\":\"Запуск сессии…\"},\"diagnostics\":{\"jump_to_line\":\"Перейти к строке {{line}}\",\"line_short\":\"стр. {{line}}\",\"no_messages\":\"Компилятор ничего не сообщил.\",\"typesetting_hints_few\":\"{{count}} замечания по вёрстке\",\"typesetting_hints_many\":\"{{count}} замечаний по вёрстке\",\"typesetting_hints_one\":\"{{count}} замечание по вёрстке\",\"typesetting_hints_other\":\"{{count}} замечания по вёрстке\"},\"fileTree\":{\"delete_file\":\"Удалить {{file}}\",\"files\":\"Файлы\",\"main\":\"Главный\",\"new_file\":\"Новый файл\",\"no_source_files\":\"Нет исходных файлов.\"},\"manifest\":{\"configuration_1\":\"Установите управляемый Tectonic из приложения либо добавьте tectonic или pdflatex в PATH, затем создайте документ или клонируйте репозиторий с заранее настроенными неинтерактивными учётными данными Git.\",\"description\":\"Редактор статей на LaTeX с живым предпросмотром PDF и соавтором на базе ИИ. Пиши в редакторе с двумя областями, нажимай Cmd+S (Ctrl+S на Windows и Linux), чтобы собрать документ через pdflatex или tectonic, и читай готовый PDF рядом с исходником. Ошибки сборки разбираются в кликабельный список, который переходит к нужной строке. Склонируй готовую статью с любого удалённого репозитория git, а потом делай коммит и push с панели инструментов. Панель соавтора — это настоящая сессия чата Kiro Crew, привязанная к статье, поэтому агент может читать и править твой LaTeX, пока ты смотришь, как обновляется PDF.\",\"display_name\":\"Papyrus\",\"highlight_1\":\"Редактор LaTeX с двумя областями и живым предпросмотром PDF рядом\",\"highlight_2\":\"Сборка при сохранении (Cmd+S или Ctrl+S на Windows и Linux) через pdflatex или tectonic, цикл bibtex прогоняется за тебя\",\"highlight_3\":\"Нет TeX? Один клик — и проверенный компилятор Tectonic ставится в собственную папку Papyrus\",\"highlight_4\":\"Ошибки и предупреждения компилятора разбираются в кликабельный список с переходом к строке\",\"highlight_5\":\"Чат с соавтором на базе ИИ привязан к статье — он читает и правит тот LaTeX, который у тебя на экране\",\"highlight_6\":\"Склонируй статью с любого удалённого репозитория git, а затем делай коммит, pull и push с панели инструментов\",\"highlight_7\":\"Компилятор никогда не запускается с shell escape, поэтому враждебный файл .tex не сможет выполнить команды\",\"page_label\":\"Papyrus\",\"use_case_1\":\"Пишите LaTeX-документ рядом с готовым PDF, переходите от ошибок сборки к исходному коду и работайте с агентом, ограниченным этим документом.\"},\"page\":{\"actions\":\"Действия\",\"clone\":\"Клонировать\",\"clone_url\":\"URL репозитория\",\"clone_url_placeholder\":\"Клонировать по git-адресу…\",\"cloning\":\"Клонирование…\",\"compiled_count_label\":\"Скомпилировано\",\"compiler\":\"Компилятор\",\"compiler_tip\":\"Компилятор LaTeX, найденный на машине с {{productName}}. Papyrus предпочитает pdflatex, а при его отсутствии использует tectonic.\",\"create\":\"Создать\",\"create_one_above_or_clone_an_existing_repository\":\"Создайте статью выше или клонируйте существующий репозиторий.\",\"delete_paper\":\"Удалить {{name}}\",\"delete_paper_confirm\":\"Удалить «{{name}}» и все её файлы? Это действие нельзя отменить.\",\"downloading_compiler_progress\":\"Загрузка… {{done}} из {{total}}\",\"install_compiler\":\"Установить компилятор\",\"installing_compiler\":\"Установка…\",\"invalid_project_name\":\"Названия статей становятся именами папок, поэтому в них можно использовать только строчные латинские буквы (a–z), цифры (0–9), точки, дефисы и подчёркивания. Название должно начинаться с буквы или цифры и содержать не более 64 символов.\",\"invalid_project_name_char\":\"«{{char}}» нельзя использовать в названии статьи. Используй строчные буквы a–z, 0–9, .\xA0-⁠\xA0_\",\"invalid_project_name_letter\":\"«{{char}}» ({{script}}, {{code}}) нельзя использовать в названии статьи. Используй строчные буквы a–z, 0–9, .\xA0-⁠\xA0_\",\"last_edited\":\"Последнее изменение\",\"latex_papers_with_a_live_pdf_preview\":\"Статьи на LaTeX с живым предпросмотром PDF\",\"new_paper_name\":\"Название новой статьи\",\"new_paper_name_placeholder\":\"Назовите статью…\",\"no_compiler_found_install_texlive_or_tectonic\":\"На этой машине не найден компилятор LaTeX. Установите TeX Live (pdflatex) или tectonic, чтобы компилировать.\",\"no_compiler_install_bundled_prompt\":\"На этой машине не найден компилятор LaTeX. Установите входящий в комплект компилятор Tectonic — одна проверенная загрузка, которая остаётся в собственной папке Papyrus.\",\"no_papers_yet\":\"Статей пока нет\",\"none_found\":\"Нет\",\"paper\":\"Статья\",\"paper_name\":\"Название статьи\",\"papers\":\"Статьи\",\"papyrus\":\"Papyrus\",\"pdf\":\"PDF\",\"pdf_missing_status\":\"Не скомпилировано\",\"pdf_ready_status\":\"Готово\",\"rename_config_refused\":\"Название не сохранено: Papyrus не может изменить настройки этой статьи.\",\"rename_paper\":\"Переименовать {{name}}\",\"rename_paper_replaced\":\"Статья изменилась после загрузки списка. Список уже обновлён; нажми Enter, чтобы сохранить название ещё раз.\",\"rename_title_rejected\":\"Введи название с видимыми символами или очисти поле, чтобы снова показывать {{name}}.\",\"start_a_paper\":\"Начать статью\",\"start_a_paper_tip\":\"Создайте пустую статью по стандартному шаблону article или клонируйте её с git-удалённого репозитория — подойдёт любой, где есть файл .tex.\",\"verifying_compiler\":\"Проверка…\",\"your_papers\":\"Ваши статьи\"},\"preview\":{\"compile_to_see_the_pdf\":\"Скомпилируйте, чтобы увидеть PDF.\",\"download_pdf\":\"Скачать PDF\",\"pdf_preview\":\"Предпросмотр PDF\"},\"workspace\":{\"co_author\":\"Соавтор\",\"co_author_conflict\":\"Соавтор изменил этот файл\",\"co_author_conflict_discard\":\"Отбросить мои изменения и перезагрузить\",\"co_author_conflict_discard_button\":\"Отбросить изменения\",\"co_author_conflict_discard_confirm\":\"Отбрасывает несохранённые изменения в «{{file}}» и загружает версию соавтора. Это действие нельзя отменить.\",\"co_author_conflict_discard_title\":\"Отбросить несохранённые изменения?\",\"commit_and_push\":\"Зафиксировать и отправить\",\"commit_message_prompt\":\"Опишите этот коммит. В него войдут все изменения статьи.\",\"compile\":\"Скомпилировать\",\"compiling\":\"Компиляция…\",\"context_not_attached\":\"Упомяни статью в следующем сообщении, чтобы соавтор увидел её. Это уведомление можно закрыть после упоминания.\",\"context_notice_title\":\"Не удалось передать эту статью соавтору\",\"cursor_position\":\"Стр. {{line}}, стлб. {{column}}\",\"delete_file_confirm\":\"Удалить «{{file}}»?\",\"download_pdf\":\"Скачать PDF\",\"editing\":\"Редактируется {{file}}\",\"editing_unsaved\":\"Редактируется {{file}} — не сохранено\",\"error_count_few\":\"{{count}} ошибки\",\"error_count_many\":\"{{count}} ошибок\",\"error_count_one\":\"{{count}} ошибка\",\"error_count_other\":\"{{count}} ошибки\",\"git_branch\":\"Текущая ветка\",\"log\":\"Журнал\",\"main_document\":\"Главный документ\",\"new_file_prompt\":\"Назовите новый файл, например methods.tex\",\"papers\":\"Статьи\",\"pull\":\"Забрать\",\"save_and_compile_hint\":\"Нажмите Cmd+S (Ctrl+S в Windows и Linux), чтобы сохранить и скомпилировать.\",\"session_title\":\"Papyrus: {{name}}\",\"warning_count_few\":\"{{count}} предупреждения\",\"warning_count_many\":\"{{count}} предупреждений\",\"warning_count_one\":\"{{count}} предупреждение\",\"warning_count_other\":\"{{count}} предупреждения\",\"word_count_few\":\"{{count}} слова\",\"word_count_many\":\"{{count}} слов\",\"word_count_one\":\"{{count}} слово\",\"word_count_other\":\"{{count}} слова\"}},\"specBuilder\":{\"components\":{\"specDetail\":{\"resize_document_panel\":\"Изменить размер панели документа\"}}}}"),
+		apps: /* @__PURE__ */ JSON.parse("{\"papyrus\":{\"coAuthor\":{\"close_co_author_panel\":\"Закрыть панель соавтора\",\"close_panel\":\"Закрыть панель — сессия останется открытой\",\"co_author\":\"Соавтор\",\"co_author_chat\":\"Чат с соавтором\",\"no_co_author_session_for_this_paper_yet\":\"Для этой статьи пока нет сессии соавтора.\",\"open_in_chat_page\":\"Открыть на странице чата\",\"start_a_session\":\"Начать сессию\",\"starting_session\":\"Запуск сессии…\"},\"diagnostics\":{\"jump_to_line\":\"Перейти к строке {{line}}\",\"line_short\":\"стр. {{line}}\",\"no_messages\":\"Компилятор ничего не сообщил.\",\"typesetting_hints_few\":\"{{count}} замечания по вёрстке\",\"typesetting_hints_many\":\"{{count}} замечаний по вёрстке\",\"typesetting_hints_one\":\"{{count}} замечание по вёрстке\",\"typesetting_hints_other\":\"{{count}} замечания по вёрстке\"},\"fileTree\":{\"delete_file\":\"Удалить {{file}}\",\"files\":\"Файлы\",\"main\":\"Главный\",\"new_file\":\"Новый файл\",\"no_source_files\":\"Нет исходных файлов.\"},\"manifest\":{\"configuration_1\":\"Установите управляемый Tectonic из приложения либо добавьте tectonic или pdflatex в PATH, затем создайте документ или клонируйте репозиторий с заранее настроенными неинтерактивными учётными данными Git.\",\"description\":\"Редактор статей на LaTeX с живым предпросмотром PDF и соавтором на базе ИИ. Пиши в редакторе с двумя областями, нажимай Cmd+S (Ctrl+S на Windows и Linux), чтобы собрать документ через pdflatex или tectonic, и читай готовый PDF рядом с исходником. Ошибки сборки разбираются в кликабельный список, который переходит к нужной строке. Склонируй готовую статью с любого удалённого репозитория git, а потом делай коммит и push с панели инструментов. Панель соавтора — это настоящая сессия чата Kiro Crew, привязанная к статье, поэтому агент может читать и править твой LaTeX, пока ты смотришь, как обновляется PDF.\",\"display_name\":\"Papyrus\",\"highlight_1\":\"Редактор LaTeX с двумя областями и живым предпросмотром PDF рядом\",\"highlight_2\":\"Сборка при сохранении (Cmd+S или Ctrl+S на Windows и Linux) через pdflatex или tectonic, цикл bibtex прогоняется за тебя\",\"highlight_3\":\"Нет TeX? Один клик — и проверенный компилятор Tectonic ставится в собственную папку Papyrus\",\"highlight_4\":\"Ошибки и предупреждения компилятора разбираются в кликабельный список с переходом к строке\",\"highlight_5\":\"Чат с соавтором на базе ИИ привязан к статье — он читает и правит тот LaTeX, который у тебя на экране\",\"highlight_6\":\"Склонируй статью с любого удалённого репозитория git, а затем делай коммит, pull и push с панели инструментов\",\"highlight_7\":\"Компилятор никогда не запускается с shell escape, поэтому враждебный файл .tex не сможет выполнить команды\",\"page_label\":\"Papyrus\",\"use_case_1\":\"Пишите LaTeX-документ рядом с готовым PDF, переходите от ошибок сборки к исходному коду и работайте с агентом, ограниченным этим документом.\"},\"page\":{\"actions\":\"Действия\",\"clone\":\"Клонировать\",\"clone_url\":\"URL репозитория\",\"clone_url_placeholder\":\"Клонировать по git-адресу…\",\"cloning\":\"Клонирование…\",\"compiled_count_label\":\"Скомпилировано\",\"compiler\":\"Компилятор\",\"compiler_tip\":\"Компилятор LaTeX, найденный на машине с {{productName}}. Papyrus предпочитает pdflatex, а при его отсутствии использует tectonic.\",\"create\":\"Создать\",\"create_one_above_or_clone_an_existing_repository\":\"Создайте статью выше или клонируйте существующий репозиторий.\",\"delete_paper\":\"Удалить {{name}}\",\"delete_paper_confirm\":\"Удалить «{{name}}» и все её файлы? Это действие нельзя отменить.\",\"delete\":\"Удалить\",\"downloading_compiler_progress\":\"Загрузка… {{done}} из {{total}}\",\"install_compiler\":\"Установить компилятор\",\"installing_compiler\":\"Установка…\",\"invalid_project_name\":\"Названия статей становятся именами папок, поэтому в них можно использовать только строчные латинские буквы (a–z), цифры (0–9), точки, дефисы и подчёркивания. Название должно начинаться с буквы или цифры и содержать не более 64 символов.\",\"invalid_project_name_char\":\"«{{char}}» нельзя использовать в названии статьи. Используй строчные буквы a–z, 0–9, .\xA0-⁠\xA0_\",\"invalid_project_name_letter\":\"«{{char}}» ({{script}}, {{code}}) нельзя использовать в названии статьи. Используй строчные буквы a–z, 0–9, .\xA0-⁠\xA0_\",\"last_edited\":\"Последнее изменение\",\"latex_papers_with_a_live_pdf_preview\":\"Статьи на LaTeX с живым предпросмотром PDF\",\"new_paper_name\":\"Название новой статьи\",\"new_paper_name_placeholder\":\"Назовите статью…\",\"no_compiler_found_install_texlive_or_tectonic\":\"На этой машине не найден компилятор LaTeX. Установите TeX Live (pdflatex) или tectonic, чтобы компилировать.\",\"no_compiler_install_bundled_prompt\":\"На этой машине не найден компилятор LaTeX. Установите входящий в комплект компилятор Tectonic — одна проверенная загрузка, которая остаётся в собственной папке Papyrus.\",\"no_papers_yet\":\"Статей пока нет\",\"none_found\":\"Нет\",\"paper\":\"Статья\",\"paper_name\":\"Название статьи\",\"papers\":\"Статьи\",\"papyrus\":\"Papyrus\",\"pdf\":\"PDF\",\"pdf_missing_status\":\"Не скомпилировано\",\"pdf_ready_status\":\"Готово\",\"rename_config_refused\":\"Название не сохранено: Papyrus не может изменить настройки этой статьи.\",\"rename_paper\":\"Переименовать {{name}}\",\"rename_paper_replaced\":\"Статья изменилась после загрузки списка. Список уже обновлён; нажми Enter, чтобы сохранить название ещё раз.\",\"rename_title_rejected\":\"Введи название с видимыми символами или очисти поле, чтобы снова показывать {{name}}.\",\"start_a_paper\":\"Начать статью\",\"start_a_paper_tip\":\"Создайте пустую статью по стандартному шаблону article или клонируйте её с git-удалённого репозитория — подойдёт любой, где есть файл .tex.\",\"verifying_compiler\":\"Проверка…\",\"your_papers\":\"Ваши статьи\"},\"preview\":{\"compile_to_see_the_pdf\":\"Скомпилируйте, чтобы увидеть PDF.\",\"download_pdf\":\"Скачать PDF\",\"pdf_preview\":\"Предпросмотр PDF\"},\"workspace\":{\"co_author\":\"Соавтор\",\"co_author_conflict\":\"Соавтор изменил этот файл\",\"co_author_conflict_discard\":\"Отбросить мои изменения и перезагрузить\",\"co_author_conflict_discard_button\":\"Отбросить изменения\",\"co_author_conflict_discard_confirm\":\"Отбрасывает несохранённые изменения в «{{file}}» и загружает версию соавтора. Это действие нельзя отменить.\",\"co_author_conflict_discard_title\":\"Отбросить несохранённые изменения?\",\"commit_and_push\":\"Зафиксировать и отправить\",\"commit_message_prompt\":\"Опишите этот коммит. В него войдут все изменения статьи.\",\"compile\":\"Скомпилировать\",\"compiling\":\"Компиляция…\",\"context_not_attached\":\"Упомяни статью в следующем сообщении, чтобы соавтор увидел её. Это уведомление можно закрыть после упоминания.\",\"context_notice_title\":\"Не удалось передать эту статью соавтору\",\"cursor_position\":\"Стр. {{line}}, стлб. {{column}}\",\"delete_file_confirm\":\"Удалить «{{file}}»?\",\"download_pdf\":\"Скачать PDF\",\"editing\":\"Редактируется {{file}}\",\"editing_unsaved\":\"Редактируется {{file}} — не сохранено\",\"error_count_few\":\"{{count}} ошибки\",\"error_count_many\":\"{{count}} ошибок\",\"error_count_one\":\"{{count}} ошибка\",\"error_count_other\":\"{{count}} ошибки\",\"git_branch\":\"Текущая ветка\",\"log\":\"Журнал\",\"main_document\":\"Главный документ\",\"new_file_prompt\":\"Назовите новый файл, например methods.tex\",\"papers\":\"Статьи\",\"pull\":\"Забрать\",\"save_and_compile_hint\":\"Нажмите Cmd+S (Ctrl+S в Windows и Linux), чтобы сохранить и скомпилировать.\",\"session_title\":\"Papyrus: {{name}}\",\"warning_count_few\":\"{{count}} предупреждения\",\"warning_count_many\":\"{{count}} предупреждений\",\"warning_count_one\":\"{{count}} предупреждение\",\"warning_count_other\":\"{{count}} предупреждения\",\"word_count_few\":\"{{count}} слова\",\"word_count_many\":\"{{count}} слов\",\"word_count_one\":\"{{count}} слово\",\"word_count_other\":\"{{count}} слова\"}},\"specBuilder\":{\"components\":{\"specDetail\":{\"resize_document_panel\":\"Изменить размер панели документа\"}}}}"),
 		components: {
 			"confirmDialog": { "cancel": "Отмена" },
 			"resizeHandle": { "drag_to_resize": "Потяните, чтобы изменить размер" }
@@ -1451,6 +1459,7 @@ var CATALOGS = {
 					"create_one_above_or_clone_an_existing_repository": "在上方新建一篇，或克隆一个已有的仓库。",
 					"delete_paper": "删除 {{name}}",
 					"delete_paper_confirm": "删除“{{name}}”及其所有文件？此操作无法撤销。",
+					"delete": "删除",
 					"downloading_compiler_progress": "正在下载…… {{done}} / {{total}}",
 					"install_compiler": "安装编译器",
 					"installing_compiler": "正在安装……",
@@ -1621,6 +1630,7 @@ function useConfirm() {
 	const opts = pending?.opts;
 	const confirmDialog = opts ? /* @__PURE__ */ jsx(Modal, {
 		open: true,
+		wrapTitle: true,
 		onClose: () => settle(false),
 		title: opts.title,
 		maxWidth: 440,
@@ -1634,7 +1644,7 @@ function useConfirm() {
 			children: opts.confirmLabel
 		})] }),
 		children: opts.body == null ? null : typeof opts.body === "string" ? /* @__PURE__ */ jsx("p", {
-			className: "text-sm text-text m-0",
+			className: "text-sm text-text m-0 break-words",
 			children: opts.body
 		}) : /* @__PURE__ */ jsx("div", {
 			className: "text-sm text-text",
@@ -1646,6 +1656,93 @@ function useConfirm() {
 		cancel: useCallback(() => settle(false), [settle]),
 		confirmDialog,
 		confirmOpen: !!pending
+	};
+}
+// src/host/useTextPrompt.tsx
+/**
+* Promise-based one-line prompt for one component: `textPrompt(opts)` resolves
+* the entered text when the user presses the confirm button (or Enter), and
+* `null` for Cancel, Escape, the close button, a backdrop click, a second ask
+* and an unmount. Render `textPromptDialog` once.
+*
+* It stands in for `window.prompt`, which on Windows leaves the window ignoring
+* the keyboard until it is re-activated. The host's own prompt component is
+* private, so this builds the same contract over `Modal`, `Btn` and `Input`
+* from `@kirocrew/app-sdk/ui`.
+*/
+/** The field and its buttons. Its state lives here so a keystroke repaints this
+*  dialog, not the page that owns the hook. */
+function PromptForm({ opts, inputRef, onSettle }) {
+	const [value, setValue] = useState("");
+	const ime = useImeGuard();
+	const canSubmit = opts.allowEmpty === true || value.trim() !== "";
+	const submit = () => {
+		if (canSubmit) onSettle(value);
+	};
+	return /* @__PURE__ */ jsx(Modal, {
+		open: true,
+		wrapTitle: true,
+		onClose: () => onSettle(null),
+		title: opts.title,
+		maxWidth: 440,
+		footer: /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsx(Btn, {
+			onClick: () => onSettle(null),
+			children: i18nT("components.confirmDialog.cancel")
+		}), /* @__PURE__ */ jsx(Btn, {
+			primary: true,
+			disabled: !canSubmit,
+			onClick: submit,
+			children: opts.confirmLabel
+		})] }),
+		children: /* @__PURE__ */ jsxs("label", {
+			className: "block text-sm text-text",
+			children: [/* @__PURE__ */ jsx("span", {
+				className: "block mb-2 break-words",
+				children: opts.body
+			}), /* @__PURE__ */ jsx(Input, {
+				ref: inputRef,
+				value,
+				onChange: (e) => setValue(e.target.value),
+				...ime.bindEnter({ onEnter: submit })
+			})]
+		})
+	});
+}
+function useTextPrompt() {
+	const [pending, setPending] = useState(null);
+	const pendingRef = useRef(null);
+	const inputRef = useRef(null);
+	const textPrompt = useCallback((opts) => {
+		return new Promise((resolve) => {
+			pendingRef.current?.resolve(null);
+			const next = {
+				opts,
+				resolve
+			};
+			pendingRef.current = next;
+			setPending(next);
+		});
+	}, []);
+	const settle = useCallback((result) => {
+		pendingRef.current?.resolve(result);
+		pendingRef.current = null;
+		setPending(null);
+	}, []);
+	useEffect(() => () => {
+		pendingRef.current?.resolve(null);
+		pendingRef.current = null;
+	}, []);
+	useEffect(() => {
+		if (pending) inputRef.current?.focus();
+	}, [pending]);
+	return {
+		textPrompt,
+		cancel: useCallback(() => settle(null), [settle]),
+		textPromptDialog: pending ? /* @__PURE__ */ jsx(PromptForm, {
+			opts: pending.opts,
+			inputRef,
+			onSettle: settle
+		}, pending.opts.title) : null
 	};
 }
 // src/host/useIsMobile.ts
@@ -2476,6 +2573,7 @@ function formatModified(epochSeconds) {
 	return fmtDateTime(epochSeconds * 1e3);
 }
 function ProjectList({ onOpenProject }) {
+	const { confirm, confirmDialog } = useConfirm();
 	const ime = useImeGuard();
 	const queryClient = useQueryClient();
 	const [newName, setNewName] = useState("");
@@ -2638,195 +2736,204 @@ function ProjectList({ onOpenProject }) {
 		const url = cloneUrl.trim();
 		if (url && !renameOpen) cloneMutation.mutate(url);
 	};
-	return /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsx(PageHeader, {
-		title: i18nT("apps.papyrus.page.papyrus"),
-		subtitle: i18nT("apps.papyrus.page.latex_papers_with_a_live_pdf_preview")
-	}), /* @__PURE__ */ jsxs("div", {
-		className: "px-4 md:px-6 pb-8 overflow-y-auto flex-1 min-h-0",
-		children: [
-			/* @__PURE__ */ jsxs("div", {
-				className: "grid gap-3.5 grid-cols-[repeat(auto-fit,minmax(150px,1fr))] mb-6",
-				children: [
-					/* @__PURE__ */ jsx(StatCard, {
-						label: i18nT("apps.papyrus.page.papers"),
-						value: projectsQuery.isLoading ? void 0 : projects.length,
-						accent: true
-					}),
-					/* @__PURE__ */ jsx(StatCard, {
-						label: i18nT("apps.papyrus.page.compiled_count_label"),
-						value: projectsQuery.isLoading ? void 0 : compiledCount
-					}),
-					/* @__PURE__ */ jsx(StatCard, {
-						label: i18nT("apps.papyrus.page.compiler"),
-						value: healthQuery.isLoading ? void 0 : compiler || i18nT("apps.papyrus.page.none_found"),
-						colorClass: compiler ? void 0 : "text-warn",
-						title: i18nT("apps.papyrus.page.compiler_tip")
-					})
-				]
-			}),
-			!healthQuery.isLoading && !compiler && /* @__PURE__ */ jsxs("div", {
-				className: "mb-4 bg-warn/10 border border-warn/20 rounded-lg p-3 flex items-start gap-3 animate-rise",
-				children: [
-					/* @__PURE__ */ jsx(AlertTriangle, { className: "lucide-inline text-warn shrink-0 mt-0.5" }),
-					/* @__PURE__ */ jsxs("div", {
-						className: "flex-1 text-[13px] text-text",
-						children: [
-							managed?.supported ? i18nT("apps.papyrus.page.no_compiler_install_bundled_prompt") : i18nT("apps.papyrus.page.no_compiler_found_install_texlive_or_tectonic"),
-							provisioning && /* @__PURE__ */ jsx("div", {
-								className: "mt-1 text-muted",
-								children: managed?.job.state === "verifying" ? i18nT("apps.papyrus.page.verifying_compiler") : managed && managed.job.bytes_total > 0 ? i18nT("apps.papyrus.page.downloading_compiler_progress", {
-									done: fmtBytes(managed.job.bytes_downloaded),
-									total: fmtBytes(managed.job.bytes_total)
-								}) : i18nT("apps.papyrus.page.installing_compiler")
-							}),
-							managed?.job.state === "error" && managed.job.error && /* @__PURE__ */ jsx("div", {
-								className: "mt-1 text-muted break-words",
-								children: managed.job.error
-							})
-						]
-					}),
-					managed?.supported && /* @__PURE__ */ jsx(Btn, {
-						primary: true,
-						className: "shrink-0",
-						onClick: () => provisionMutation.mutate(),
-						disabled: provisioning || provisionMutation.isPending,
-						children: provisioning ? /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsx(Loader2, { className: "lucide-inline animate-spin" }), i18nT("apps.papyrus.page.installing_compiler")] }) : /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsx(Download, { className: "lucide-inline" }), i18nT("apps.papyrus.page.install_compiler")] })
-					})
-				]
-			}),
-			/* @__PURE__ */ jsx(ErrorNotice, {
-				className: "mb-4 animate-rise",
-				message: error || (listErrorShown ? projectsQuery.error.message : ""),
-				onDismiss: () => error ? setError("") : setDismissedListErrorAt(projectsQuery.errorUpdatedAt),
-				askAgent: !newName && !cloneUrl && !renaming
-			}),
-			/* @__PURE__ */ jsxs(Card, { children: [
-				/* @__PURE__ */ jsxs(CardTitle, { children: [i18nT("apps.papyrus.page.start_a_paper"), /* @__PURE__ */ jsx(InfoTip, { text: i18nT("apps.papyrus.page.start_a_paper_tip") })] }),
+	return /* @__PURE__ */ jsxs(Fragment, { children: [
+		confirmDialog,
+		/* @__PURE__ */ jsx(PageHeader, {
+			title: i18nT("apps.papyrus.page.papyrus"),
+			subtitle: i18nT("apps.papyrus.page.latex_papers_with_a_live_pdf_preview")
+		}),
+		/* @__PURE__ */ jsxs("div", {
+			className: "px-4 md:px-6 pb-8 overflow-y-auto flex-1 min-h-0",
+			children: [
 				/* @__PURE__ */ jsxs("div", {
-					className: "flex flex-wrap gap-2 mb-3",
-					children: [/* @__PURE__ */ jsx(Input, {
-						className: "flex-1 min-w-[14rem]",
-						"aria-label": i18nT("apps.papyrus.page.new_paper_name"),
-						placeholder: i18nT("apps.papyrus.page.new_paper_name_placeholder"),
-						value: newName,
-						onChange: (e) => setNewName(e.target.value),
-						...ime.bindEnter({ onEnter: submitCreate })
-					}), /* @__PURE__ */ jsxs(SendBtn, {
-						onClick: submitCreate,
-						disabled: !newName.trim() || createMutation.isPending || renameOpen,
-						children: [createMutation.isPending ? /* @__PURE__ */ jsx(Loader2, { className: "lucide-inline animate-spin motion-reduce:animate-none" }) : /* @__PURE__ */ jsx(FilePlus2, { className: "lucide-inline" }), i18nT("apps.papyrus.page.create")]
-					})]
+					className: "grid gap-3.5 grid-cols-[repeat(auto-fit,minmax(150px,1fr))] mb-6",
+					children: [
+						/* @__PURE__ */ jsx(StatCard, {
+							label: i18nT("apps.papyrus.page.papers"),
+							value: projectsQuery.isLoading ? void 0 : projects.length,
+							accent: true
+						}),
+						/* @__PURE__ */ jsx(StatCard, {
+							label: i18nT("apps.papyrus.page.compiled_count_label"),
+							value: projectsQuery.isLoading ? void 0 : compiledCount
+						}),
+						/* @__PURE__ */ jsx(StatCard, {
+							label: i18nT("apps.papyrus.page.compiler"),
+							value: healthQuery.isLoading ? void 0 : compiler || i18nT("apps.papyrus.page.none_found"),
+							colorClass: compiler ? void 0 : "text-warn",
+							title: i18nT("apps.papyrus.page.compiler_tip")
+						})
+					]
 				}),
-				/* @__PURE__ */ jsxs("div", {
-					className: "flex flex-wrap gap-2",
-					children: [/* @__PURE__ */ jsx(Input, {
-						className: "flex-1 min-w-[14rem]",
-						"aria-label": i18nT("apps.papyrus.page.clone_url"),
-						placeholder: i18nT("apps.papyrus.page.clone_url_placeholder"),
-						value: cloneUrl,
-						onChange: (e) => setCloneUrl(e.target.value),
-						...ime.bindEnter({ onEnter: submitClone })
-					}), /* @__PURE__ */ jsxs(Btn, {
-						onClick: submitClone,
-						disabled: !cloneUrl.trim() || cloneMutation.isPending || renameOpen,
-						children: [cloneMutation.isPending ? /* @__PURE__ */ jsx(Loader2, { className: "lucide-inline animate-spin motion-reduce:animate-none" }) : /* @__PURE__ */ jsx(GitBranch, { className: "lucide-inline" }), cloneMutation.isPending ? i18nT("apps.papyrus.page.cloning") : i18nT("apps.papyrus.page.clone")]
-					})]
-				})
-			] }),
-			/* @__PURE__ */ jsxs(Card, { children: [/* @__PURE__ */ jsx(CardTitle, { children: i18nT("apps.papyrus.page.your_papers") }), projectsQuery.isLoading ? /* @__PURE__ */ jsx(ContentSkeleton, { rows: 3 }) : projects.length === 0 ? /* @__PURE__ */ jsx(EmptyState, {
-				icon: /* @__PURE__ */ jsx(ScrollText, { className: "lucide-inline" }),
-				title: i18nT("apps.papyrus.page.no_papers_yet"),
-				subtitle: i18nT("apps.papyrus.page.create_one_above_or_clone_an_existing_repository")
-			}) : /* @__PURE__ */ jsxs("table", {
-				className: "w-full border-collapse table-striped",
-				children: [/* @__PURE__ */ jsx("thead", { children: /* @__PURE__ */ jsxs("tr", { children: [
-					/* @__PURE__ */ jsx("th", {
-						className: "text-left text-muted text-[12px] uppercase tracking-[.04em] px-2.5 py-2 border-b border-border font-medium",
-						children: i18nT("apps.papyrus.page.paper")
-					}),
-					/* @__PURE__ */ jsx("th", {
-						className: "text-left text-muted text-[12px] uppercase tracking-[.04em] px-2.5 py-2 border-b border-border font-medium",
-						children: i18nT("apps.papyrus.page.last_edited")
-					}),
-					/* @__PURE__ */ jsx("th", {
-						className: "text-left text-muted text-[12px] uppercase tracking-[.04em] px-2.5 py-2 border-b border-border font-medium",
-						children: i18nT("apps.papyrus.page.pdf")
-					}),
-					/* @__PURE__ */ jsx("th", {
-						className: "px-2.5 py-2 border-b border-border",
-						children: /* @__PURE__ */ jsx("span", {
-							className: "sr-only",
-							children: i18nT("apps.papyrus.page.actions")
+				!healthQuery.isLoading && !compiler && /* @__PURE__ */ jsxs("div", {
+					className: "mb-4 bg-warn/10 border border-warn/20 rounded-lg p-3 flex items-start gap-3 animate-rise",
+					children: [
+						/* @__PURE__ */ jsx(AlertTriangle, { className: "lucide-inline text-warn shrink-0 mt-0.5" }),
+						/* @__PURE__ */ jsxs("div", {
+							className: "flex-1 text-[13px] text-text",
+							children: [
+								managed?.supported ? i18nT("apps.papyrus.page.no_compiler_install_bundled_prompt") : i18nT("apps.papyrus.page.no_compiler_found_install_texlive_or_tectonic"),
+								provisioning && /* @__PURE__ */ jsx("div", {
+									className: "mt-1 text-muted",
+									children: managed?.job.state === "verifying" ? i18nT("apps.papyrus.page.verifying_compiler") : managed && managed.job.bytes_total > 0 ? i18nT("apps.papyrus.page.downloading_compiler_progress", {
+										done: fmtBytes(managed.job.bytes_downloaded),
+										total: fmtBytes(managed.job.bytes_total)
+									}) : i18nT("apps.papyrus.page.installing_compiler")
+								}),
+								managed?.job.state === "error" && managed.job.error && /* @__PURE__ */ jsx("div", {
+									className: "mt-1 text-muted break-words",
+									children: managed.job.error
+								})
+							]
+						}),
+						managed?.supported && /* @__PURE__ */ jsx(Btn, {
+							primary: true,
+							className: "shrink-0",
+							onClick: () => provisionMutation.mutate(),
+							disabled: provisioning || provisionMutation.isPending,
+							children: provisioning ? /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsx(Loader2, { className: "lucide-inline animate-spin" }), i18nT("apps.papyrus.page.installing_compiler")] }) : /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsx(Download, { className: "lucide-inline" }), i18nT("apps.papyrus.page.install_compiler")] })
 						})
-					})
-				] }) }), /* @__PURE__ */ jsx("tbody", { children: projects.map((project) => /* @__PURE__ */ jsxs("tr", { children: [
-					/* @__PURE__ */ jsx("td", {
-						className: "px-2.5 py-2",
-						children: renaming === project.name ? /* @__PURE__ */ jsx(Input, {
-							autoFocus: true,
-							"aria-label": i18nT("apps.papyrus.page.paper_name"),
-							value: renameDraft,
-							disabled: renameMutation.isPending,
-							placeholder: project.name,
-							onChange: (e) => setRenameDraft(e.target.value),
-							...ime.bindEnter({
-								onEnter: () => commitRename(project.name),
-								onEscape: cancelRename,
-								onBlur: () => commitRename(project.name)
-							})
-						}) : /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsxs(Clickable, {
-							onClick: () => openProject(project.name),
-							className: "inline-flex items-center gap-1.5 text-[13px] text-text-strong font-medium cursor-pointer hover:text-accent focus-ring rounded",
-							children: [/* @__PURE__ */ jsx(ScrollText, { className: "lucide-inline shrink-0 opacity-70" }), /* @__PURE__ */ jsx("span", {
-								className: "min-w-0 [overflow-wrap:anywhere]",
-								children: project.title || project.name
-							})]
-						}), (project.title || project.name) !== project.name && /* @__PURE__ */ jsx("div", {
-							className: "text-[12px] text-muted [overflow-wrap:anywhere]",
-							children: project.name
-						})] })
+					]
+				}),
+				/* @__PURE__ */ jsx(ErrorNotice, {
+					className: "mb-4 animate-rise",
+					message: error || (listErrorShown ? projectsQuery.error.message : ""),
+					onDismiss: () => error ? setError("") : setDismissedListErrorAt(projectsQuery.errorUpdatedAt),
+					askAgent: !newName && !cloneUrl && !renaming
+				}),
+				/* @__PURE__ */ jsxs(Card, { children: [
+					/* @__PURE__ */ jsxs(CardTitle, { children: [i18nT("apps.papyrus.page.start_a_paper"), /* @__PURE__ */ jsx(InfoTip, { text: i18nT("apps.papyrus.page.start_a_paper_tip") })] }),
+					/* @__PURE__ */ jsxs("div", {
+						className: "flex flex-wrap gap-2 mb-3",
+						children: [/* @__PURE__ */ jsx(Input, {
+							className: "flex-1 min-w-[14rem]",
+							"aria-label": i18nT("apps.papyrus.page.new_paper_name"),
+							placeholder: i18nT("apps.papyrus.page.new_paper_name_placeholder"),
+							value: newName,
+							onChange: (e) => setNewName(e.target.value),
+							...ime.bindEnter({ onEnter: submitCreate })
+						}), /* @__PURE__ */ jsxs(SendBtn, {
+							onClick: submitCreate,
+							disabled: !newName.trim() || createMutation.isPending || renameOpen,
+							children: [createMutation.isPending ? /* @__PURE__ */ jsx(Loader2, { className: "lucide-inline animate-spin motion-reduce:animate-none" }) : /* @__PURE__ */ jsx(FilePlus2, { className: "lucide-inline" }), i18nT("apps.papyrus.page.create")]
+						})]
 					}),
-					/* @__PURE__ */ jsx("td", {
-						className: "px-2.5 py-2 text-[12px] text-muted",
-						children: formatModified(project.modified)
-					}),
-					/* @__PURE__ */ jsx("td", {
-						className: "px-2.5 py-2",
-						children: project.has_pdf ? /* @__PURE__ */ jsxs("span", {
-							className: "inline-flex items-center gap-1 text-[12px] text-ok",
-							children: [/* @__PURE__ */ jsx(FileCheck2, { className: "lucide-inline" }), i18nT("apps.papyrus.page.pdf_ready_status")]
-						}) : /* @__PURE__ */ jsx("span", {
-							className: "text-[12px] text-muted",
-							children: i18nT("apps.papyrus.page.pdf_missing_status")
-						})
-					}),
-					/* @__PURE__ */ jsxs("td", {
-						className: "px-2.5 py-2 text-right",
-						children: [/* @__PURE__ */ jsx("button", {
-							type: "button",
-							"aria-label": i18nT("apps.papyrus.page.rename_paper", { name: project.title || project.name }),
-							title: i18nT("apps.papyrus.page.rename_paper", { name: project.title || project.name }),
-							onClick: () => startRename(project),
-							disabled: renameOpen || leavingSoon,
-							className: "p-1 rounded text-muted hover:text-accent hover:bg-accent/10 cursor-pointer bg-transparent border-none transition-colors disabled:opacity-40",
-							children: /* @__PURE__ */ jsx(Pencil, { className: "lucide-inline" })
-						}), /* @__PURE__ */ jsx("button", {
-							type: "button",
-							"aria-label": i18nT("apps.papyrus.page.delete_paper", { name: project.name }),
-							...guideCaution,
-							title: i18nT("apps.papyrus.page.delete_paper", { name: project.name }),
-							onClick: () => {
-								if (window.confirm(i18nT("apps.papyrus.page.delete_paper_confirm", { name: project.name }))) deleteMutation.mutate(project.name);
-							},
-							disabled: deleteMutation.isPending || renameOpen,
-							className: "p-1 rounded text-muted hover:text-danger-text hover:bg-danger/10 cursor-pointer bg-transparent border-none transition-colors disabled:opacity-40",
-							children: /* @__PURE__ */ jsx(Trash2, { className: "lucide-inline" })
+					/* @__PURE__ */ jsxs("div", {
+						className: "flex flex-wrap gap-2",
+						children: [/* @__PURE__ */ jsx(Input, {
+							className: "flex-1 min-w-[14rem]",
+							"aria-label": i18nT("apps.papyrus.page.clone_url"),
+							placeholder: i18nT("apps.papyrus.page.clone_url_placeholder"),
+							value: cloneUrl,
+							onChange: (e) => setCloneUrl(e.target.value),
+							...ime.bindEnter({ onEnter: submitClone })
+						}), /* @__PURE__ */ jsxs(Btn, {
+							onClick: submitClone,
+							disabled: !cloneUrl.trim() || cloneMutation.isPending || renameOpen,
+							children: [cloneMutation.isPending ? /* @__PURE__ */ jsx(Loader2, { className: "lucide-inline animate-spin motion-reduce:animate-none" }) : /* @__PURE__ */ jsx(GitBranch, { className: "lucide-inline" }), cloneMutation.isPending ? i18nT("apps.papyrus.page.cloning") : i18nT("apps.papyrus.page.clone")]
 						})]
 					})
-				] }, project.name)) })]
-			})] })
-		]
-	})] });
+				] }),
+				/* @__PURE__ */ jsxs(Card, { children: [/* @__PURE__ */ jsx(CardTitle, { children: i18nT("apps.papyrus.page.your_papers") }), projectsQuery.isLoading ? /* @__PURE__ */ jsx(ContentSkeleton, { rows: 3 }) : projects.length === 0 ? /* @__PURE__ */ jsx(EmptyState, {
+					icon: /* @__PURE__ */ jsx(ScrollText, { className: "lucide-inline" }),
+					title: i18nT("apps.papyrus.page.no_papers_yet"),
+					subtitle: i18nT("apps.papyrus.page.create_one_above_or_clone_an_existing_repository")
+				}) : /* @__PURE__ */ jsxs("table", {
+					className: "w-full border-collapse table-striped",
+					children: [/* @__PURE__ */ jsx("thead", { children: /* @__PURE__ */ jsxs("tr", { children: [
+						/* @__PURE__ */ jsx("th", {
+							className: "text-left text-muted text-[12px] uppercase tracking-[.04em] px-2.5 py-2 border-b border-border font-medium",
+							children: i18nT("apps.papyrus.page.paper")
+						}),
+						/* @__PURE__ */ jsx("th", {
+							className: "text-left text-muted text-[12px] uppercase tracking-[.04em] px-2.5 py-2 border-b border-border font-medium",
+							children: i18nT("apps.papyrus.page.last_edited")
+						}),
+						/* @__PURE__ */ jsx("th", {
+							className: "text-left text-muted text-[12px] uppercase tracking-[.04em] px-2.5 py-2 border-b border-border font-medium",
+							children: i18nT("apps.papyrus.page.pdf")
+						}),
+						/* @__PURE__ */ jsx("th", {
+							className: "px-2.5 py-2 border-b border-border",
+							children: /* @__PURE__ */ jsx("span", {
+								className: "sr-only",
+								children: i18nT("apps.papyrus.page.actions")
+							})
+						})
+					] }) }), /* @__PURE__ */ jsx("tbody", { children: projects.map((project) => /* @__PURE__ */ jsxs("tr", { children: [
+						/* @__PURE__ */ jsx("td", {
+							className: "px-2.5 py-2",
+							children: renaming === project.name ? /* @__PURE__ */ jsx(Input, {
+								autoFocus: true,
+								"aria-label": i18nT("apps.papyrus.page.paper_name"),
+								value: renameDraft,
+								disabled: renameMutation.isPending,
+								placeholder: project.name,
+								onChange: (e) => setRenameDraft(e.target.value),
+								...ime.bindEnter({
+									onEnter: () => commitRename(project.name),
+									onEscape: cancelRename,
+									onBlur: () => commitRename(project.name)
+								})
+							}) : /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsxs(Clickable, {
+								onClick: () => openProject(project.name),
+								className: "inline-flex items-center gap-1.5 text-[13px] text-text-strong font-medium cursor-pointer hover:text-accent focus-ring rounded",
+								children: [/* @__PURE__ */ jsx(ScrollText, { className: "lucide-inline shrink-0 opacity-70" }), /* @__PURE__ */ jsx("span", {
+									className: "min-w-0 [overflow-wrap:anywhere]",
+									children: project.title || project.name
+								})]
+							}), (project.title || project.name) !== project.name && /* @__PURE__ */ jsx("div", {
+								className: "text-[12px] text-muted [overflow-wrap:anywhere]",
+								children: project.name
+							})] })
+						}),
+						/* @__PURE__ */ jsx("td", {
+							className: "px-2.5 py-2 text-[12px] text-muted",
+							children: formatModified(project.modified)
+						}),
+						/* @__PURE__ */ jsx("td", {
+							className: "px-2.5 py-2",
+							children: project.has_pdf ? /* @__PURE__ */ jsxs("span", {
+								className: "inline-flex items-center gap-1 text-[12px] text-ok",
+								children: [/* @__PURE__ */ jsx(FileCheck2, { className: "lucide-inline" }), i18nT("apps.papyrus.page.pdf_ready_status")]
+							}) : /* @__PURE__ */ jsx("span", {
+								className: "text-[12px] text-muted",
+								children: i18nT("apps.papyrus.page.pdf_missing_status")
+							})
+						}),
+						/* @__PURE__ */ jsxs("td", {
+							className: "px-2.5 py-2 text-right",
+							children: [/* @__PURE__ */ jsx("button", {
+								type: "button",
+								"aria-label": i18nT("apps.papyrus.page.rename_paper", { name: project.title || project.name }),
+								title: i18nT("apps.papyrus.page.rename_paper", { name: project.title || project.name }),
+								onClick: () => startRename(project),
+								disabled: renameOpen || leavingSoon,
+								className: "p-1 rounded text-muted hover:text-accent hover:bg-accent/10 cursor-pointer bg-transparent border-none transition-colors disabled:opacity-40",
+								children: /* @__PURE__ */ jsx(Pencil, { className: "lucide-inline" })
+							}), /* @__PURE__ */ jsx("button", {
+								type: "button",
+								"aria-label": i18nT("apps.papyrus.page.delete_paper", { name: project.name }),
+								...guideCaution,
+								title: i18nT("apps.papyrus.page.delete_paper", { name: project.name }),
+								onClick: async () => {
+									const name = project.name;
+									if (await confirm({
+										title: i18nT("apps.papyrus.page.delete_paper", { name }),
+										body: i18nT("apps.papyrus.page.delete_paper_confirm", { name }),
+										confirmLabel: i18nT("apps.papyrus.page.delete")
+									})) deleteMutation.mutate(name);
+								},
+								disabled: deleteMutation.isPending || renameOpen,
+								className: "p-1 rounded text-muted hover:text-danger-text hover:bg-danger/10 cursor-pointer bg-transparent border-none transition-colors disabled:opacity-40",
+								children: /* @__PURE__ */ jsx(Trash2, { className: "lucide-inline" })
+							})]
+						})
+					] }, project.name)) })]
+				})] })
+			]
+		})
+	] });
 }
 // src/FileTree.tsx
 /**
@@ -3383,10 +3490,23 @@ var isFlushAbort = (err) => err.message === FLUSH_FAILED;
 * constants rather than inline copy.
 */
 function PapyrusPage() {
-	const { confirm, confirmDialog } = useConfirm();
+	const { confirm, cancel: cancelConfirm, confirmDialog } = useConfirm();
+	const { textPrompt, cancel: cancelTextPrompt, textPromptDialog } = useTextPrompt();
 	const queryClient = useQueryClient();
 	const { openChat } = useChatLauncher();
 	const [project, setProject] = useState(loadLastProject);
+	const projectRef = useRef(project);
+	useLayoutEffect(() => {
+		projectRef.current = project;
+	}, [project]);
+	useEffect(() => {
+		cancelConfirm();
+		cancelTextPrompt();
+	}, [
+		project,
+		cancelConfirm,
+		cancelTextPrompt
+	]);
 	const [currentFile, setCurrentFile] = useState("");
 	const [buffer, setBuffer] = useState("");
 	const [dirty, setDirty] = useState(false);
@@ -3666,30 +3786,35 @@ function PapyrusPage() {
 		flushBuffer,
 		isMobile
 	]);
+	const reportFailureFor = (paper, err) => {
+		if (isFlushAbort(err)) return;
+		setError(projectRef.current === paper ? err.message : `${paper}: ${err.message}`);
+	};
+	const invalidateFilesOf = (paper) => queryClient.invalidateQueries({ queryKey: projectQueryKey(paper) });
 	const createFileMutation = useMutation({
-		mutationFn: async (path) => {
-			if (!await flushBuffer()) throw new Error(FLUSH_FAILED);
-			return papyrusApi.createFile(project, path);
+		mutationFn: async (vars) => {
+			if (projectRef.current === vars.project && !await flushBuffer()) throw new Error(FLUSH_FAILED);
+			return papyrusApi.createFile(vars.project, vars.path);
 		},
-		onSuccess: async (result) => {
-			await invalidateFiles();
+		onSuccess: async (result, vars) => {
+			await invalidateFilesOf(vars.project);
+			if (projectRef.current !== vars.project) return;
 			setDirty(false);
 			setCurrentFile(result.path);
 		},
-		onError: (err) => {
-			if (!isFlushAbort(err)) setError(err.message);
-		}
+		onError: (err, vars) => reportFailureFor(vars.project, err)
 	});
 	const deleteFileMutation = useMutation({
-		mutationFn: (path) => papyrusApi.deleteFile(project, path),
-		onSuccess: async (_result, path) => {
-			await invalidateFiles();
-			if (path === bufferFileRef.current) {
+		mutationFn: (vars) => papyrusApi.deleteFile(vars.project, vars.path),
+		onSuccess: async (_result, vars) => {
+			await invalidateFilesOf(vars.project);
+			if (projectRef.current !== vars.project) return;
+			if (vars.path === bufferFileRef.current) {
 				setDirty(false);
 				setCurrentFile(mainFile);
 			}
 		},
-		onError: (err) => setError(err.message)
+		onError: (err, vars) => reportFailureFor(vars.project, err)
 	});
 	const setMainMutation = useMutation({
 		mutationFn: (path) => papyrusApi.setMainFile(project, path),
@@ -3726,21 +3851,36 @@ function PapyrusPage() {
 		}
 	});
 	const pushMutation = useMutation({
-		mutationFn: async (message) => {
-			if (!await flushBuffer()) throw new Error(FLUSH_FAILED);
-			await papyrusApi.gitCommit(project, message);
-			return papyrusApi.gitPush(project);
+		mutationFn: async (vars) => {
+			if (projectRef.current === vars.project && !await flushBuffer()) throw new Error(FLUSH_FAILED);
+			await papyrusApi.gitCommit(vars.project, vars.message);
+			return papyrusApi.gitPush(vars.project);
 		},
-		onSuccess: () => invalidateGit(),
-		onError: (err) => {
-			if (!isFlushAbort(err)) setError(err.message);
-		}
+		onSuccess: (_result, vars) => queryClient.invalidateQueries({ queryKey: [
+			"papyrus",
+			"git",
+			vars.project
+		] }),
+		onError: (err, vars) => reportFailureFor(vars.project, err)
 	});
-	const onCommitAndPushClick = useCallback(() => {
-		const message = window.prompt(i18nT("apps.papyrus.workspace.commit_message_prompt"));
+	const onCommitAndPushClick = useCallback(async () => {
+		if (!project) return;
+		const message = await textPrompt({
+			title: i18nT("apps.papyrus.workspace.commit_and_push"),
+			body: i18nT("apps.papyrus.workspace.commit_message_prompt"),
+			confirmLabel: i18nT("apps.papyrus.workspace.commit_and_push"),
+			allowEmpty: true
+		});
 		if (message === null) return;
-		pushMutation.mutate(message.trim());
-	}, [pushMutation]);
+		pushMutation.mutate({
+			project,
+			message: message.trim()
+		});
+	}, [
+		project,
+		pushMutation,
+		textPrompt
+	]);
 	/** The context the writing assistant needs: the paper's name and main document.
 	*  The bundled `papyrus-writing` skill supplies everything else (where projects
 	*  live, how to compile, the style rules). */
@@ -3853,13 +3993,37 @@ function PapyrusPage() {
 		setCompileLog("");
 		setCompileMs(null);
 	}, []);
-	const onCreateFileClick = useCallback(() => {
-		const trimmed = window.prompt(i18nT("apps.papyrus.workspace.new_file_prompt"))?.trim();
-		if (trimmed) createFileMutation.mutate(trimmed);
-	}, [createFileMutation]);
-	const onDeleteFileClick = useCallback((path) => {
-		if (window.confirm(i18nT("apps.papyrus.workspace.delete_file_confirm", { file: path }))) deleteFileMutation.mutate(path);
-	}, [deleteFileMutation]);
+	const onCreateFileClick = useCallback(async () => {
+		if (!project) return;
+		const trimmed = (await textPrompt({
+			title: i18nT("apps.papyrus.fileTree.new_file"),
+			body: i18nT("apps.papyrus.workspace.new_file_prompt"),
+			confirmLabel: i18nT("apps.papyrus.fileTree.new_file")
+		}))?.trim();
+		if (trimmed) createFileMutation.mutate({
+			project,
+			path: trimmed
+		});
+	}, [
+		project,
+		createFileMutation,
+		textPrompt
+	]);
+	const onDeleteFileClick = useCallback(async (path) => {
+		if (!project) return;
+		if (await confirm({
+			title: i18nT("apps.papyrus.fileTree.delete_file", { file: path }),
+			body: i18nT("apps.papyrus.workspace.delete_file_confirm", { file: path }),
+			confirmLabel: i18nT("apps.papyrus.page.delete")
+		})) deleteFileMutation.mutate({
+			project,
+			path
+		});
+	}, [
+		project,
+		confirm,
+		deleteFileMutation
+	]);
 	if (!project) return /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsx(ErrorNotice, {
 		className: "mx-6 mt-2 animate-rise",
 		message: error,
@@ -4089,7 +4253,8 @@ function PapyrusPage() {
 					})
 				]
 			}),
-			confirmDialog
+			confirmDialog,
+			textPromptDialog
 		]
 	});
 }

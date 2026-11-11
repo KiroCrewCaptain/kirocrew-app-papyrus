@@ -113,6 +113,8 @@ declare module '@kirocrew/app-sdk/ui' {
     onClose: () => void
     title?: ReactNode
     maxWidth?: number
+    /** Wrap a long title instead of cutting it off. A host without the prop ignores it. */
+    wrapTitle?: boolean
     footer?: ReactNode
     children?: ReactNode
   }>

@@ -53,6 +53,7 @@
         "create_one_above_or_clone_an_existing_repository": "Créez-en un ci-dessus, ou clonez un dépôt existant.",
         "delete_paper": "Supprimer {{name}}",
         "delete_paper_confirm": "Supprimer « {{name}} » et tous ses fichiers ? Cette action est irréversible.",
+        "delete": "Supprimer",
         "downloading_compiler_progress": "Téléchargement… {{done}} sur {{total}}",
         "install_compiler": "Installer le compilateur",
         "installing_compiler": "Installation…",

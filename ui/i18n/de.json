@@ -52,6 +52,7 @@
         "create_one_above_or_clone_an_existing_repository": "Erstellen Sie oben eines, oder klonen Sie ein bestehendes Repository.",
         "delete_paper": "{{name}} löschen",
         "delete_paper_confirm": "„{{name}}“ und alle zugehörigen Dateien löschen? Dies kann nicht rückgängig gemacht werden.",
+        "delete": "Löschen",
         "downloading_compiler_progress": "Wird heruntergeladen… {{done}} von {{total}}",
         "install_compiler": "Compiler installieren",
         "installing_compiler": "Installation läuft…",

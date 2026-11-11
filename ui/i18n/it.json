@@ -53,6 +53,7 @@
         "create_one_above_or_clone_an_existing_repository": "Creane uno qui sopra, oppure clona un repository esistente.",
         "delete_paper": "Elimina {{name}}",
         "delete_paper_confirm": "Eliminare «{{name}}» e tutti i suoi file? Questa azione non può essere annullata.",
+        "delete": "Elimina",
         "downloading_compiler_progress": "Download… {{done}} di {{total}}",
         "install_compiler": "Installa compilatore",
         "installing_compiler": "Installazione…",
